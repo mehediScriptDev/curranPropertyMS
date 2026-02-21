@@ -70,6 +70,6 @@
 
   /* Section description size */
   .section-desc {
-    @apply text-[1rem];
+    @apply text-[1rem] xl:text-[1.1rem];
   }
 }
