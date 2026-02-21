@@ -10,7 +10,7 @@ const features = [
 
 export default function Dashboard() {
   return (
-    <section className="py-24 px-6 lg:px-16 bg-white">
+    <section className="py-16 px-6 lg:px-16 bg-white">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -66,11 +66,11 @@ export default function Dashboard() {
               <LayoutDashboard size={13} className="text-primary-600" />
               <span className="text-xs font-semibold text-primary-700 tracking-wide">Client Portal</span>
             </div>
-            <h2 className="text-[2rem] lg:text-[2.4rem] font-bold text-dark-950 leading-tight mb-5">
+            <h2 className="section-title font-bold text-dark-950 leading-tight mb-5">
               Your property.{" "}
               <span className="text-primary-600">Your dashboard.</span>
             </h2>
-            <p className="text-[0.95rem] text-dark-500 mb-10 leading-relaxed">
+            <p className="section-desc text-dark-500 mb-10 leading-relaxed">
               Everything about your property in one secure, beautifully designed portal — accessible anytime, anywhere.
             </p>
 
@@ -81,8 +81,8 @@ export default function Dashboard() {
                     <Icon size={18} className="text-primary-600" />
                   </div>
                   <div>
-                    <p className="text-[0.9rem] font-semibold text-dark-900 mb-0.5">{title}</p>
-                    <p className="text-sm text-dark-500 leading-relaxed">{desc}</p>
+                    <p className="text-[1.3rem] font-semibold text-dark-900 mb-0.5">{title}</p>
+                    <p className="text-base text-dark-500 leading-relaxed">{desc}</p>
                   </div>
                 </li>
               ))}

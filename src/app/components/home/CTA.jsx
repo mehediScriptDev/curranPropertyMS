@@ -3,7 +3,7 @@ import { ArrowRight, Phone, Calendar } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="py-24 px-6 lg:px-16 bg-gradient-to-br from-[#1a3a5c] via-[#1e4472] to-[#163860] relative overflow-hidden">
+    <section className="py-16 px-6 lg:px-16 bg-gradient-to-br from-[#1a3a5c] via-[#1e4472] to-[#163860] relative overflow-hidden">
       {/* Decorative blobs */}
       <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-primary-600/10 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-primary-600/8 blur-3xl pointer-events-none" />
@@ -15,12 +15,12 @@ export default function CTA() {
             <span className="text-xs font-semibold text-white/80 tracking-wide">Currently accepting new landlords</span>
           </div>
 
-          <h2 className="text-[2rem] md:text-[2.6rem] font-bold text-white leading-tight mb-5">
+          <h2 className="section-title font-bold text-white leading-tight mb-5">
             Ready to simplify your{" "}
             <span className="text-primary-400">property management?</span>
           </h2>
 
-          <p className="text-dark-300 text-[0.95rem] mb-10 max-w-xl mx-auto leading-relaxed">
+          <p className="section-desc text-dark-300 mb-10 max-w-xl mx-auto leading-relaxed">
             Join 500+ landlords who trust McCann &amp; Curran for stress-free, fully transparent property management across Ireland.
           </p>
 

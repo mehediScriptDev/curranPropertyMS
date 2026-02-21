@@ -16,7 +16,7 @@ const stats = [
 
 export default function Why() {
   return (
-    <section className="py-24 px-6 lg:px-16 bg-gradient-to-br from-[#eef6fb] via-[#e4eff7] to-[#d6e7f3]" id="why">
+    <section className="py-16 px-6 lg:px-16 bg-gradient-to-br from-[#eef6fb] via-[#e4eff7] to-[#d6e7f3]" id="why">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -26,23 +26,23 @@ export default function Why() {
               <Award size={13} className="text-primary-600" />
               <span className="text-xs font-semibold text-primary-700 tracking-wide">Why Choose Us</span>
             </div>
-            <h2 className="text-[2rem] lg:text-[2.4rem] font-bold text-dark-950 leading-tight mb-5">
+            <h2 className="section-title font-bold text-dark-950 leading-tight mb-5">
               The smarter way to manage{" "}
               <span className="text-primary-600">your property.</span>
             </h2>
-            <p className="text-[0.95rem] text-dark-500 mb-10 leading-relaxed">
+            <p className="section-desc text-dark-500 mb-10 leading-relaxed">
               McCann &amp; Curran combines local expertise with modern technology to deliver property management that genuinely works for landlords.
             </p>
 
             <ul className="space-y-5 mb-12">
               {benefits.map(({ title, desc }) => (
-                <li key={title} className="flex gap-4">
-                  <div className="mt-0.5 w-5 h-5 rounded-full bg-primary-600/15 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 size={14} className="text-primary-600" />
+                <li key={title} className="flex items-start gap-4">
+                  <div className="mt-0.5 w-7 lg:w-10 lg:h-10 h-7 rounded-full bg-primary-600/15 flex items-center justify-center flex-shrink-0">
+                    <CheckCircle2 size={26} className="text-primary-600" />
                   </div>
                   <div>
-                    <p className="text-[0.9rem] font-semibold text-dark-900 mb-0.5">{title}</p>
-                    <p className="text-sm text-dark-500 leading-relaxed">{desc}</p>
+                    <p className="text-[1.3rem] font-semibold text-dark-900 mb-0.5">{title}</p>
+                    <p className="text-base text-dark-500 leading-relaxed">{desc}</p>
                   </div>
                 </li>
               ))}
@@ -52,8 +52,8 @@ export default function Why() {
             <div className="flex gap-8 pt-8 border-t border-dark-200/60">
               {stats.map(({ Icon, value, label }) => (
                 <div key={label} className="flex flex-col">
-                  <span className="text-[1.6rem] font-bold text-dark-950">{value}</span>
-                  <span className="text-xs text-dark-500 font-medium">{label}</span>
+                  <span className="text-[1.4rem] lg:text-[1.8rem] font-bold text-dark-950">{value}</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-dark-500 font-medium">{label}</span>
                 </div>
               ))}
             </div>

@@ -30,7 +30,7 @@ const items = [
 
 export default function ServicesGrid() {
   return (
-    <section className="py-24 px-6 lg:px-16 bg-white" id="services">
+    <section className="py-16 px-6 lg:px-16 bg-white" id="services">
       <div className="container mx-auto">
         {/* Section header */}
         <div className="max-w-2xl mb-14">
@@ -38,11 +38,11 @@ export default function ServicesGrid() {
             <ShieldCheck size={13} className="text-primary-600" />
             <span className="text-xs font-semibold text-primary-700 tracking-wide">What We Offer</span>
           </div>
-          <h2 className="text-[2rem] lg:text-[2.4rem] font-bold text-dark-950 leading-tight mb-4">
+          <h2 className="section-title font-bold text-dark-950 leading-tight mb-4">
             Everything your property needs,{" "}
             <span className="text-primary-600">handled for you.</span>
           </h2>
-          <p className="text-[0.95rem] text-dark-500 leading-relaxed">
+          <p className="section-desc text-dark-500 leading-relaxed">
             From finding the right tenant to staying RTB-compliant — we cover every aspect of property management so you don&apos;t have to.
           </p>
         </div>
@@ -62,12 +62,12 @@ export default function ServicesGrid() {
               </div>
 
               <div className="relative flex-1">
-                <h3 className="text-[0.95rem] font-bold text-dark-900 mb-2 leading-snug">{title}</h3>
-                <p className="text-sm text-dark-500 leading-relaxed">{desc}</p>
+                <h3 className="text-[1.3rem] font-bold text-dark-900 mb-2 leading-snug">{title}</h3>
+                <p className="text-base text-dark-500 leading-relaxed">{desc}</p>
               </div>
 
               <div className="relative pt-4 border-t border-dark-100">
-                <span className="text-xs font-semibold text-primary-600">{stat}</span>
+                <span className="text-xs lg:text-sm font-semibold text-primary-600">{stat}</span>
               </div>
             </div>
           ))}
@@ -77,11 +77,11 @@ export default function ServicesGrid() {
         <div className="mt-10 flex items-center gap-6">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors"
+            className="inline-flex items-center gap-2 text-sm lg:text-base font-semibold text-primary-600 hover:text-primary-700 transition-colors"
           >
             View all services <ArrowRight size={15} />
           </Link>
-          <span className="text-sm text-dark-400">or <Link href="/contact" className="underline underline-offset-2 hover:text-dark-700 transition-colors">speak to our team</Link></span>
+          <span className="text-sm lg:text-base text-dark-400">or <Link href="/contact" className="underline underline-offset-2 hover:text-dark-700 transition-colors">speak to our team</Link></span>
         </div>
       </div>
     </section>

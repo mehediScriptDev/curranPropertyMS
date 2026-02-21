@@ -30,7 +30,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section className="py-24 px-6 lg:px-16 bg-gradient-to-br from-[#eef6fb] via-[#e4eff7] to-[#d6e7f3]">
+    <section className="py-16 px-6 lg:px-16 bg-gradient-to-br from-[#eef6fb] via-[#e4eff7] to-[#d6e7f3]">
       <div className="container mx-auto">
 
         {/* Header */}
@@ -39,11 +39,11 @@ export default function Process() {
             <ArrowRight size={13} className="text-primary-600" />
             <span className="text-xs font-semibold text-primary-700 tracking-wide">How It Works</span>
           </div>
-          <h2 className="text-[2rem] lg:text-[2.4rem] font-bold text-dark-950 leading-tight mb-4">
+          <h2 className="section-title font-bold text-dark-950 leading-tight mb-4">
             From listing to managed —{" "}
             <span className="text-primary-600">in four steps.</span>
           </h2>
-          <p className="text-[0.95rem] text-dark-500 leading-relaxed">
+          <p className="section-desc text-dark-500 leading-relaxed">
             A straightforward process designed to get your property earning quickly and keep it running smoothly.
           </p>
         </div>
@@ -62,8 +62,8 @@ export default function Process() {
                 </div>
                 <span className="text-2xl font-black text-dark-100 select-none">{num}</span>
               </div>
-              <h3 className="text-[0.95rem] font-bold text-dark-900 mb-2">{title}</h3>
-              <p className="text-sm text-dark-500 leading-relaxed">{desc}</p>
+              <h3 className="text-[1.3rem] font-bold text-dark-900 mb-2">{title}</h3>
+              <p className="text-base text-dark-500 leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>

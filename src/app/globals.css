@@ -61,3 +61,15 @@
 .animate-glow-pulse {
   animation: glowPulse 3s ease-in-out infinite;
 }
+
+@layer components {
+  /* Section heading size (used across all sections except the Hero) */
+  .section-title {
+    @apply text-[2rem] lg:text-[2.4rem] xl:text-[2.7rem];
+  }
+
+  /* Section description size */
+  .section-desc {
+    @apply text-[1rem];
+  }
+}

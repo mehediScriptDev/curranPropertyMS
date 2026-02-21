@@ -10,7 +10,7 @@ const features = [
 
 export default function DigitalExperience() {
   return (
-    <section className="py-24 px-6 lg:px-16 bg-dark-950">
+    <section className="py-16 px-6 lg:px-16 bg-dark-950">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -20,11 +20,11 @@ export default function DigitalExperience() {
               <Zap size={13} className="text-primary-400" />
               <span className="text-xs font-semibold text-primary-400 tracking-wide">Digital-First Management</span>
             </div>
-            <h2 className="text-[2rem] lg:text-[2.4rem] font-bold text-white leading-tight mb-5">
+            <h2 className="section-title font-bold text-white leading-tight mb-5">
               Technology that puts{" "}
               <span className="text-primary-400">you in control.</span>
             </h2>
-            <p className="text-[0.95rem] text-dark-300 mb-10 leading-relaxed">
+            <p className="section-desc text-dark-300 mb-10 leading-relaxed">
               Our secure online portal gives landlords and tenants 24/7 access to everything they need — no chasing, no paperwork, no delays.
             </p>
 
@@ -35,8 +35,8 @@ export default function DigitalExperience() {
                     <Icon size={16} className="text-primary-400" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-white mb-0.5">{title}</p>
-                    <p className="text-xs text-dark-400 leading-relaxed">{desc}</p>
+                    <p className="text-[1.3rem] font-semibold text-white mb-0.5">{title}</p>
+                    <p className="text-sm text-dark-400 leading-relaxed">{desc}</p>
                   </div>
                 </div>
               ))}
