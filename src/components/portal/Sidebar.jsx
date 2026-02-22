@@ -63,8 +63,8 @@ export default function Sidebar({ mobileOpen, onClose }) {
                     onClick={onClose}
                     className={`flex items-center gap-3.5 px-4 py-3 rounded-xl text-[0.95rem] font-medium transition-colors relative ${
                       active
-                        ? "bg-[#f1f5f9] text-teal-700"
-                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                        ? "bg-teal-50 text-teal-700 border-l-[3px] border-teal-600"
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 border-l-[3px] border-transparent"
                     }`}
                   >
                     <Icon size={20} className={active ? "text-teal-600" : "text-slate-400"} />

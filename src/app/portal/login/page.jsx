@@ -21,9 +21,9 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
     await new Promise((r) => setTimeout(r, 800));
-    const ok = login(email, password);
+    const ok = login(email, password, role);
     if (ok) {
-      router.push("/portal/dashboard");
+      router.push(role === "admin" ? "/admin/dashboard" : "/portal/dashboard");
     } else {
       setError("Invalid credentials. Please try again.");
       setLoading(false);
@@ -54,10 +54,9 @@ export default function LoginPage() {
               <h5 className="text-sm font-semibold text-slate-800 mb-3">Demo accounts</h5>
               <div className="space-y-3 text-sm text-slate-700">
                 {[
-                  { r: "landlord", e: "joe.doyle@email.com", p: "demo1234" },
-                  { r: "agent", e: "agent@example.com", p: "agent1234" },
-                  { r: "manager", e: "manager@example.com", p: "manage123" },
-                  { r: "tenant", e: "tenant@example.com", p: "tenant123" },
+                  { r: "admin",    e: "admin@mccannandcurran.ie", p: "admin1234" },
+                  { r: "landlord", e: "joe.doyle@email.com",      p: "demo1234" },
+                  { r: "tenant",   e: "tenant@example.com",       p: "tenant123" },
                 ].map((a) => (
                   <div key={a.r} className="flex items-center justify-between gap-3">
                     <div>
@@ -114,9 +113,8 @@ export default function LoginPage() {
                       onChange={(e) => setRole(e.target.value)}
                       className="w-full rounded-xl border border-slate-200 py-2 px-3 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-400"
                     >
+                      <option value="admin">Admin</option>
                       <option value="landlord">Landlord</option>
-                      <option value="agent">Agent</option>
-                      <option value="manager">Manager</option>
                       <option value="tenant">Tenant</option>
                     </select>
                   </div>
