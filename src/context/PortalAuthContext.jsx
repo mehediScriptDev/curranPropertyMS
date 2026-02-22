@@ -9,7 +9,7 @@ const PortalAuthContext = createContext(null);
 const DUMMY_USERS = {
   admin: {
     id: "admin_001",
-    name: "Admin User",
+    name: "Admin",
     email: "admin@mccannandcurran.ie",
     phone: "+353 1 234 5678",
     address: "McCann & Curran HQ, Dublin, Ireland",

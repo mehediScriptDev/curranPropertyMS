@@ -104,19 +104,14 @@ const recentActivity = [
 /* ─── Sub-components ──────────────────────────── */
 function KpiCard({ label, value, Icon, iconBg, iconColor, badge, badgeColor }) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex items-center justify-between">
-      <div>
-        <p className="text-3xl font-bold text-slate-800 leading-none">{value}</p>
-        <p className="text-sm font-semibold text-slate-500 mt-1.5 leading-snug">{label}</p>
+    <div className="bg-white rounded-2xl border border-slate-100 p-5 flex flex-col gap-3 shadow-sm">
+      <div className="flex items-start justify-between">
+        <p className="text-sm font-semibold text-slate-500 leading-tight">{label}</p>
+        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${iconBg}`}>
+          <Icon size={18} className={iconColor} />
+        </div>
       </div>
-      <div className={`relative w-12 h-12 rounded-full ${iconBg} flex items-center justify-center shrink-0`}>
-        <Icon size={22} className={iconColor} />
-        {badge && (
-          <span className={`absolute -top-1 -right-1 w-5 h-5 rounded-full ${badgeColor} text-white text-[10px] font-bold flex items-center justify-center`}>
-            {badge}
-          </span>
-        )}
-      </div>
+      <p className="text-3xl font-bold text-slate-800">{value}</p>
     </div>
   );
 }

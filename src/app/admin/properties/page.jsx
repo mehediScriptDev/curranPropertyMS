@@ -5,6 +5,7 @@ import {
   ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,
   ArrowUpDown
 } from "lucide-react";
+import Pagination from "@/components/portal/Pagination";
 
 const PROPERTIES = [
   { id: 1,  img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=80&q=60", name: "Apt 12, Grand Canal...", area: "Dublin · 10:2",  statusProp: "Let",    statusRTB: "Let",    landlord: "Edward O'Neill", landlordSub: "John Dyea",    tenant: "Sarah Kelly",          rent: "€2,200", mprn: "100093319", rtb: "Missing",    rtbStyle: "text-slate-500" },
@@ -57,79 +58,70 @@ export default function AdminPropertiesPage() {
               <th className="w-10 px-4 py-3">
                 <input type="checkbox" checked={selected.length === filtered.length && filtered.length > 0} onChange={toggleAll} className="rounded border-slate-300 text-teal-600 focus:ring-teal-500" />
               </th>
-              <th className="px-3 py-3 text-left font-semibold text-slate-600">
-                <span className="flex items-center gap-1">Photo <ArrowUpDown size={12} className="text-slate-400" /></span>
+              <th className="w-48 px-3 py-3 text-left font-semibold text-slate-600 text-base">
+                <span className="flex items-center gap-1">Photo <ArrowUpDown size={14} className="text-slate-400" /></span>
               </th>
-              <th className="px-3 py-3 text-left font-semibold text-slate-600">
-                <span className="flex items-center gap-1">Status <ArrowUpDown size={12} className="text-slate-400" /></span>
+              <th className="w-48 px-3 py-3 text-left font-semibold text-slate-600 text-sm">
+                <span className="flex items-center gap-1">Status <ArrowUpDown size={14} className="text-slate-400" /></span>
               </th>
-              <th className="px-3 py-3 text-left font-semibold text-slate-600">
-                <span className="flex items-center gap-1">Landlord <ArrowUpDown size={12} className="text-slate-400" /></span>
+              <th className="w-48 px-3 py-3 text-left font-semibold text-slate-600 text-base">
+                <span className="flex items-center gap-1">Landlord <ArrowUpDown size={14} className="text-slate-400" /></span>
               </th>
-              <th className="px-3 py-3 text-left font-semibold text-slate-600">
-                <span className="flex items-center gap-1">Tenant <ArrowUpDown size={12} className="text-slate-400" /></span>
+              <th className="w-48 px-3 py-3 text-left font-semibold text-slate-600 text-base">
+                <span className="flex items-center gap-1">Tenant <ArrowUpDown size={14} className="text-slate-400" /></span>
               </th>
-              <th className="px-3 py-3 text-left font-semibold text-slate-600">Rent</th>
-              <th className="px-3 py-3 text-left font-semibold text-slate-600">MPRN</th>
-              <th className="px-3 py-3 text-left font-semibold text-slate-600">
-                <span className="flex items-center gap-1">RTB # <ChevronDown size={12} className="text-slate-400" /></span>
+              <th className="w-48 px-3 py-3 text-left font-semibold text-slate-600 text-base">Rent</th>
+              <th className="w-48 px-3 py-3 text-left font-semibold text-slate-600 text-base">MPRN</th>
+              <th className="w-48 px-3 py-3 text-left font-semibold text-slate-600 text-base">
+                <span className="flex items-center gap-1">RTB # <ChevronDown size={14} className="text-slate-400" /></span>
               </th>
-              <th className="w-24 px-3 py-3"></th>
+              <th className="w-48 px-3 py-3 text-right font-semibold text-slate-600">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
             {filtered.map((p) => (
               <tr key={p.id} className={`hover:bg-slate-50/60 transition ${selected.includes(p.id) ? "bg-teal-50/40" : ""}`}>
-                <td className="px-4 py-2.5">
+                <td className="px-4 py-3">
                   <input type="checkbox" checked={selected.includes(p.id)} onChange={() => toggleRow(p.id)} className="rounded border-slate-300 text-teal-600 focus:ring-teal-500" />
                 </td>
-                <td className="px-3 py-2.5">
-                  <div className="flex items-center gap-3">
+                <td className="w-48 px-3 py-3">
+                  <div className="flex items-center gap-4">
                     <img src={p.img} alt={p.name} className="w-14 h-10 rounded-lg object-cover flex-shrink-0 bg-slate-100" onError={(e) => { e.target.style.display='none'; }} />
-                    <div>
-                      <p className="font-semibold text-slate-800 text-sm leading-tight">{p.name}</p>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-slate-800 text-base leading-tight truncate">{p.name}</p>
                       <p className="text-sm text-slate-400">{p.area}</p>
                     </div>
                   </div>
                 </td>
-                <td className="px-3 py-2.5">
-                  <div className="flex flex-col gap-1">
-                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-sm font-semibold w-fit ${PROP_STATUS[p.statusProp]}`}>
+                <td className="w-48 px-3 py-3 text-center">
+                  <div>
+                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold w-fit ${PROP_STATUS[p.statusProp]}`}>
                       {p.statusProp !== "Vacant" && <span className="inline-block w-1.5 h-1.5 rounded-full bg-current opacity-70" />}
                       {p.statusProp}
                     </span>
-                    {p.statusRTB && (
-                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-sm font-semibold w-fit ${RTB_STATUS[p.statusRTB]}`}>
-                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-current opacity-70" />
-                        {p.statusRTB}
-                      </span>
-                    )}
                   </div>
                 </td>
-                <td className="px-3 py-2.5">
-                  <p className="text-slate-800 font-medium text-sm">{p.landlord}</p>
-                  <p className="text-sm text-slate-400 flex items-center gap-1 mt-0.5">
+                <td className="w-48 px-3 py-3">
+                  <p className="text-slate-800 font-medium text-base truncate">{p.landlord}</p>
+                  <p className="text-sm text-slate-400 flex items-center gap-1 mt-0.5 truncate">
                     <span className="inline-block w-3 h-3 rounded-sm bg-slate-200" />
                     {p.landlordSub}
                   </p>
                 </td>
-                <td className="px-3 py-2.5">
-                  <p className="text-slate-700 text-sm font-medium">{p.tenant}</p>
+                <td className="w-48 px-3 py-3">
+                  <p className="text-slate-700 text-base font-medium truncate">{p.tenant}</p>
                 </td>
-                <td className="px-3 py-2.5 font-semibold text-slate-800 text-sm">{p.rent}</td>
-                <td className="px-3 py-2.5 text-slate-600 text-sm">{p.mprn}</td>
-                <td className="px-3 py-2.5">
-                  <span className={`flex items-center gap-1 text-sm font-medium ${p.rtbStyle}`}>
+                <td className="w-48 px-3 py-3 font-semibold text-slate-800 text-base">{p.rent}</td>
+                <td className="w-48 px-3 py-3 text-slate-600 text-base">{p.mprn}</td>
+                <td className="w-48 px-3 py-3">
+                  <span className={`flex items-center gap-1 text-base font-medium ${p.rtbStyle}`}>
                     <span className="inline-block w-1.5 h-1.5 rounded-full bg-current" />
                     {p.rtb}
                   </span>
                 </td>
-                <td className="px-3 py-2.5">
-                  <div className="flex items-center gap-0.5">
-                    <button className="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-l-md transition">View</button>
-                    <button className="px-1.5 py-1.5 bg-teal-700 hover:bg-teal-800 text-white rounded-r-md transition border-l border-teal-500">
-                      <ChevronDown size={13} />
-                    </button>
+                <td className="w-48 px-3 py-3 text-right">
+                  <div>
+                    <button className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-base font-semibold rounded-md transition">View</button>
                   </div>
                 </td>
               </tr>
@@ -138,29 +130,9 @@ export default function AdminPropertiesPage() {
         </table>
       </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center">
-        <Pagination />
-      </div>
+      {/* Pagination (portal style: left "Show" and right page controls) */}
+      <Pagination total={PROPERTIES.length} itemsPerPage={10} currentPage={1} onPageChange={() => {}} onItemsPerPageChange={() => {}} />
     </div>
   );
 }
 
-function Pagination() {
-  return (
-    <div className="flex items-center gap-1">
-      <PagBtn icon={<ChevronsLeft size={14} />} />
-      <PagBtn icon={<ChevronLeft size={14} />} />
-      <button className="w-8 h-8 flex items-center justify-center rounded-md bg-teal-600 text-white text-sm font-semibold">1</button>
-      <PagBtn icon={<ChevronRight size={14} />} />
-      <PagBtn icon={<ChevronsRight size={14} />} />
-    </div>
-  );
-}
-function PagBtn({ icon }) {
-  return (
-    <button className="w-8 h-8 flex items-center justify-center rounded-md border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:text-slate-700 transition">
-      {icon}
-    </button>
-  );
-}
