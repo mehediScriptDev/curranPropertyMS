@@ -73,8 +73,8 @@ const services = [
 
 export default function ServiceList() {
   return (
-    <section className="py-24 px-6 lg:px-16 bg-white" id="services">
-      <div className="container mx-auto space-y-28">
+    <section className="lg:py-20 py-10 px-6 lg:px-16 bg-white" id="services">
+      <div className="container mx-auto space-y-14 xl:space-y-28">
         {services.map((service, idx) => (
           <div
             key={service.title}
@@ -110,10 +110,10 @@ export default function ServiceList() {
               <ul className="space-y-3">
                 {service.features.map(({ icon: FeatIcon, text }) => (
                   <li key={text} className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-primary-600/10 text-primary-600 flex items-center justify-center flex-shrink-0">
-                      <FeatIcon size={15} />
+                    <div className="w-8 h-8 xl:w-9 xl:h-9 rounded-lg bg-primary-600/10 text-primary-600 flex items-center justify-center flex-shrink-0">
+                      <FeatIcon size={16} />
                     </div>
-                    <span className="text-sm text-dark-700">{text}</span>
+                    <span className="text-sm xl:text-base text-dark-700">{text}</span>
                   </li>
                 ))}
               </ul>

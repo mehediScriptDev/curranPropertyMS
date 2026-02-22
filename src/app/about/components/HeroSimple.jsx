@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <section className="relative w-full pt-[72px]">
-      <div className="relative h-[420px] md:h-[520px] w-full overflow-hidden">
+      <div className="relative h-[300px] sm:h-[400px] md:h-[450px] w-full overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80"
           alt="About background"

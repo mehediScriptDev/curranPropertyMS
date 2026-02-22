@@ -1,7 +1,7 @@
 export default function Story() {
   return (
-    <section className="py-24 px-6 lg:px-16 bg-white" id="story">
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section className="py-10 lg:py-20 px-6 lg:px-16 bg-white" id="story">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-600/10 border border-primary-600/20 mb-5">
             <span className="text-xs font-semibold text-primary-700 tracking-wide">Our History</span>

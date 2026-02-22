@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <section className="relative w-full pt-[72px]">
-      <div className="relative h-[420px] md:h-[520px] w-full overflow-hidden">
+      <div className="relative h-[300px] sm:h-[400px] md:h-[450px] w-full overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=80"
           alt="Service background"
@@ -19,7 +19,8 @@ export default function Hero() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">Reliable property services, tailored for you</h1>
             <p className="mt-4 text-base md:text-lg text-white/90">From tenant sourcing to full management — straightforward, transparent, and local.</p>
           </div>
-        </div>
+          </div>
+
       </div>
     </section>
   );

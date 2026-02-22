@@ -10,9 +10,9 @@ export default function Team() {
   ];
 
   return (
-    <section className="py-24 px-6 lg:px-16 bg-gradient-to-br from-[#eef6fb] via-[#e4eff7] to-[#d6e7f3]" id="team">
+    <section className="py-10 lg:py-20 px-6 lg:px-16 bg-gradient-to-br from-[#eef6fb] via-[#e4eff7] to-[#d6e7f3]" id="team">
       <div className="container mx-auto">
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-center max-w-2xl mx-auto mb-7 lg:mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-600/10 border border-primary-600/20 mb-5">
             <span className="text-xs font-semibold text-primary-700 tracking-wide">The People Behind It</span>
           </div>
@@ -25,7 +25,7 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6">
           {people.map((person) => (
             <div key={person.name} className="group bg-white rounded-2xl border border-dark-100 overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
               <div className="relative w-full h-56 overflow-hidden">

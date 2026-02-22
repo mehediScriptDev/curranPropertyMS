@@ -11,9 +11,9 @@ export default function Values() {
   ];
 
   return (
-    <section className="py-24 px-6 lg:px-16 bg-white">
+    <section className="py-10 lg:py-20 px-6 lg:px-16 bg-white">
       <div className="container mx-auto">
-        <div className="max-w-2xl mb-14">
+        <div className="max-w-2xl mb-7 lg:mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-600/10 border border-primary-600/20 mb-5">
             <span className="text-xs font-semibold text-primary-700 tracking-wide">What We Stand For</span>
           </div>
@@ -26,7 +26,7 @@ export default function Values() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5">
           {values.map(({ Icon, title, desc }) => (
             <div key={title} className="group relative flex flex-col gap-4 rounded-2xl border border-dark-100 bg-white p-7 hover:shadow-xl hover:-translate-y-1.5 hover:border-primary-200 transition-all duration-300 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary-50/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
@@ -34,8 +34,8 @@ export default function Values() {
                 <Icon size={22} className="text-primary-600" />
               </div>
               <div className="relative">
-                <h3 className="text-[0.95rem] font-bold text-dark-900 mb-2">{title}</h3>
-                <p className="text-sm text-dark-500 leading-relaxed">{desc}</p>
+                <h3 className="text-[1.3rem] font-bold text-dark-900 mb-2">{title}</h3>
+                <p className="text-sm lg:text-base text-dark-500 leading-relaxed">{desc}</p>
               </div>
             </div>
           ))}

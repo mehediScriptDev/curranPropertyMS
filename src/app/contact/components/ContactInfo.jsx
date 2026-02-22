@@ -21,7 +21,7 @@ export default function ContactInfo() {
         Reach out by phone, email or fill in the form. No obligation — just a friendly conversation.
       </p>
 
-      <div className="space-y-4 mb-10">
+      <div className="space-y-2 lg:space-y-4 mb-5 lg:mb-10">
         {contacts.map(({ Icon, label, value, href }) => (
           <div key={label} className="flex items-start gap-4 p-4 rounded-2xl border border-dark-100 bg-white hover:border-primary-200 hover:shadow-sm transition-all">
             <div className="w-10 h-10 rounded-xl bg-primary-600/10 flex items-center justify-center flex-shrink-0">

@@ -14,7 +14,7 @@ export default function ContactForm() {
   const inputClass = "w-full px-4 py-3.5 border border-dark-100 rounded-xl text-sm text-dark-900 outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/10 transition-all placeholder:text-dark-400 bg-white";
 
   return (
-    <div className="bg-white border border-dark-100 rounded-3xl p-8 shadow-xl shadow-dark-900/5">
+    <div className="bg-white border border-dark-100 rounded-3xl p-5 lg:p-8 shadow-xl shadow-dark-900/5">
       <h3 className="section-title font-bold text-dark-950 leading-tight mb-2">Send Us a Message</h3>
       <p className="section-desc text-dark-500 mb-8">Fill in the form and we&apos;ll get back to you within 24 hours.</p>
 

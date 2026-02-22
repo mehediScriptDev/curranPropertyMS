@@ -1,18 +1,13 @@
 import Image from "next/image";
-import { CheckCircle2, TrendingUp, Users, Award } from "lucide-react";
+import { Headphones, BarChart3, Shield, Lock, TrendingUp, Award } from "lucide-react";
 
 const benefits = [
-  { title: "Dedicated landlord support", desc: "A named contact for every landlord — always reachable, always responsive." },
-  { title: "Transparent financial reporting", desc: "Monthly statements with full breakdowns, available in your portal 24/7." },
-  { title: "RTB expertise", desc: "In-house compliance team handling all RTB registrations, notices and queries." },
-  { title: "Secure digital client portal", desc: "Real-time access to documents, financials and communications in one place." },
+  { icon: Headphones, title: "Dedicated landlord support", desc: "A named contact for every landlord — always reachable, always responsive." },
+  { icon: BarChart3, title: "Transparent financial reporting", desc: "Monthly statements with full breakdowns, available in your portal 24/7." },
+  { icon: Shield, title: "RTB expertise", desc: "In-house compliance team handling all RTB registrations, notices and queries." },
+  { icon: Lock, title: "Secure digital client portal", desc: "Real-time access to documents, financials and communications in one place." },
 ];
 
-const stats = [
-  { Icon: Users, value: "500+", label: "Landlords" },
-  { Icon: TrendingUp, value: "98%", label: "Renewal rate" },
-  { Icon: Award, value: "12+", label: "Years experience" },
-];
 
 export default function Why() {
   return (
@@ -35,10 +30,10 @@ export default function Why() {
             </p>
 
             <ul className="space-y-5 mb-12">
-              {benefits.map(({ title, desc }) => (
+              {benefits.map(({ icon: Icon, title, desc }) => (
                 <li key={title} className="flex items-start gap-4">
                   <div className="mt-0.5 w-7 lg:w-10 lg:h-10 h-7 rounded-full bg-primary-600/15 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 size={26} className="text-primary-600" />
+                    <Icon size={20} className="text-primary-600" />
                   </div>
                   <div>
                     <p className="text-[1.3rem] font-semibold text-dark-900 mb-0.5">{title}</p>
@@ -48,15 +43,7 @@ export default function Why() {
               ))}
             </ul>
 
-            {/* Stats row */}
-            <div className="flex gap-8 pt-8 border-t border-dark-200/60">
-              {stats.map(({ Icon, value, label }) => (
-                <div key={label} className="flex flex-col">
-                  <span className="text-[1.4rem] lg:text-[1.8rem] font-bold text-dark-950">{value}</span>
-                  <span className="text-xs sm:text-sm lg:text-base text-dark-500 font-medium">{label}</span>
-                </div>
-              ))}
-            </div>
+            {/* Stats removed per design — kept layout concise */}
           </div>
 
           {/* Right: image with decorative offset */}

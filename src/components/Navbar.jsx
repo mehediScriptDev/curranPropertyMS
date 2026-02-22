@@ -48,16 +48,18 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`px-4 py-2 text-[0.9rem] font-medium rounded-md transition-colors ${
-                pathname === l.href ? "text-primary-600" : "text-dark-700 hover:text-primary-600"
-              }`}
+              className="text-[0.9rem] font-medium transition-colors"
             >
-              {l.label}
+              <span className={`border-b-2 pb-1 ${
+                pathname === l.href ? "text-dark-900 border-primary-400" : "text-dark-700 border-transparent hover:text-primary-600"
+              }`}>
+                {l.label}
+              </span>
             </Link>
           ))}
           <Link
@@ -86,8 +88,8 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className={`px-4 py-3 rounded-lg text-[0.95rem] font-medium ${
-                pathname === l.href ? "text-primary-600 bg-primary-50" : "text-dark-700 hover:bg-gray-50"
+              className={`px-4 py-3 rounded-lg text-[0.95rem] font-medium border-l-3 ${
+                pathname === l.href ? "text-primary-600 bg-primary-50 border-primary-400" : "text-dark-700 hover:bg-gray-50 border-transparent"
               }`}
             >
               {l.label}
