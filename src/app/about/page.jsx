@@ -1,6 +1,6 @@
 "use client";
 
-import Hero from "./components/Hero";
+import Hero from "./components/HeroSimple";
 import Stats from "./components/Stats";
 import Story from "./components/Story";
 import Values from "./components/Values";

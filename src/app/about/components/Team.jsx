@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Linkedin } from "lucide-react";
 
 export default function Team() {
   const people = [
@@ -9,18 +10,36 @@ export default function Team() {
   ];
 
   return (
-    <section className="py-20 px-6 lg:px-16 bg-white">
+    <section className="py-24 px-6 lg:px-16 bg-gradient-to-br from-[#eef6fb] via-[#e4eff7] to-[#d6e7f3]" id="team">
       <div className="container mx-auto">
-        <h2 className="text-2xl font-bold text-dark-900 mb-10">Leadership Team</h2>
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-600/10 border border-primary-600/20 mb-5">
+            <span className="text-xs font-semibold text-primary-700 tracking-wide">The People Behind It</span>
+          </div>
+          <h2 className="section-title font-bold text-dark-950 leading-tight mb-4">
+            Meet our{" "}
+            <span className="text-primary-600">leadership team.</span>
+          </h2>
+          <p className="section-desc text-dark-500 leading-relaxed">
+            Experienced professionals who are passionate about delivering the best outcome for every landlord and tenant.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {people.map((person) => (
-            <div key={person.name} className="text-center">
-              <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                <Image src={person.image} alt={person.name} fill className="object-cover" sizes="128px" />
+            <div key={person.name} className="group bg-white rounded-2xl border border-dark-100 overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+              <div className="relative w-full h-56 overflow-hidden">
+                <Image src={person.image} alt={person.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 100vw, 25vw" />
               </div>
-              <h3 className="text-sm font-bold text-dark-900">{person.name}</h3>
-              <p className="text-sm text-dark-500">{person.role}</p>
+              <div className="p-5 flex items-center justify-between">
+                <div>
+                  <h3 className="text-[0.9rem] font-bold text-dark-900">{person.name}</h3>
+                  <p className="text-xs text-dark-500 mt-0.5">{person.role}</p>
+                </div>
+                <a href="#" className="w-8 h-8 rounded-lg bg-dark-100 flex items-center justify-center text-dark-500 hover:bg-primary-600 hover:text-white transition-colors">
+                  <Linkedin size={14} />
+                </a>
+              </div>
             </div>
           ))}
         </div>
