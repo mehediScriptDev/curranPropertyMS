@@ -37,7 +37,7 @@ export default function AdminLandlordsPage() {
     <div className="space-y-5">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-extrabold text-slate-800">Landlords</h1>
+        <h1 className="text-3xl font-bold text-slate-800">Landlords</h1>
         <button className="flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition">
           <Plus size={15} /> Add Landlord
         </button>
@@ -74,8 +74,8 @@ export default function AdminLandlordsPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <table className="w-full text-base">
           <thead>
             <tr className="border-b border-slate-100 bg-slate-50/60">
               <th className="w-10 px-4 py-3">
@@ -120,12 +120,12 @@ export default function AdminLandlordsPage() {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-full ${landlord.color} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>
+                    <div className={`w-8 h-8 rounded-full ${landlord.color} flex items-center justify-center text-white text-sm font-bold flex-shrink-0`}>
                       {landlord.initials}
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-800">{landlord.name}</p>
-                      <p className="text-xs text-slate-400">{landlord.sub}</p>
+                      <p className="font-semibold text-slate-800 text-sm">{landlord.name}</p>
+                      <p className="text-sm text-slate-400">{landlord.sub}</p>
                     </div>
                   </div>
                 </td>
@@ -134,7 +134,7 @@ export default function AdminLandlordsPage() {
                     <div className="flex items-center gap-1.5 text-slate-700">
                       <Home size={12} className="text-slate-400" /> {landlord.properties}
                     </div>
-                    <p className="text-xs text-slate-400 pl-[18px]">{landlord.properties} properties</p>
+                    <p className="text-sm text-slate-400 pl-[18px]">{landlord.properties} properties</p>
                   </div>
                 </td>
                 <td className="px-4 py-3">
@@ -143,20 +143,20 @@ export default function AdminLandlordsPage() {
                   </div>
                 </td>
                 <td className="px-4 py-3">
-                  <p className="text-slate-700">{landlord.mobile}</p>
+                  <p className="text-slate-700 text-sm">{landlord.mobile}</p>
                 </td>
                 <td className="px-4 py-3">
-                  <p className="text-slate-700 flex items-center gap-1">
+                  <p className="text-slate-700 flex items-center gap-1 text-sm">
                     <span className="inline-block w-2 h-2 rounded-full bg-teal-500" />
                     {landlord.pps}
                   </p>
-                  <p className="text-xs text-slate-400 mt-0.5">{landlord.pps2}</p>
+                  <p className="text-sm text-slate-400 mt-0.5">{landlord.pps2}</p>
                 </td>
-                <td className="px-4 py-3 text-slate-600">{landlord.dob}</td>
-                <td className="px-4 py-3 text-slate-400 text-xs">{landlord.email}</td>
+                <td className="px-4 py-3 text-slate-600 text-sm">{landlord.dob}</td>
+                <td className="px-4 py-3 text-slate-400 text-sm">{landlord.email}</td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-0.5">
-                    <button className="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-l-md transition">
+                    <button className="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-l-md transition">
                       View
                     </button>
                     <button className="px-1.5 py-1.5 bg-teal-700 hover:bg-teal-800 text-white rounded-r-md transition border-l border-teal-500">

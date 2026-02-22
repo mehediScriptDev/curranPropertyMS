@@ -123,7 +123,7 @@ function KpiCard({ label, value, Icon, iconBg, iconColor, badge, badgeColor }) {
 
 function AlertCard({ alert }) {
   return (
-    <div className="flex items-center gap-3 bg-white rounded-xl border border-slate-100 px-4 py-3 shadow-sm">
+    <div className="flex items-center gap-3 bg-white rounded-2xl border border-slate-100 px-4 py-3 shadow-sm">
       {alert.count !== null ? (
         <span className={`w-8 h-8 rounded-md ${alert.countColor} text-white text-sm font-bold flex items-center justify-center shrink-0`}>
           {alert.count}
@@ -206,7 +206,7 @@ export default function AdminDashboardPage() {
           <h2 className="text-lg font-bold text-slate-800 mr-2">Alerts</h2>
           <div className="flex flex-wrap items-center gap-2 ml-auto">
             {["Status", "County/City", "Landlord"].map((f) => (
-              <button key={f} className="flex items-center gap-1.5 text-xs font-medium text-slate-600 border border-slate-200 rounded-lg px-3 py-1.5 hover:bg-slate-50 transition bg-white">
+              <button key={f} className="flex items-center gap-1.5 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg px-3 py-1.5 hover:bg-slate-50 transition bg-white">
                 {f} <ChevronDown size={13} className="text-slate-400" />
               </button>
             ))}
@@ -215,10 +215,10 @@ export default function AdminDashboardPage() {
               <input
                 type="text"
                 placeholder="Search"
-                className="pl-7 pr-3 py-1.5 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-200 bg-white w-32"
+                className="pl-7 pr-3 py-1.5 text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-200 bg-white w-32"
               />
             </div>
-            <button className="flex items-center gap-1 text-xs font-semibold border border-slate-200 rounded-lg px-3 py-1.5 hover:bg-slate-50 transition bg-white text-slate-700">
+            <button className="flex items-center gap-1 text-sm font-semibold border border-slate-200 rounded-lg px-3 py-1.5 hover:bg-slate-50 transition bg-white text-slate-700">
               <Plus size={13} /> New
             </button>
             <button className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-500">
@@ -232,7 +232,7 @@ export default function AdminDashboardPage() {
           {/* Header alert row */}
           <div className="flex items-center gap-2 mb-1">
             <AlertTriangle size={16} className="text-amber-500" />
-            <h3 className="text-sm font-bold text-slate-700">Alerts</h3>
+            <h3 className="text-base font-bold text-slate-700">Alerts</h3>
             <button className="ml-auto text-[0.78rem] border border-slate-200 rounded-md px-3 py-1 text-slate-600 hover:bg-slate-50 transition">
               View
             </button>

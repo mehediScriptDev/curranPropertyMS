@@ -47,15 +47,15 @@ export default function AdminTenanciesPage() {
     <div className="space-y-5">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-extrabold text-slate-800">Tenancies</h1>
+        <h1 className="text-3xl font-bold text-slate-800">Tenancies</h1>
         <button className="flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition">
           <Plus size={15} /> New Tenancy
         </button>
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <table className="w-full text-base">
           <thead>
             <tr className="border-b border-slate-100 bg-slate-50/60">
               <th className="w-10 px-4 py-3">
@@ -86,39 +86,39 @@ export default function AdminTenanciesPage() {
                 </td>
                 <td className="px-3 py-3">
                   <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-full ${t.color} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>
+                    <div className={`w-8 h-8 rounded-full ${t.color} flex items-center justify-center text-white text-sm font-bold flex-shrink-0`}>
                       {t.initials}
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-800 text-sm">{t.name}</p>
-                      <p className="text-xs text-slate-400">{t.sub}</p>
+                      <p className="font-semibold text-slate-800 text-base">{t.name}</p>
+                      <p className="text-sm text-slate-400">{t.sub}</p>
                     </div>
                   </div>
                 </td>
                 <td className="px-3 py-3">
                   <div className="flex flex-col gap-1">
-                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold w-fit ${STATUS_LET[t.statusLet]}`}>
+                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-sm font-semibold w-fit ${STATUS_LET[t.statusLet]}`}>
                       <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
                       {t.statusLet}
                     </span>
                     {t.statusBadge && (
-                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold w-fit ${BADGE[t.statusBadge] || "bg-orange-400 text-white"}`}>
+                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-sm font-semibold w-fit ${BADGE[t.statusBadge] || "bg-orange-400 text-white"}`}>
                         <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
                         {t.statusBadge.replace("AAlctice", "Active").replace("AActive", "Active")}
                       </span>
                     )}
                   </div>
                 </td>
-                <td className="px-3 py-3 text-slate-600 text-xs">{t.county}</td>
+                <td className="px-3 py-3 text-slate-600 text-sm">{t.county}</td>
                 <td className="px-3 py-3">
-                  <p className="text-slate-800 font-medium text-xs">{t.landlord}</p>
-                  <p className="text-xs text-slate-400">{t.landlordSub}</p>
+                  <p className="text-slate-800 font-medium text-sm">{t.landlord}</p>
+                  <p className="text-sm text-slate-400">{t.landlordSub}</p>
                 </td>
-                <td className="px-3 py-3 font-semibold text-slate-800 text-xs">{t.rent}</td>
+                <td className="px-3 py-3 font-semibold text-slate-800 text-sm">{t.rent}</td>
                 <td className="px-3 py-3">
-                  <p className="text-slate-600 text-xs">{t.rtb}</p>
+                  <p className="text-slate-600 text-sm">{t.rtb}</p>
                   {t.rtbReg && (
-                    <p className="text-xs text-teal-600 flex items-center gap-1 mt-0.5">
+                    <p className="text-sm text-teal-600 flex items-center gap-1 mt-0.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-teal-500 inline-block" />
                       {t.rtbReg}
                     </p>
@@ -126,7 +126,7 @@ export default function AdminTenanciesPage() {
                 </td>
                 <td className="px-3 py-3">
                   <div className="flex items-center gap-0.5">
-                    <button className={`px-3 py-1.5 text-white text-xs font-semibold rounded-l-md transition ${
+                    <button className={`px-3 py-1.5 text-white text-sm font-semibold rounded-l-md transition ${
                       t.rtbStatus === "Notice"
                         ? "bg-orange-400 hover:bg-orange-500"
                         : "bg-teal-600 hover:bg-teal-700"

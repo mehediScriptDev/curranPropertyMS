@@ -48,14 +48,14 @@ export default function AdminTenantsPage() {
     <div className="space-y-5">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-extrabold text-slate-800">Tenants</h1>
+        <h1 className="text-3xl font-bold text-slate-800">Tenants</h1>
         <button className="flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition">
           <Plus size={15} /> Add Tenant
         </button>
       </div>
 
       {/* Breadcrumb */}
-      <nav className="text-xs text-slate-400 flex items-center gap-1.5">
+      <nav className="text-sm text-slate-400 flex items-center gap-1.5">
         <span className="hover:text-slate-600 cursor-pointer">Landlords</span>
         <span>/</span>
         <span className="text-slate-600 font-medium">Add Landlord</span>
@@ -95,8 +95,8 @@ export default function AdminTenantsPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <table className="w-full text-base">
           <thead>
             <tr className="border-b border-slate-100 bg-slate-50/60">
               <th className="w-10 px-4 py-3">
@@ -138,27 +138,27 @@ export default function AdminTenantsPage() {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-full ${tenant.color} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>
+                    <div className={`w-8 h-8 rounded-full ${tenant.color} flex items-center justify-center text-white text-sm font-bold flex-shrink-0`}>
                       {tenant.initials}
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-800">{tenant.name}</p>
-                      <p className="text-xs text-slate-400">{tenant.sub}</p>
+                      <p className="font-semibold text-slate-800 text-sm">{tenant.name}</p>
+                      <p className="text-sm text-slate-400">{tenant.sub}</p>
                     </div>
                   </div>
                 </td>
-                <td className="px-4 py-3 text-slate-700">{tenant.property}</td>
-                <td className="px-4 py-3 text-slate-600">{tenant.moveIn}</td>
+                <td className="px-4 py-3 text-slate-700 text-sm">{tenant.property}</td>
+                <td className="px-4 py-3 text-slate-600 text-sm">{tenant.moveIn}</td>
                 <td className="px-4 py-3">
-                  <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${STATUS_STYLES[tenant.status]}`}>
+                  <span className={`px-2.5 py-1 rounded-full text-sm font-semibold ${STATUS_STYLES[tenant.status]}`}>
                     {tenant.status}
                   </span>
                 </td>
                 <td className="px-4 py-3 text-slate-600">{tenant.mobile}</td>
-                <td className="px-4 py-3 text-slate-400 text-xs">{tenant.email}</td>
+                <td className="px-4 py-3 text-slate-400 text-sm">{tenant.email}</td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-0.5">
-                    <button className="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-l-md transition">
+                    <button className="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-l-md transition">
                       View
                     </button>
                     <button className="px-1.5 py-1.5 bg-teal-700 hover:bg-teal-800 text-white rounded-r-md transition border-l border-teal-500">

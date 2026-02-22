@@ -23,17 +23,15 @@ export default function AdminShell({ children }) {
 
   return (
     <div className="min-h-screen bg-[#f3f4f8]">
-      <AdminTopbar
-        onMenuClick={() => setMobileOpen((p) => !p)}
-        mobileOpen={mobileOpen}
-      />
       <AdminSidebar
         mobileOpen={mobileOpen}
         onClose={() => setMobileOpen(false)}
       />
-      {/* Main content — offset for topbar + sidebar */}
-      <main className="pt-[68px] md:pl-[300px] min-h-screen">
-        <div className="p-6">{children}</div>
+      <AdminTopbar onMenuClick={() => setMobileOpen((p) => !p)} mobileOpen={mobileOpen} />
+
+      {/* Main — offset for fixed sidebar + topbar (match portal) */}
+      <main className="lg:pl-[300px] pt-[72px] min-h-screen">
+        <div className="p-4 lg:p-6">{children}</div>
       </main>
     </div>
   );

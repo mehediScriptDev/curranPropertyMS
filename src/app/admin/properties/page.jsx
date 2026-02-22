@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import {
-  Plus,
+  Plus, ChevronDown,
   ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,
   ArrowUpDown
 } from "lucide-react";
@@ -43,15 +43,15 @@ export default function AdminPropertiesPage() {
     <div className="space-y-5">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-extrabold text-slate-800">Properties</h1>
+        <h1 className="text-3xl font-bold text-slate-800">Properties</h1>
         <button className="flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition">
           <Plus size={15} /> Add Property
         </button>
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <table className="w-full text-base">
           <thead>
             <tr className="border-b border-slate-100 bg-slate-50/60">
               <th className="w-10 px-4 py-3">
@@ -87,19 +87,19 @@ export default function AdminPropertiesPage() {
                   <div className="flex items-center gap-3">
                     <img src={p.img} alt={p.name} className="w-14 h-10 rounded-lg object-cover flex-shrink-0 bg-slate-100" onError={(e) => { e.target.style.display='none'; }} />
                     <div>
-                      <p className="font-semibold text-slate-800 text-xs leading-tight">{p.name}</p>
-                      <p className="text-xs text-slate-400">{p.area}</p>
+                      <p className="font-semibold text-slate-800 text-sm leading-tight">{p.name}</p>
+                      <p className="text-sm text-slate-400">{p.area}</p>
                     </div>
                   </div>
                 </td>
                 <td className="px-3 py-2.5">
                   <div className="flex flex-col gap-1">
-                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold w-fit ${PROP_STATUS[p.statusProp]}`}>
+                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-sm font-semibold w-fit ${PROP_STATUS[p.statusProp]}`}>
                       {p.statusProp !== "Vacant" && <span className="inline-block w-1.5 h-1.5 rounded-full bg-current opacity-70" />}
                       {p.statusProp}
                     </span>
                     {p.statusRTB && (
-                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold w-fit ${RTB_STATUS[p.statusRTB]}`}>
+                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-sm font-semibold w-fit ${RTB_STATUS[p.statusRTB]}`}>
                         <span className="inline-block w-1.5 h-1.5 rounded-full bg-current opacity-70" />
                         {p.statusRTB}
                       </span>
@@ -107,26 +107,26 @@ export default function AdminPropertiesPage() {
                   </div>
                 </td>
                 <td className="px-3 py-2.5">
-                  <p className="text-slate-800 font-medium text-xs">{p.landlord}</p>
-                  <p className="text-xs text-slate-400 flex items-center gap-1 mt-0.5">
+                  <p className="text-slate-800 font-medium text-sm">{p.landlord}</p>
+                  <p className="text-sm text-slate-400 flex items-center gap-1 mt-0.5">
                     <span className="inline-block w-3 h-3 rounded-sm bg-slate-200" />
                     {p.landlordSub}
                   </p>
                 </td>
                 <td className="px-3 py-2.5">
-                  <p className="text-slate-700 text-xs font-medium">{p.tenant}</p>
+                  <p className="text-slate-700 text-sm font-medium">{p.tenant}</p>
                 </td>
-                <td className="px-3 py-2.5 font-semibold text-slate-800 text-xs">{p.rent}</td>
-                <td className="px-3 py-2.5 text-slate-600 text-xs">{p.mprn}</td>
+                <td className="px-3 py-2.5 font-semibold text-slate-800 text-sm">{p.rent}</td>
+                <td className="px-3 py-2.5 text-slate-600 text-sm">{p.mprn}</td>
                 <td className="px-3 py-2.5">
-                  <span className={`flex items-center gap-1 text-xs font-medium ${p.rtbStyle}`}>
+                  <span className={`flex items-center gap-1 text-sm font-medium ${p.rtbStyle}`}>
                     <span className="inline-block w-1.5 h-1.5 rounded-full bg-current" />
                     {p.rtb}
                   </span>
                 </td>
                 <td className="px-3 py-2.5">
                   <div className="flex items-center gap-0.5">
-                    <button className="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-l-md transition">View</button>
+                    <button className="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-l-md transition">View</button>
                     <button className="px-1.5 py-1.5 bg-teal-700 hover:bg-teal-800 text-white rounded-r-md transition border-l border-teal-500">
                       <ChevronDown size={13} />
                     </button>

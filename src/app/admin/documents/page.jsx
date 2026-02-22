@@ -47,7 +47,7 @@ export default function AdminDocumentsPage() {
     <div className="space-y-5">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-extrabold text-slate-800">Documents</h1>
+        <h1 className="text-3xl font-bold text-slate-800">Documents</h1>
         <button className="flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition">
           <Plus size={15} /> Upload Document
         </button>
@@ -88,8 +88,8 @@ export default function AdminDocumentsPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <table className="w-full text-base">
           <thead>
             <tr className="border-b border-slate-100 bg-slate-50/60">
               <th className="w-10 px-4 py-3">
@@ -122,38 +122,38 @@ export default function AdminDocumentsPage() {
                       <FileText size={15} className={doc.icon === "amber" ? "text-amber-600" : "text-teal-600"} />
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-800 text-xs leading-tight">{doc.name}</p>
-                      <p className="text-xs text-slate-400">{doc.sub}</p>
+                      <p className="font-semibold text-slate-800 text-sm leading-tight">{doc.name}</p>
+                      <p className="text-sm text-slate-400">{doc.sub}</p>
                     </div>
                   </div>
                 </td>
                 <td className="px-3 py-3">
                   {doc.type && (
-                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold ${doc.typeStyle}`}>
+                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-sm font-semibold ${doc.typeStyle}`}>
                       <FileText size={11} />
                       {doc.type}
                     </span>
                   )}
                   {!doc.type && doc.visibility.includes("Landlord") && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold bg-amber-100 text-amber-700">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-sm font-semibold bg-amber-100 text-amber-700">
                       Landlord
                     </span>
                   )}
                 </td>
                 <td className="px-3 py-3">
                   {doc.property.split("\n").map((line, i) => (
-                    <p key={i} className={`text-xs ${i === 0 ? "text-slate-700 font-medium" : "text-slate-400"}`}>{line}</p>
+                    <p key={i} className={`text-sm ${i === 0 ? "text-slate-700 font-medium" : "text-slate-400"}`}>{line}</p>
                   ))}
                 </td>
                 <td className="px-3 py-3">
                   <div className="flex flex-wrap gap-1">
                     {doc.visibility.map((v, i) => (
-                      <span key={i} className={`px-2 py-0.5 rounded-md text-xs font-medium ${VIS_STYLE[v] || "bg-slate-100 text-slate-600"}`}>{v}</span>
+                      <span key={i} className={`px-2 py-0.5 rounded-md text-sm font-medium ${VIS_STYLE[v] || "bg-slate-100 text-slate-600"}`}>{v}</span>
                     ))}
                   </div>
                 </td>
-                <td className="px-3 py-3 text-slate-700 text-xs font-medium">{doc.uploader}</td>
-                <td className="px-3 py-3 text-slate-400 text-xs">{doc.age}</td>
+                <td className="px-3 py-3 text-slate-700 text-sm font-medium">{doc.uploader}</td>
+                <td className="px-3 py-3 text-slate-400 text-sm">{doc.age}</td>
                 <td className="px-3 py-3">
                   <div className="flex items-center gap-1">
                     <button className="w-7 h-7 flex items-center justify-center bg-teal-50 hover:bg-teal-100 text-teal-600 rounded-md transition border border-teal-200">

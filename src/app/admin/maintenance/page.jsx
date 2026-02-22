@@ -45,7 +45,7 @@ export default function AdminMaintenancePage() {
     <div className="space-y-5 h-full">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-extrabold text-slate-800">Maintenance</h1>
+        <h1 className="text-3xl font-bold text-slate-800">Maintenance</h1>
         <button className="flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition">
           <Plus size={15} /> New Request
         </button>
@@ -95,7 +95,7 @@ export default function AdminMaintenancePage() {
             <div key={col} className="flex flex-col gap-3">
               {/* Column header */}
               <div className={`flex items-center justify-between px-1`}>
-                <h2 className="font-bold text-slate-700 text-sm">{col}</h2>
+                <h2 className="font-bold text-slate-700 text-base">{col}</h2>
                 <button className="text-slate-400 hover:text-slate-600">
                   <MoreHorizontal size={16} />
                 </button>
@@ -105,26 +105,26 @@ export default function AdminMaintenancePage() {
               {cards.map((card) => (
                 <div
                   key={card.id}
-                  className={`bg-white rounded-xl border border-slate-200 shadow-sm p-4 space-y-3 border-t-2 ${COL_HEADER_STYLE[col]}`}
+                  className={`bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-3 border-t-2 ${COL_HEADER_STYLE[col]}`}
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <p className="font-semibold text-slate-800 text-sm">{card.title}</p>
+                    <p className="font-semibold text-slate-800 text-base">{card.title}</p>
                     {card.badge && (
-                      <span className={`text-xs px-2 py-0.5 rounded-md font-medium whitespace-nowrap ${card.badge.style}`}>
+                      <span className={`text-sm px-2 py-0.5 rounded-md font-medium whitespace-nowrap ${card.badge.style}`}>
                         {card.badge.label}
                       </span>
                     )}
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <div className={`w-8 h-8 rounded-full ${card.assignee.color} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>
+                    <div className={`w-8 h-8 rounded-full ${card.assignee.color} flex items-center justify-center text-white text-sm font-bold flex-shrink-0`}>
                       {card.assignee.initials}
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-slate-800">{card.name}</p>
-                      {card.property && <p className="text-xs text-slate-400">{card.property}</p>}
+                      <p className="text-base font-semibold text-slate-800">{card.name}</p>
+                      {card.property && <p className="text-sm text-slate-400">{card.property}</p>}
                     </div>
                   </div>
-                  <div className="flex items-center justify-between text-xs text-slate-400 pt-1 border-t border-slate-100">
+                  <div className="flex items-center justify-between text-sm text-slate-400 pt-1 border-t border-slate-100">
                     <span className="flex items-center gap-1">
                       <CheckSquare size={12} className="text-slate-400" />
                       {card.meta}{card.metaNote ? ` · ${card.metaNote}` : ""}
