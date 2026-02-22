@@ -63,7 +63,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/portal/login"
+            href="/login"
             className="ml-4 px-6 py-2.5 text-[0.85rem] font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
           >
             Client Login
@@ -96,7 +96,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/portal/login"
+            href="/login"
             onClick={() => setOpen(false)}
             className="mt-2 px-6 py-3 text-center text-[0.9rem] font-semibold text-white bg-primary-600 rounded-full"
           >
