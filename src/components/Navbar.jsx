@@ -5,11 +5,14 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const [portalLoggedIn, setPortalLoggedIn] = useState(false);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
@@ -18,6 +21,19 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setPortalLoggedIn(Boolean(localStorage.getItem("portal_token")));
+  }, [pathname]);
+
+  useEffect(() => {
+    const check = () => Boolean(localStorage.getItem("portal_token"));
+    setPortalLoggedIn(check());
+    const onStorage = (e) => {
+      if (e.key === "portal_token") setPortalLoggedIn(Boolean(e.newValue));
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
 
   const links = [
     { href: "/", label: "Home" },
@@ -62,12 +78,34 @@ export default function Navbar() {
               </span>
             </Link>
           ))}
-          <Link
-            href="/portal/login"
-            className="ml-4 px-6 py-2.5 text-[0.85rem] font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
-          >
-            Client Login
-          </Link>
+          {portalLoggedIn ? (
+            <div className="ml-4 flex items-center gap-3">
+              <Link
+                href="/portal/dashboard"
+                className="px-4 py-2 text-[0.85rem] font-semibold text-white bg-[#079489] rounded-lg hover:bg-slate-200 transition-colors"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={() => {
+                  localStorage.removeItem("portal_token");
+                  localStorage.removeItem("portal_role");
+                  setPortalLoggedIn(false);
+                  router.push("/");
+                }}
+                className="px-4 py-2 text-[0.85rem] font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
+              >
+                Sign out
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/portal/login"
+              className="ml-4 px-6 py-2.5 text-[0.85rem] font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
+            >
+              Client Login
+            </Link>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -95,13 +133,37 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
-          <Link
-            href="/login"
-            onClick={() => setOpen(false)}
-            className="mt-2 px-6 py-3 text-center text-[0.9rem] font-semibold text-white bg-primary-600 rounded-full"
-          >
-            Client Login
-          </Link>
+          {portalLoggedIn ? (
+            <div className="mt-2 flex gap-3">
+              <Link
+                href="/portal/dashboard"
+                onClick={() => setOpen(false)}
+                className="flex-1 px-4 py-3 text-center text-[0.95rem] font-semibold text-dark-800 bg-slate-100 rounded-lg"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={() => {
+                  localStorage.removeItem("portal_token");
+                  localStorage.removeItem("portal_role");
+                  setPortalLoggedIn(false);
+                  setOpen(false);
+                  router.push("/");
+                }}
+                className="px-4 py-3 text-center text-[0.95rem] font-semibold text-white bg-red-600 rounded-lg"
+              >
+                Sign out
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/portal/login"
+              onClick={() => setOpen(false)}
+              className="mt-2 px-6 py-3 text-center text-[0.9rem] font-semibold text-white bg-primary-600 rounded-full"
+            >
+              Client Login
+            </Link>
+          )}
         </div>
       )}
     </nav>

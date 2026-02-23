@@ -25,12 +25,12 @@ export default function MaintenancePage() {
 
   return (
     <PortalShell>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">Maintenance</h1>
+      <div className="mb-4 lg:mb-8">
+        <h1 className="text-2xl lg:text-3xl font-bold text-slate-800">Maintenance</h1>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-5">
+      <div className="flex flex-wrap gap-2 lg:gap-3 mb-3 lg:mb-5">
         {["All Properties", "All Statuses", "All Priority"].map((f) => (
           <button key={f} className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:border-slate-300 transition shadow-sm">
             {f} <ChevronDown size={15} />
@@ -47,7 +47,34 @@ export default function MaintenancePage() {
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-        <div className="overflow-x-auto">
+        {/* Mobile cards */}
+        <div className="lg:hidden divide-y divide-slate-100">
+          {items.map((item, i) => (
+            <div key={i} className="px-4 py-4 space-y-3">
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <p className="text-sm font-semibold text-slate-700">{item.property}</p>
+                  <p className="text-xs text-slate-400 mt-0.5">{item.age}</p>
+                </div>
+                <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${priorityColors[item.priority]}`}>{item.priority}</span>
+              </div>
+              <p className="text-sm text-slate-600">{item.issue}</p>
+              <div className="flex items-center justify-between">
+                {item.status === "Awaiting Materials" ? (
+                  <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-100 text-amber-700">{item.status}</span>
+                ) : (
+                  <span className="text-xs text-slate-600">{item.status}</span>
+                )}
+              </div>
+              <button className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-teal-700 hover:bg-teal-800 rounded-lg transition">
+                <Download size={13} /> Download
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop table */}
+        <div className="hidden lg:block overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
@@ -81,8 +108,8 @@ export default function MaintenancePage() {
                     )}
                   </td>
                   <td className="px-6 py-5 text-right">
-                    <button className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-teal-700 hover:bg-teal-800 rounded-lg transition">
-                      <Download size={14} /> Download
+                    <button aria-label="Download maintenance" className="inline-flex items-center justify-center px-3 py-2 bg-[#f0fdfa] text-gray-800 rounded-lg transition">
+                      <Download size={16} />
                     </button>
                   </td>
                 </tr>

@@ -3,8 +3,9 @@ import { useState } from "react";
 import {
   Plus, ChevronDown, Search, MoreHorizontal,
   ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,
-  ArrowUpDown
+  ArrowUpDown, Eye, Edit, Trash
 } from "lucide-react";
+import Pagination from "@/components/portal/Pagination";
 
 const TENANTS = [
   { id: 1, name: "Sarah Kelly",      initials: "SK", color: "bg-teal-500",    sub: "Apt 12 Grand Canal Dock", property: "Apt 39 Grand Canal Dock", moveIn: "01 Feb 2022", status: "Active",  mobile: "087-965-6692",  email: "sarah.kelly@email.com" },
@@ -54,12 +55,12 @@ export default function AdminTenantsPage() {
         </button>
       </div>
 
-      {/* Breadcrumb */}
+      {/* Breadcrumb
       <nav className="text-sm text-slate-400 flex items-center gap-1.5">
         <span className="hover:text-slate-600 cursor-pointer">Landlords</span>
         <span>/</span>
         <span className="text-slate-600 font-medium">Add Landlord</span>
-      </nav>
+      </nav> */}
 
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-2">
@@ -94,8 +95,55 @@ export default function AdminTenantsPage() {
         </button>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      {/* Mobile cards — visible below lg */}
+      <div className="lg:hidden space-y-3">
+        {filtered.map((tenant) => (
+          <div key={tenant.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-3">
+            <div className="flex items-center gap-3">
+              <div className={`w-10 h-10 rounded-full ${tenant.color} flex items-center justify-center text-white text-sm font-bold flex-shrink-0`}>
+                {tenant.initials}
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-slate-800 text-sm truncate">{tenant.name}</p>
+                <p className="text-xs text-slate-400 truncate">{tenant.sub}</p>
+              </div>
+              <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${STATUS_STYLES[tenant.status]}`}>{tenant.status}</span>
+            </div>
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <div className="bg-slate-50 rounded-lg p-2 col-span-2">
+                <p className="text-xs text-slate-400 mb-0.5">Property</p>
+                <p className="font-medium text-slate-700 truncate">{tenant.property}</p>
+              </div>
+              <div className="bg-slate-50 rounded-lg p-2">
+                <p className="text-xs text-slate-400 mb-0.5">Move-In</p>
+                <p className="font-medium text-slate-700">{tenant.moveIn}</p>
+              </div>
+              <div className="bg-slate-50 rounded-lg p-2">
+                <p className="text-xs text-slate-400 mb-0.5">Mobile</p>
+                <p className="font-medium text-slate-700">{tenant.mobile}</p>
+              </div>
+            </div>
+            <p className="text-xs text-slate-400 truncate">{tenant.email}</p>
+            <div className="flex items-center gap-2 pt-1 border-t border-slate-100">
+              <button aria-label="View" className="flex-1 h-9 inline-flex items-center justify-center bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-md transition text-xs gap-1 font-medium">
+                <Eye size={14} /> View
+              </button>
+              <button aria-label="Edit" className="flex-1 h-9 inline-flex items-center justify-center bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-md transition text-xs gap-1 font-medium">
+                <Edit size={14} /> Edit
+              </button>
+              <button aria-label="Delete" className="flex-1 h-9 inline-flex items-center justify-center bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-md transition text-xs gap-1 font-medium">
+                <Trash size={14} /> Delete
+              </button>
+            </div>
+          </div>
+        ))}
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm">
+          <Pagination total={filtered.length} />
+        </div>
+      </div>
+
+      {/* Table — visible lg+ */}
+      <div className="hidden lg:block bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
         <table className="w-full text-base">
           <thead>
             <tr className="border-b border-slate-100 bg-slate-50/60">
@@ -119,7 +167,7 @@ export default function AdminTenantsPage() {
               </th>
               <th className="px-4 py-3 text-left font-semibold text-slate-600">Mobile</th>
               <th className="px-4 py-3 text-left font-semibold text-slate-600">Email</th>
-              <th className="w-28 px-4 py-3"><MoreHorizontal size={14} className="text-slate-400 ml-auto" /></th>
+              <th className="w-28 px-4 py-3 text-right font-semibold text-slate-600">Action</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -156,13 +204,16 @@ export default function AdminTenantsPage() {
                 </td>
                 <td className="px-4 py-3 text-slate-600">{tenant.mobile}</td>
                 <td className="px-4 py-3 text-slate-400 text-sm">{tenant.email}</td>
-                <td className="px-4 py-3">
-                  <div className="flex items-center gap-0.5">
-                    <button className="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-l-md transition">
-                      View
+                <td className="px-4 py-3 text-right">
+                  <div className="flex items-center justify-end gap-2">
+                    <button aria-label="View" className="w-9 h-9 inline-flex items-center justify-center bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-md transition">
+                      <Eye size={16} />
                     </button>
-                    <button className="px-1.5 py-1.5 bg-teal-700 hover:bg-teal-800 text-white rounded-r-md transition border-l border-teal-500">
-                      <ChevronDown size={13} />
+                    <button aria-label="Edit" className="w-9 h-9 inline-flex items-center justify-center bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-md transition">
+                      <Edit size={16} />
+                    </button>
+                    <button aria-label="Delete" className="w-9 h-9 inline-flex items-center justify-center bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-md transition">
+                      <Trash size={16} />
                     </button>
                   </div>
                 </td>
@@ -170,40 +221,8 @@ export default function AdminTenantsPage() {
             ))}
           </tbody>
         </table>
-      </div>
-
-      {/* Footer */}
-      <div className="flex items-center justify-between">
-        <Pagination />
-        <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:border-slate-300 transition">
-            Cancel
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg transition">
-            <Plus size={14} /> Add Landlord
-          </button>
-        </div>
+        <Pagination total={filtered.length} />
       </div>
     </div>
-  );
-}
-
-function Pagination() {
-  return (
-    <div className="flex items-center gap-1">
-      <PagBtn icon={<ChevronsLeft size={14} />} />
-      <PagBtn icon={<ChevronLeft size={14} />} />
-      <button className="w-8 h-8 flex items-center justify-center rounded-md bg-teal-600 text-white text-sm font-semibold">1</button>
-      <PagBtn icon={<ChevronRight size={14} />} />
-      <PagBtn icon={<ChevronsRight size={14} />} />
-    </div>
-  );
-}
-
-function PagBtn({ icon }) {
-  return (
-    <button className="w-8 h-8 flex items-center justify-center rounded-md border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:text-slate-700 transition">
-      {icon}
-    </button>
   );
 }

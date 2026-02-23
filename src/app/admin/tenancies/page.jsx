@@ -1,42 +1,44 @@
 "use client";
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import {
-  Plus, ChevronDown,
+  Plus,
   ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,
   ArrowUpDown
 } from "lucide-react";
-
-const TENANCIES = [
-  { id: 1,  initials: "SK", color: "bg-teal-500",    name: "Sarah Kelly",           sub: "Apt 12, Grand Dock",         statusLet: "Let",    statusBadge: null,           county: "AKsiculs",  landlord: "Edward O'Neill", landlordSub: "Dublin · 10:44", startDate: "01 Feb 2022", rent: "€2,200", rtb: "1234598",   rtbStatus: "Active",  rtbReg: null },
-  { id: 2,  initials: "KM", color: "bg-orange-400",  name: "Kevin Madden",          sub: "Apt 5B · 10:2",              statusLet: "Notice", statusBadge: "Notice",       county: null,        landlord: "Joan Doyle",      landlordSub: "Dublin · 54:60", startDate: "18 Nov 2020", rent: "€1,950", rtb: "2324059",   rtbStatus: "Notice", rtbReg: null },
-  { id: 3,  initials: "AW", color: "bg-slate-500",   name: "Adam Walsh",            sub: "1652AO55 · 3.6.2",           statusLet: "Let",    statusBadge: null,           county: null,        landlord: "Brendan Walsh",   landlordSub: "Dublin · 00:383", startDate: "27 Dec 2019", rent: "€1,950", rtb: "2324059",   rtbStatus: "Active",  rtbReg: null },
-  { id: 4,  initials: "RS", color: "bg-sky-600",     name: "Reginald Spencer",      sub: "Apt 25, Grand Dock",        statusLet: "Let",    statusBadge: null,           county: null,        landlord: "Edward O'Neill", landlordSub: "Dublin · 10:24", startDate: "28 Jan 2022", rent: "€2,350", rtb: "100999118", rtbStatus: "Active",  rtbReg: "Registered" },
-  { id: 5,  initials: "ES", color: "bg-emerald-500", name: "Apt 21C, Harbour View",  sub: "Dublin · 10:30",            statusLet: "Let",    statusBadge: "AAlctice",     county: null,        landlord: "Edward O'Neill", landlordSub: "Dublin · 10:36", startDate: "20 Feb 2021", rent: "€2,400", rtb: "100999118", rtbStatus: "Active",  rtbReg: "Registered" },
-  { id: 6,  initials: "7D", color: "bg-teal-700",    name: "Apt 7D, Hanover Quay",  sub: "IyarlSD Dublin · 10:40",    statusLet: "Let",    statusBadge: "AAlctice",     county: null,        landlord: "Brendan Walsh",   landlordSub: "Dublin · 10:63", startDate: "23 Jan 2018", rent: "€2,200", rtb: "100993361",  rtbStatus: "Active",  rtbReg: "Registered" },
-  { id: 7,  initials: "PH", color: "bg-slate-400",   name: "Peter Hughes",           sub: "Dublin · Spetari · 1042",  statusLet: "Let",    statusBadge: "Notice",       county: null,        landlord: "Mary Bennett",    landlordSub: "Dublin · 29:23", startDate: "29 Jun 2018", rent: "€2,100", rtb: "100999253",  rtbStatus: "Active",  rtbReg: "Registered" },
-  { id: 8,  initials: "SB", color: "bg-indigo-400",  name: "Apt 399, Pearse Street", sub: "Dublin · 10:25",            statusLet: "Let",    statusBadge: "Notice",       county: null,        landlord: "Edward O'Neill", landlordSub: "Dublin · 10:55", startDate: "20 Sep 2023", rent: "€2,100", rtb: "1000993419", rtbStatus: "Active",  rtbReg: "Registered" },
-  { id: 9,  initials: "HQ", color: "bg-pink-400",    name: "Holly Quigley",          sub: "Dublin · 10:35",            statusLet: "Let",    statusBadge: "AActive",      county: null,        landlord: "Leo Mohan",       landlordSub: "Dublin · 10:35", startDate: "25 Dec 2021", rent: "€1,650", rtb: "100992455",  rtbStatus: "Active",  rtbReg: "Registered" },
-  { id: 10, initials: "2B", color: "bg-violet-400",  name: "Apt 2B, Parkside Plaza", sub: "Dublin · 10:69",            statusLet: "Let",    statusBadge: null,           county: null,        landlord: "Leo Mohan",       landlordSub: "Dublin · 16r:29", startDate: "29 Jun 2020", rent: "€1,800", rtb: "100092490",  rtbStatus: "Active",  rtbReg: "Unknown" },
-];
+import Pagination from "@/components/portal/Pagination";
+import TENANCIES from "@/data/tenancies";
 
 const STATUS_LET = {
   Let:    "bg-teal-500 text-white",
   Notice: "bg-orange-100 text-orange-600 border border-orange-300",
 };
 const BADGE = {
-  Notice:   "bg-orange-400 text-white",
-  AAlctice: "bg-teal-500 text-white",
-  AActive:  "bg-teal-500 text-white",
+  Notice: "bg-orange-400 text-white",
+  Active: "bg-teal-500 text-white",
 };
 const RTB_STATUS = {
   Active: "bg-teal-600 text-white",
   Notice: "bg-orange-400 text-white",
 };
 
-export default function AdminTenanciesPage() {
+function AdminTenanciesInner() {
   const [selected, setSelected] = useState([]);
+  const searchParams = useSearchParams();
+  const filterParam  = searchParams?.get("filter");
 
-  const filtered = TENANCIES;
+  const today = new Date();
+  const in30  = new Date(); in30.setDate(today.getDate() + 30);
+
+  const filtered = TENANCIES.filter((t) => {
+    if (filterParam === "rtb-missing")  return !t.rtb || t.rtb === "N/A";
+    if (filterParam === "rent-reviews") {
+      if (!t.rentReviewDate) return false;
+      const d = new Date(t.rentReviewDate);
+      return d >= today && d <= in30;
+    }
+    return true;
+  });
 
   const toggleAll = () =>
     setSelected(selected.length === filtered.length ? [] : filtered.map((t) => t.id));
@@ -53,8 +55,54 @@ export default function AdminTenanciesPage() {
         </button>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      {/* Mobile cards — visible below lg */}
+      <div className="lg:hidden space-y-3">
+        {filtered.map((t) => (
+          <div key={t.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-3">
+            <div className="flex items-center gap-3">
+              <div className={`w-10 h-10 rounded-full ${t.color} flex items-center justify-center text-white text-sm font-bold flex-shrink-0`}>
+                {t.initials}
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-slate-800 text-sm truncate">{t.name}</p>
+                <p className="text-xs text-slate-400 truncate">{t.sub}</p>
+              </div>
+              <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold flex-shrink-0 ${STATUS_LET[t.statusLet]}`}>
+                <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />{t.statusLet}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <div className="bg-slate-50 rounded-lg p-2">
+                <p className="text-xs text-slate-400 mb-0.5">Landlord</p>
+                <p className="font-medium text-slate-700 truncate">{t.landlord}</p>
+              </div>
+              <div className="bg-slate-50 rounded-lg p-2">
+                <p className="text-xs text-slate-400 mb-0.5">Rent</p>
+                <p className="font-semibold text-slate-800">{t.rent}</p>
+              </div>
+              <div className="bg-slate-50 rounded-lg p-2">
+                <p className="text-xs text-slate-400 mb-0.5">County/City</p>
+                <p className="font-medium text-slate-700">{t.county}</p>
+              </div>
+              <div className="bg-slate-50 rounded-lg p-2">
+                <p className="text-xs text-slate-400 mb-0.5">RTB #</p>
+                <p className="font-medium text-slate-700">{t.rtb}</p>
+              </div>
+            </div>
+            <div className="pt-1 border-t border-slate-100">
+              <button className={`w-full py-1.5 text-white text-xs font-semibold rounded-md transition ${
+                t.rtbStatus === "Notice" ? "bg-orange-400 hover:bg-orange-500" : "bg-teal-600 hover:bg-teal-700"
+              }`}>{t.rtbStatus}</button>
+            </div>
+          </div>
+        ))}
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm">
+          <Pagination total={filtered.length} />
+        </div>
+      </div>
+
+      {/* Table — visible lg+ */}
+      <div className="hidden lg:block bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
         <table className="w-full text-base">
           <thead>
             <tr className="border-b border-slate-100 bg-slate-50/60">
@@ -101,12 +149,7 @@ export default function AdminTenanciesPage() {
                       <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
                       {t.statusLet}
                     </span>
-                    {t.statusBadge && (
-                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-sm font-semibold w-fit ${BADGE[t.statusBadge] || "bg-orange-400 text-white"}`}>
-                        <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
-                        {t.statusBadge.replace("AAlctice", "Active").replace("AActive", "Active")}
-                      </span>
-                    )}
+                            {/* statusBadge intentionally removed - single primary status shown */}
                   </div>
                 </td>
                 <td className="px-3 py-3 text-slate-600 text-sm">{t.county}</td>
@@ -125,52 +168,30 @@ export default function AdminTenanciesPage() {
                   )}
                 </td>
                 <td className="px-3 py-3">
-                  <div className="flex items-center gap-0.5">
-                    <button className={`px-3 py-1.5 text-white text-sm font-semibold rounded-l-md transition ${
-                      t.rtbStatus === "Notice"
-                        ? "bg-orange-400 hover:bg-orange-500"
-                        : "bg-teal-600 hover:bg-teal-700"
-                    }`}>
-                      {t.rtbStatus}
-                    </button>
-                    <button className={`px-1.5 py-1.5 text-white rounded-r-md transition border-l ${
-                      t.rtbStatus === "Notice"
-                        ? "bg-orange-500 hover:bg-orange-600 border-orange-400"
-                        : "bg-teal-700 hover:bg-teal-800 border-teal-500"
-                    }`}>
-                      <ChevronDown size={13} />
-                    </button>
-                  </div>
+                  <button className={`px-3 py-1.5 text-white text-sm font-semibold rounded-md transition ${
+                    t.rtbStatus === "Notice"
+                      ? "bg-orange-400 hover:bg-orange-500"
+                      : "bg-teal-600 hover:bg-teal-700"
+                  }`}>
+                    {t.rtbStatus}
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
-
-      {/* Pagination */}
-      <div className="flex justify-center">
-        <Pagination />
+        <Pagination total={filtered.length} />
       </div>
     </div>
   );
 }
 
-function Pagination() {
+export default function AdminTenanciesPage() {
   return (
-    <div className="flex items-center gap-1">
-      <PagBtn icon={<ChevronsLeft size={14} />} />
-      <PagBtn icon={<ChevronLeft size={14} />} />
-      <button className="w-8 h-8 flex items-center justify-center rounded-md bg-teal-600 text-white text-sm font-semibold">1</button>
-      <PagBtn icon={<ChevronRight size={14} />} />
-      <PagBtn icon={<ChevronsRight size={14} />} />
-    </div>
+    <Suspense fallback={null}>
+      <AdminTenanciesInner />
+    </Suspense>
   );
 }
-function PagBtn({ icon }) {
-  return (
-    <button className="w-8 h-8 flex items-center justify-center rounded-md border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:text-slate-700 transition">
-      {icon}
-    </button>
-  );
-}
+
+// using shared Pagination component from components/portal/Pagination

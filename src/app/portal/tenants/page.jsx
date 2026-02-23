@@ -3,7 +3,7 @@
 import { useState } from "react";
 import PortalShell from "@/components/portal/PortalShell";
 import Pagination from "@/components/portal/Pagination";
-import { Download, AlertTriangle, Search, ChevronDown } from "lucide-react";
+import { Eye, Search, ChevronDown } from "lucide-react";
 
 const tenants = [
   { name: "Ellis Davis", property: "Apt 4 Willow Court", start: "Aug 1, 2023", pps: "1234567SA", status: "Occupied", statusColor: "bg-teal-100 text-teal-700" },
@@ -19,12 +19,12 @@ export default function TenantsPage() {
 
   return (
     <PortalShell>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">Tenants</h1>
+      <div className="mb-4 lg:mb-8">
+        <h1 className="text-2xl lg:text-3xl font-bold text-slate-800">Tenants</h1>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-5">
+      <div className="flex flex-wrap gap-2 lg:gap-3 mb-3 lg:mb-5">
         <button className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:border-slate-300 transition shadow-sm">
           All Statuses <ChevronDown size={15} />
         </button>
@@ -39,7 +39,38 @@ export default function TenantsPage() {
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-        <div className="overflow-x-auto">
+        {/* Mobile cards */}
+        <div className="lg:hidden divide-y divide-slate-100">
+          {tenants.map((t, i) => (
+            <div key={i} className="px-4 py-4 space-y-3">
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-sm font-semibold text-slate-700">{t.name}</p>
+                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${t.statusColor}`}>{t.status}</span>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
+                <div>
+                  <p className="text-slate-400">Property</p>
+                  <p className="text-slate-700">{t.property}</p>
+                </div>
+                <div>
+                  <p className="text-slate-400">Start Date</p>
+                  <p className="text-slate-700">{t.start}</p>
+                </div>
+                <div>
+                  <p className="text-slate-400">PPS No.</p>
+                  <p className="font-mono text-slate-600">{t.pps}</p>
+                </div>
+              </div>
+              <button aria-label="View tenant" className="w-full flex items-center justify-center px-3 py-2 text-white bg-teal-700 hover:bg-teal-800 rounded-lg transition">
+                View
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop table */}
+        <div className="hidden lg:block overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
@@ -59,20 +90,14 @@ export default function TenantsPage() {
                   <td className="px-5 py-5 text-base text-slate-600">{t.start}</td>
                   <td className="px-5 py-5 font-mono text-sm text-slate-600">{t.pps}</td>
                   <td className="px-5 py-5">
-                    <span className={`text-sm font-semibold px-3 py-1 rounded-full ${t.statusColor}`}>
+                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${t.statusColor}`}>
                       {t.status}
                     </span>
-                    {t.late && (
-                      <div className="mt-1.5">
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">
-                          <AlertTriangle size={12} /> {t.late}
-                        </span>
-                      </div>
-                    )}
+                    
                   </td>
                   <td className="px-6 py-5 text-right">
-                    <button className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-teal-700 hover:bg-teal-800 rounded-lg transition">
-                      <Download size={14} /> View
+                    <button aria-label="View tenant" className="inline-flex items-center justify-center px-3 py-2 bg-[#f0fdfa] text-gray-800 rounded-lg transition">
+                      <Eye size={16} />
                     </button>
                   </td>
                 </tr>

@@ -5,6 +5,7 @@ import {
   ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,
   CheckSquare
 } from "lucide-react";
+import Pagination from "@/components/portal/Pagination";
 
 const REQUESTS = [
   // Open
@@ -88,7 +89,7 @@ export default function AdminMaintenancePage() {
       </div>
 
       {/* Kanban Board */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {COLUMNS.map((col) => {
           const cards = filtered.filter((r) => r.col === col);
           return (
@@ -139,29 +140,9 @@ export default function AdminMaintenancePage() {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center pt-2">
-        <Pagination />
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm">
+        <Pagination total={REQUESTS.length} />
       </div>
     </div>
-  );
-}
-
-function Pagination() {
-  return (
-    <div className="flex items-center gap-1">
-      <PagBtn icon={<ChevronsLeft size={14} />} />
-      <PagBtn icon={<ChevronLeft size={14} />} />
-      <button className="w-8 h-8 flex items-center justify-center rounded-md bg-teal-600 text-white text-sm font-semibold">1</button>
-      <PagBtn icon={<ChevronRight size={14} />} />
-      <PagBtn icon={<ChevronsRight size={14} />} />
-    </div>
-  );
-}
-
-function PagBtn({ icon }) {
-  return (
-    <button className="w-8 h-8 flex items-center justify-center rounded-md border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:text-slate-700 transition">
-      {icon}
-    </button>
   );
 }

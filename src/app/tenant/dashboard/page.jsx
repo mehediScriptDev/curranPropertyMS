@@ -1,6 +1,7 @@
 "use client";
 
 import TenantShell from "@/components/tenant/TenantShell";
+import Link from "next/link";
 import {
   Home,
   CreditCard,
@@ -9,6 +10,7 @@ import {
   MessageSquare,
   AlertCircle,
   CheckCircle2,
+  Key,
   ArrowRight,
   Clock,
   Calendar,
@@ -90,21 +92,21 @@ export default function TenantDashboardPage() {
   return (
     <TenantShell>
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-5 xl:mb-8">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">Welcome Back, Kevin</h1>
           <p className="text-slate-500 mt-1 text-sm">Apt 5B Rosewood Close · Tenancy since Oct 2022</p>
         </div>
-        <a
+        <Link
           href="/tenant/maintenance"
           className="hidden sm:flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition"
         >
           <Wrench size={15} /> Report Issue
-        </a>
+        </Link>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-2 xl:gap-4 mb-4 xl:mb-8">
         {kpis.map(({ label, value, Icon, color, sub }) => (
           <div
             key={label}
@@ -124,7 +126,7 @@ export default function TenantDashboardPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Left: Alerts + Rent History */}
-        <div className="lg:col-span-2 space-y-5">
+        <div className="lg:col-span-2 space-y-3 xl:space-y-5">
 
           {/* Alerts */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
@@ -160,14 +162,15 @@ export default function TenantDashboardPage() {
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
               <h3 className="text-lg font-bold text-slate-800">Rent Payments</h3>
-              <a
+              <Link
                 href="/tenant/rent"
                 className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1.5"
               >
                 View All <ArrowRight size={14} />
-              </a>
+              </Link>
             </div>
-            <div className="overflow-x-auto">
+            {/* Table (lg+) */}
+            <div className="hidden lg:block overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
@@ -193,18 +196,38 @@ export default function TenantDashboardPage() {
                 </tbody>
               </table>
             </div>
+
+            {/* Mobile cards (smaller than lg) */}
+            <div className="lg:hidden space-y-4 p-4">
+              {payments.map((p, i) => (
+                <div key={i} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 ">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <div className="text-sm font-semibold text-slate-700">{p.month}</div>
+                      <div className="text-xs text-slate-400 mt-1">{p.date}</div>
+                      <div className="mt-2">
+                        <span className={`text-xs font-semibold px-2 py-1 rounded-full ${p.statusColor}`}>{p.status}</span>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-base font-bold text-slate-800">{p.amount}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Maintenance */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
               <h3 className="text-lg font-bold text-slate-800">Maintenance Requests</h3>
-              <a
+              <Link
                 href="/tenant/maintenance"
                 className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1.5"
               >
                 View All <ArrowRight size={14} />
-              </a>
+              </Link>
             </div>
             <div className="divide-y divide-slate-100">
               {maintenance.map((m, i) => (
@@ -230,7 +253,7 @@ export default function TenantDashboardPage() {
         </div>
 
         {/* Right: Property Info + Messages */}
-        <div className="space-y-5">
+        <div className="space-y-3 xl:space-y-5">
           {/* My Property */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
             <div className="px-6 py-4 border-b border-slate-100">
@@ -258,12 +281,48 @@ export default function TenantDashboardPage() {
                   </div>
                 ))}
               </div>
-              <a
+              <Link
                 href="/tenant/property"
                 className="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold text-teal-700 border border-teal-200 rounded-xl hover:bg-teal-50 transition"
               >
                 View Full Details <ArrowRight size={14} />
-              </a>
+              </Link>
+            </div>
+          </div>
+
+          {/* Right to Buy quick card */}
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+              <h3 className="text-lg font-bold text-slate-800">Right to Buy</h3>
+              <Link href="/tenant/rtb" className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1.5">
+                View <ArrowRight size={14} />
+              </Link>
+            </div>
+            <div className="p-6 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-lg bg-teal-50 flex items-center justify-center">
+                  <Key size={20} className="text-teal-600" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-slate-800">Eligible for Right to Buy</p>
+                  <p className="text-xs text-slate-500 mt-1">You have an estimated discount based on tenancy years.</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div className="bg-slate-50 p-3 rounded-md">
+                  <div className="text-xs text-slate-500">Years tenancy</div>
+                  <div className="font-semibold text-slate-800">7 years</div>
+                </div>
+                <div className="bg-slate-50 p-3 rounded-md">
+                  <div className="text-xs text-slate-500">Estimated discount</div>
+                  <div className="font-semibold text-slate-800">7%</div>
+                </div>
+              </div>
+
+              <Link href="/tenant/rtb" className="block w-full text-center py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-semibold">
+                View RTB Details
+              </Link>
             </div>
           </div>
 
@@ -271,12 +330,12 @@ export default function TenantDashboardPage() {
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
               <h3 className="text-lg font-bold text-slate-800">Messages</h3>
-              <a
+              <Link
                 href="/tenant/messages"
                 className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1.5"
               >
                 View All <ArrowRight size={14} />
-              </a>
+              </Link>
             </div>
             <div className="divide-y divide-slate-100">
               {messages.map((msg, i) => (
@@ -295,12 +354,12 @@ export default function TenantDashboardPage() {
               ))}
             </div>
             <div className="px-5 py-4 border-t border-slate-100">
-              <a
+              <Link
                 href="/tenant/messages"
                 className="flex items-center justify-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-700"
               >
                 <MessageSquare size={15} /> Send a Message
-              </a>
+              </Link>
             </div>
           </div>
         </div>

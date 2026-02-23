@@ -5,6 +5,7 @@ import {
   ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,
   ArrowUpDown, Download, FileText
 } from "lucide-react";
+import Pagination from "@/components/portal/Pagination";
 
 const DOCUMENTS = [
   { id: 1,  icon: "teal",   name: "Kevin Madden signed lease.pdf",          sub: "Apt 5B, Rosewood Close",  type: "Lease",      typeStyle: "bg-teal-100 text-teal-700",    property: "Apt 5B,\nRosewood Close",       visibility: ["Tenant", "Landlord", "Lease"],  uploader: "John McCann",  age: "1 hour ago" },
@@ -31,6 +32,7 @@ export default function AdminDocumentsPage() {
   const [selected, setSelected] = useState([]);
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("Lease");
+  const [visPopoverId, setVisPopoverId] = useState(null);
 
   const filtered = DOCUMENTS.filter(
     (d) =>
@@ -87,8 +89,47 @@ export default function AdminDocumentsPage() {
         </button>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      {/* Mobile cards — visible below lg */}
+      <div className="lg:hidden space-y-3">
+        {filtered.map((doc) => (
+          <div key={doc.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-3">
+            <div className="flex items-center gap-3">
+              <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${doc.icon === "amber" ? "bg-amber-100" : "bg-teal-100"}`}>
+                <FileText size={16} className={doc.icon === "amber" ? "text-amber-600" : "text-teal-600"} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-slate-800 text-sm truncate">{doc.name}</p>
+                <p className="text-xs text-slate-400 truncate">{doc.sub}</p>
+              </div>
+              {doc.type && (
+                <span className={`px-2 py-0.5 rounded-md text-xs font-semibold flex-shrink-0 ${doc.typeStyle}`}>{doc.type}</span>
+              )}
+            </div>
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <div className="bg-slate-50 rounded-lg p-2">
+                <p className="text-xs text-slate-400 mb-0.5">Property</p>
+                <p className="font-medium text-slate-700 text-xs">{doc.property.replace("\n", " ")}</p>
+              </div>
+              <div className="bg-slate-50 rounded-lg p-2">
+                <p className="text-xs text-slate-400 mb-0.5">Uploaded By</p>
+                <p className="font-medium text-slate-700 text-xs">{doc.uploader}</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-slate-400">{doc.age}</span>
+              <button className="h-8 px-3 inline-flex items-center gap-1.5 bg-teal-50 hover:bg-teal-100 text-teal-600 rounded-md transition text-xs font-medium border border-teal-200">
+                <Download size={12} /> Download
+              </button>
+            </div>
+          </div>
+        ))}
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm">
+          <Pagination total={filtered.length} />
+        </div>
+      </div>
+
+      {/* Table — visible lg+ */}
+      <div className="hidden lg:block bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
         <table className="w-full text-base">
           <thead>
             <tr className="border-b border-slate-100 bg-slate-50/60">
@@ -107,7 +148,7 @@ export default function AdminDocumentsPage() {
               <th className="px-3 py-3 text-left font-semibold text-slate-600">Visibility</th>
               <th className="px-3 py-3 text-left font-semibold text-slate-600">Uploaded By</th>
               <th className="px-3 py-3 text-left font-semibold text-slate-600">Uploaded</th>
-              <th className="w-20 px-3 py-3"></th>
+              <th className="w-20 px-3 py-3 text-right font-semibold text-slate-600">Action</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -145,11 +186,42 @@ export default function AdminDocumentsPage() {
                     <p key={i} className={`text-sm ${i === 0 ? "text-slate-700 font-medium" : "text-slate-400"}`}>{line}</p>
                   ))}
                 </td>
-                <td className="px-3 py-3">
-                  <div className="flex flex-wrap gap-1">
-                    {doc.visibility.map((v, i) => (
-                      <span key={i} className={`px-2 py-0.5 rounded-md text-sm font-medium ${VIS_STYLE[v] || "bg-slate-100 text-slate-600"}`}>{v}</span>
-                    ))}
+                <td className="px-3 py-3 relative">
+                  <div className="flex items-center gap-2">
+                    {(() => {
+                      const items = doc.visibility || [];
+                      if (items.length === 0) return null;
+                      if (items.length === 1) {
+                        const v = items[0];
+                        return (
+                          <span className={`px-2 py-0.5 rounded-md text-sm font-medium ${VIS_STYLE[v] || "bg-slate-100 text-slate-600"}`}>{v}</span>
+                        );
+                      }
+                      const count = items.length;
+                      return (
+                        <>
+                          <button
+                            onClick={() => setVisPopoverId(visPopoverId === doc.id ? null : doc.id)}
+                            aria-expanded={visPopoverId === doc.id}
+                            className="px-2 py-0.5 rounded-md text-sm font-medium bg-slate-100 text-slate-600"
+                          >
+                            {count}+ 
+                          </button>
+                          {visPopoverId === doc.id && (
+                            <>
+                              <div className="fixed inset-0 z-40" onClick={() => setVisPopoverId(null)} />
+                              <div className="absolute right-0 top-full mt-2 z-50 w-44 bg-white border border-slate-200 rounded-md shadow-lg p-3">
+                                <div className="flex flex-col gap-2">
+                                  {items.map((v, idx) => (
+                                    <span key={idx} className={`px-2 py-1 rounded-md text-sm font-medium ${VIS_STYLE[v] || "bg-slate-100 text-slate-600"}`}>{v}</span>
+                                  ))}
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </>
+                      );
+                    })()}
                   </div>
                 </td>
                 <td className="px-3 py-3 text-slate-700 text-sm font-medium">{doc.uploader}</td>
@@ -159,40 +231,14 @@ export default function AdminDocumentsPage() {
                     <button className="w-7 h-7 flex items-center justify-center bg-teal-50 hover:bg-teal-100 text-teal-600 rounded-md transition border border-teal-200">
                       <Download size={13} />
                     </button>
-                    <button className="w-7 h-7 flex items-center justify-center bg-teal-600 hover:bg-teal-700 text-white rounded-md transition">
-                      <Download size={13} />
-                    </button>
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
-
-      {/* Pagination */}
-      <div className="flex justify-center">
-        <Pagination />
+        <Pagination total={filtered.length} />
       </div>
     </div>
-  );
-}
-
-function Pagination() {
-  return (
-    <div className="flex items-center gap-1">
-      <PagBtn icon={<ChevronsLeft size={14} />} />
-      <PagBtn icon={<ChevronLeft size={14} />} />
-      <button className="w-8 h-8 flex items-center justify-center rounded-md bg-teal-600 text-white text-sm font-semibold">1</button>
-      <PagBtn icon={<ChevronRight size={14} />} />
-      <PagBtn icon={<ChevronsRight size={14} />} />
-    </div>
-  );
-}
-function PagBtn({ icon }) {
-  return (
-    <button className="w-8 h-8 flex items-center justify-center rounded-md border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:text-slate-700 transition">
-      {icon}
-    </button>
   );
 }

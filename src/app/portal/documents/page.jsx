@@ -28,12 +28,12 @@ export default function DocumentsPage() {
 
   return (
     <PortalShell>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">Documents</h1>
+      <div className="mb-4 lg:mb-8">
+        <h1 className="text-2xl lg:text-3xl font-bold text-slate-800">Documents</h1>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-5">
+      <div className="flex flex-wrap gap-2 lg:gap-3 mb-3 lg:mb-5">
         {["All Properties", "All Document Types"].map((f) => (
           <button key={f} className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:border-slate-300 transition shadow-sm">
             {f} <ChevronDown size={15} />
@@ -50,7 +50,33 @@ export default function DocumentsPage() {
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-        <div className="overflow-x-auto">
+        {/* Mobile cards */}
+        <div className="lg:hidden divide-y divide-slate-100">
+          {docs.map((d, i) => (
+            <div key={i} className="px-4 py-4 space-y-3">
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
+                  <FileText size={16} className="text-slate-500" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-slate-700 truncate">{d.name}</p>
+                  <p className="text-xs text-slate-400 mt-0.5">{d.property}</p>
+                </div>
+                <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${typeColors[d.type] || "bg-slate-100 text-slate-600"}`}>{d.type}</span>
+              </div>
+              <div className="flex items-center justify-between text-xs text-slate-400">
+                <span>{d.date}</span>
+                <span>{d.size}</span>
+              </div>
+              <button className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-teal-700 hover:bg-teal-800 rounded-lg transition">
+                <Download size={13} /> Download
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop table */}
+        <div className="hidden lg:block overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
@@ -82,8 +108,8 @@ export default function DocumentsPage() {
                   <td className="px-5 py-5 text-base text-slate-500">{d.date}</td>
                   <td className="px-5 py-5 text-base text-slate-400">{d.size}</td>
                   <td className="px-6 py-5 text-right">
-                    <button className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-teal-700 hover:bg-teal-800 rounded-lg transition">
-                      <Download size={14} /> Download
+                    <button className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-[#f0fdfa] text-gray-800 rounded-lg transition">
+                      <Download size={16} /> 
                     </button>
                   </td>
                 </tr>

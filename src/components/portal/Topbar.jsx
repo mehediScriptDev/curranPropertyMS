@@ -6,6 +6,7 @@ import { Bell, Mail, Globe, ChevronDown, Menu, LogOut } from "lucide-react";
 
 import { usePortalAuth } from "@/context/PortalAuthContext";
 import { useState } from "react";
+import Link from "next/link";
 
 
 export default function Topbar({ onMenuClick }) {
@@ -47,13 +48,13 @@ export default function Topbar({ onMenuClick }) {
             onClick={() => setDropOpen(!dropOpen)}
             className="flex items-center gap-2.5 ml-1 hover:opacity-80 transition"
           >
-            <Image
+            {/* <Image
               src={user?.avatar || "https://randomuser.me/api/portraits/men/32.jpg"}
               alt={user?.name}
               width={36}
               height={36}
               className="rounded-full object-cover"
-            />
+            /> */}
             <span className="hidden sm:block text-[0.95rem] font-medium text-slate-700">
               {user?.name}
             </span>
@@ -62,13 +63,13 @@ export default function Topbar({ onMenuClick }) {
 
           {dropOpen && (
             <div className="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-50">
-              <a
-                href="/portal/profile"
+              <Link
+                href="/"
                 className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
                 onClick={() => setDropOpen(false)}
               >
-                My Profile
-              </a>
+                Go home
+              </Link>
               <hr className="my-1 border-slate-100" />
               <button
                 onClick={handleLogout}

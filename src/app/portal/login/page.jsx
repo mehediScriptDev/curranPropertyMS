@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Mail, Lock, ArrowRight } from "lucide-react";
+import { Mail, Lock, ArrowRight, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import { usePortalAuth } from "@/context/PortalAuthContext";
 
 export default function LoginPage() {
@@ -38,27 +39,16 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-white">
-      <div className="container mx-auto px-6">
-        <div className="mx-auto max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div className="container mx-auto px-6 py-10 lg:py-0">
+        <div className="mx-auto max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-10 items-center">
 
           {/* Left: Brand / illustration */}
-          <div className="hidden lg:flex flex-col justify-center gap-6 p-8">
-            <div className="inline-flex items-center gap-3">
-              <div className="w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center">
-                <Image src="/logo.png" alt="logo" width={40} height={40} />
-              </div>
-              <div>
-                <h3 className="text-2xl font-extrabold text-dark-900">McCann &amp; Curran</h3>
-                <p className="text-sm text-slate-600 mt-1">Landlord Portal — Manage your properties with confidence</p>
-              </div>
-            </div>
-
-            
+          <div className="flex flex-col justify-center gap-6 p-8 order-2 lg:order-1">
             
             {/* Demo credentials panel */}
             <div className="mt-6 rounded-2xl bg-white p-4 border border-slate-100 shadow-sm">
-              <h5 className="text-sm font-semibold text-slate-800 mb-3">Demo accounts</h5>
-              <div className="space-y-3 text-sm text-slate-700">
+              <h5 className="text-base font-semibold text-slate-800 mb-3">Demo accounts</h5>
+              <div className="space-y-3 text-base text-slate-700">
                 {[
                   { r: "admin",    e: "admin@mccannandcurran.ie", p: "admin1234" },
                   { r: "landlord", e: "joe.doyle@email.com",      p: "demo1234" },
@@ -66,7 +56,7 @@ export default function LoginPage() {
                 ].map((a) => (
                   <div key={a.r} className="flex items-center justify-between gap-3">
                     <div>
-                      <div className="text-sm font-medium text-slate-800">{a.r.charAt(0).toUpperCase() + a.r.slice(1)}</div>
+                      <div className="text-base font-medium text-slate-800">{a.r.charAt(0).toUpperCase() + a.r.slice(1)}</div>
                       <div className="text-xs text-slate-500">{a.e} · {a.p}</div>
                     </div>
                     <div>
@@ -89,9 +79,16 @@ export default function LoginPage() {
           </div>
 
           {/* Right: Login card */}
-          <div className="relative z-10">
+          <div className="relative z-10 order-1 lg:order-2">
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
               <div className="p-8 sm:p-10">
+                <Link
+                  href="/"
+                  className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-teal-700 mb-6 transition-colors group"
+                >
+                  <ArrowLeft size={15} className="group-hover:-translate-x-0.5 transition-transform" />
+                  Back to home
+                </Link>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-lg bg-primary-50 flex items-center justify-center">
                     <Image src="/logo.png" alt="McCann & Curran" width={40} height={40} />
@@ -185,11 +182,7 @@ export default function LoginPage() {
                   </div>
                 </form>
 
-                {/* removed demo buttons (moved to left panel) */}
-
-                <div className="mt-4 text-center text-sm text-slate-500">
-                  Need help? Contact us at <a href="mailto:info@mccannandcurran.ie" className="text-primary-600 font-medium hover:text-primary-700">info@mccannandcurran.ie</a>
-                </div>
+                
               </div>
 
               <div className="bg-slate-50 px-6 py-4 text-center border-t border-slate-100">

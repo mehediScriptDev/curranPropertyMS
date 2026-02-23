@@ -48,14 +48,14 @@ export default function TenantMaintenancePage() {
 
   return (
     <TenantShell>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-5 xl:mb-8 gap-3">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">Maintenance</h1>
           <p className="text-slate-500 mt-1 text-sm">Submit and track maintenance requests for your property</p>
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition"
+          className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition"
         >
           <Plus size={15} /> Report Issue
         </button>
@@ -111,8 +111,8 @@ export default function TenantMaintenancePage() {
         </div>
       )}
 
-      {/* Requests table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      {/* Requests table (lg+) */}
+      <div className="hidden lg:block bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="px-6 py-4 border-b border-slate-100">
           <h3 className="text-base font-bold text-slate-800">Request History</h3>
         </div>
@@ -156,6 +156,32 @@ export default function TenantMaintenancePage() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Mobile cards */}
+      <div className="lg:hidden space-y-2">
+        {requests.map((r) => (
+          <div key={r.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex-1">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center shrink-0">
+                    <Wrench size={17} className="text-purple-600" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-slate-800">{r.title}</div>
+                    <div className="text-xs text-slate-400 mt-1">{r.desc}</div>
+                    <div className="mt-2 text-xs text-slate-400">Submitted: {r.date}</div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col items-end gap-2">
+                <span className={`text-xs font-semibold px-2 py-1 rounded-full ${r.priorityColor}`}>{r.priority}</span>
+                <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-full ${r.statusColor}`}>{statusIcon[r.status]} {r.status}</span>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </TenantShell>
   );

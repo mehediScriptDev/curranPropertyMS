@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Bell, Mail, ChevronDown, Menu, LogOut, User } from "lucide-react";
+import { Bell, Mail, ChevronDown, Menu, LogOut } from "lucide-react";
 import { usePortalAuth } from "@/context/PortalAuthContext";
 
 export default function TenantTopbar({ onMenuClick }) {
@@ -45,13 +45,13 @@ export default function TenantTopbar({ onMenuClick }) {
             onClick={() => setDropOpen(!dropOpen)}
             className="flex items-center gap-2.5 ml-1 hover:opacity-80 transition"
           >
-            <Image
+            {/* <Image
               src={user?.avatar || "https://randomuser.me/api/portraits/women/50.jpg"}
               alt={user?.name || "Tenant"}
               width={36}
               height={36}
               className="rounded-full object-cover"
-            />
+            /> */}
             <span className="hidden sm:block text-[0.95rem] font-medium text-slate-700">
               {user?.name}
             </span>
@@ -61,11 +61,11 @@ export default function TenantTopbar({ onMenuClick }) {
           {dropOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-50">
               <Link
-                href="/tenant/profile"
+                href="/"
                 className="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50"
                 onClick={() => setDropOpen(false)}
               >
-                <User size={14} /> My Profile
+                Go home
               </Link>
               <hr className="my-1 border-slate-100" />
               <button

@@ -1,7 +1,7 @@
 "use client";
 
 import PortalShell from "@/components/portal/PortalShell";
-import { Download, AlertTriangle } from "lucide-react";
+import { Eye } from "lucide-react";
 
 const properties = [
   { status: "On Notice", statusColor: "bg-red-100 text-red-700", address: "Apt 5B Rosewood Close", tenant: "Kevin Madden", rent: "€1,750", rentBadge: "Rent 5 Days Late", rtb: "Registered", mprn: "10623847501" },
@@ -13,12 +13,46 @@ const properties = [
 export default function PropertiesPage() {
   return (
     <PortalShell>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">My Properties</h1>
+      <div className="mb-4 xl:mb-8">
+        <h1 className="text-2xl xl:text-3xl font-bold text-slate-800">My Properties</h1>
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-        <div className="overflow-x-auto">
+        {/* Mobile / tablet cards */}
+        <div className="xl:hidden divide-y divide-slate-100">
+          {properties.map((p, i) => (
+            <div key={i} className="px-4 py-4 space-y-3">
+              <div className="flex items-start justify-between gap-2">
+                <p className="text-sm font-semibold text-slate-700">{p.address}</p>
+                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${p.statusColor}`}>{p.status}</span>
+              </div>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
+                <div>
+                  <p className="text-slate-400">Tenant</p>
+                  <p className="text-slate-700 font-medium">{p.tenant}</p>
+                </div>
+                <div>
+                  <p className="text-slate-400">Rent</p>
+                  <p className="text-slate-700 font-bold">{p.rent}</p>
+                </div>
+                <div>
+                  <p className="text-slate-400">RTB Status</p>
+                  <span className={`inline-block text-xs font-medium px-2 py-0.5 rounded-full ${p.rtb === "Registered" ? "bg-teal-50 text-teal-700" : "bg-amber-50 text-amber-700"}`}>{p.rtb}</span>
+                </div>
+                <div>
+                  <p className="text-slate-400">MPRN</p>
+                  <p className="font-mono text-slate-600">{p.mprn}</p>
+                </div>
+              </div>
+              <button aria-label="View property" className="w-full flex items-center justify-center px-3 py-2 text-white bg-teal-700 hover:bg-teal-800 rounded-lg transition">
+                View property
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop table */}
+        <div className="hidden xl:block overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
@@ -35,7 +69,7 @@ export default function PropertiesPage() {
               {properties.map((p, i) => (
                 <tr key={i} className="hover:bg-slate-50/60 transition-colors">
                   <td className="px-6 py-5">
-                    <span className={`text-sm font-semibold px-3 py-1 rounded-full ${p.statusColor}`}>
+                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${p.statusColor}`}>
                       {p.status}
                     </span>
                   </td>
@@ -45,11 +79,6 @@ export default function PropertiesPage() {
                   <td className="px-5 py-5 text-base text-slate-600">{p.tenant}</td>
                   <td className="px-5 py-5">
                     <p className="text-base font-bold text-slate-700">{p.rent}</p>
-                    {p.rentBadge && (
-                      <span className="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">
-                        <AlertTriangle size={12} /> {p.rentBadge}
-                      </span>
-                    )}
                   </td>
                   <td className="px-5 py-5">
                     <span className={`text-sm font-medium px-2.5 py-1 rounded-full ${p.rtb === "Registered" ? "bg-teal-50 text-teal-700" : "bg-amber-50 text-amber-700"}`}>
@@ -58,8 +87,8 @@ export default function PropertiesPage() {
                   </td>
                   <td className="px-5 py-5 text-slate-500 font-mono text-sm">{p.mprn}</td>
                   <td className="px-6 py-5 text-right">
-                    <button className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-teal-700 hover:bg-teal-800 rounded-lg transition">
-                      <Download size={14} /> View Property
+                    <button aria-label="View property" className="inline-flex items-center justify-center px-3 py-2  bg-[#f0fdfa] text-gray-800 rounded-lg transition">
+                      <Eye size={16} />
                     </button>
                   </td>
                 </tr>

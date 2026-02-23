@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import TENANCIES from "@/data/tenancies";
 import {
   Building2,
   Users,
@@ -52,10 +54,20 @@ const kpis = [
   },
 ];
 
+const _today = new Date();
+const _in30  = new Date(); _in30.setDate(_today.getDate() + 30);
+const rtbMissingCount  = TENANCIES.filter((t) => !t.rtb || t.rtb === "N/A").length;
+const rentReviewCount  = TENANCIES.filter((t) => {
+  if (!t.rentReviewDate) return false;
+  const d = new Date(t.rentReviewDate);
+  return d >= _today && d <= _in30;
+}).length;
+
 const alerts = [
   {
     id: 1,
-    count: 6,
+    key: "rtb-missing",
+    count: rtbMissingCount,
     countColor: "bg-blue-600",
     title: "RTB missing numbers",
     icon: null,
@@ -63,7 +75,8 @@ const alerts = [
   },
   {
     id: 2,
-    count: 12,
+    key: "rent-reviews",
+    count: rentReviewCount,
     countColor: "bg-orange-500",
     title: "Rent reviews due soon",
     icon: null,
@@ -71,6 +84,7 @@ const alerts = [
   },
   {
     id: 3,
+    key: null,
     count: null,
     title: "Vacant properties",
     icon: <AlertTriangle size={18} className="text-amber-500" />,
@@ -78,6 +92,7 @@ const alerts = [
   },
   {
     id: 4,
+    key: null,
     count: null,
     title: "Vacant properties",
     icon: <Home size={18} className="text-red-500" />,
@@ -116,9 +131,12 @@ function KpiCard({ label, value, Icon, iconBg, iconColor, badge, badgeColor }) {
   );
 }
 
-function AlertCard({ alert }) {
+function AlertCard({ alert, onClick }) {
   return (
-    <div className="flex items-center gap-3 bg-white rounded-2xl border border-slate-100 px-4 py-3 shadow-sm">
+    <div
+      onClick={onClick}
+      className={`flex items-center gap-3 bg-white rounded-2xl border border-slate-100 px-4 py-3 shadow-sm ${onClick ? "cursor-pointer hover:border-slate-300 hover:shadow-md transition" : ""}`}
+    >
       {alert.count !== null ? (
         <span className={`w-8 h-8 rounded-md ${alert.countColor} text-white text-sm font-bold flex items-center justify-center shrink-0`}>
           {alert.count}
@@ -175,6 +193,7 @@ function ActivityRowAvatar({ item }) {
 
 /* ─── Page ────────────────────────────────────── */
 export default function AdminDashboardPage() {
+  const router = useRouter();
   return (
     <div className="space-y-6">
 
@@ -234,7 +253,11 @@ export default function AdminDashboardPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {alerts.map((a) => (
-              <AlertCard key={a.id} alert={a} />
+              <AlertCard
+                key={a.id}
+                alert={a}
+                onClick={a.key ? () => router.push(`/admin/tenancies?filter=${a.key}`) : undefined}
+              />
             ))}
           </div>
         </div>

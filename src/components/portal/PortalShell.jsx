@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { usePortalAuth } from "@/context/PortalAuthContext";
 import Sidebar from "@/components/portal/Sidebar";
 import Topbar from "@/components/portal/Topbar";
+import LoadingScreen from "@/components/shared/LoadingScreen";
 
 export default function PortalShell({ children }) {
   const { user, loading } = usePortalAuth();
@@ -17,13 +18,7 @@ export default function PortalShell({ children }) {
     }
   }, [user, loading, router]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-100">
-        <span className="w-8 h-8 border-2 border-teal-600/30 border-t-teal-600 rounded-full animate-spin" />
-      </div>
-    );
-  }
+  if (loading) return <LoadingScreen />;
 
   if (!user) return null;
 

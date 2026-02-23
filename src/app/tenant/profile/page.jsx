@@ -9,7 +9,7 @@ export default function TenantProfilePage() {
 
   return (
     <TenantShell>
-      <div className="mb-8">
+      <div className="mb-5 xl:mb-8">
         <h1 className="text-3xl font-bold text-slate-800">Profile</h1>
         <p className="text-slate-500 mt-1 text-sm">Manage your personal details and account settings</p>
       </div>
@@ -42,7 +42,7 @@ export default function TenantProfilePage() {
         </div>
 
         {/* Edit form */}
-        <div className="lg:col-span-2 space-y-5">
+        <div className="lg:col-span-2 space-y-3 xl:space-y-5">
           {/* Personal details */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">

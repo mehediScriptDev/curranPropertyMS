@@ -11,6 +11,10 @@ import {
   Wrench,
   Users,
   UserCheck,
+  ClipboardList,
+  Mail,
+  BarChart2,
+  Settings,
 } from "lucide-react";
 
 export default function AdminSidebar({ mobileOpen = false, onClose = () => {} }) {
@@ -23,7 +27,11 @@ export default function AdminSidebar({ mobileOpen = false, onClose = () => {} })
     { href: "/admin/maintenance", label: "Maintenance", Icon: Wrench },
     { href: "/admin/landlords", label: "Landlords", Icon: Users },
     { href: "/admin/tenants", label: "Tenants", Icon: UserCheck },
-    { href: "/admin/audit", label: "Audit", Icon: FolderOpen },
+    { href: "/admin/tenancies", label: "Tenancies", Icon: ClipboardList },
+    { href: "/admin/messages",  label: "Messages",  Icon: Mail },
+    { href: "/admin/reports",   label: "Reports",   Icon: BarChart2 },
+    { href: "/admin/audit",     label: "Audit",     Icon: FolderOpen },
+    { href: "/admin/settings",  label: "Settings",  Icon: Settings },
   ];
 
   return (

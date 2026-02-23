@@ -68,12 +68,12 @@ export default function MessagesPage() {
 
   return (
     <PortalShell>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">Messages</h1>
+      <div className="mb-4 lg:mb-8">
+        <h1 className="text-2xl lg:text-3xl font-bold text-slate-800">Messages</h1>
       </div>
 
       {/* Search */}
-      <div className="relative mb-5">
+      <div className="relative mb-3 lg:mb-5">
         <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
         <input
           type="text"
@@ -87,26 +87,26 @@ export default function MessagesPage() {
           {threads.map((t, i) => (
             <div
               key={i}
-              className="flex gap-4 px-6 py-5 hover:bg-slate-50/60 cursor-pointer transition-colors"
+              className="flex gap-3 lg:gap-4 px-4 lg:px-6 py-4 lg:py-5 hover:bg-slate-50/60 cursor-pointer transition-colors"
             >
               <Image
                 src={t.avatar}
                 alt={t.name}
-                width={48}
-                height={48}
-                className="rounded-full object-cover w-12 h-12 shrink-0"
+                width={40}
+                height={40}
+                className="rounded-full object-cover w-10 h-10 lg:w-12 lg:h-12 shrink-0"
               />
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <div>
-                    <p className="font-semibold text-slate-800 text-base">{t.name}</p>
-                    <p className="text-sm text-slate-400">{t.property}</p>
-                    <p className="text-sm text-slate-400">{t.age}</p>
+                    <p className="font-semibold text-slate-800 text-sm lg:text-base">{t.name}</p>
+                    <p className="text-xs lg:text-sm text-slate-400">{t.property}</p>
+                    <p className="text-xs lg:text-sm text-slate-400">{t.age}</p>
                   </div>
-                  <div className="flex flex-col items-end gap-1.5 shrink-0">
-                    <span className="text-sm text-slate-400 whitespace-nowrap">{t.time}</span>
+                  <div className="flex flex-col items-end gap-1 lg:gap-1.5 shrink-0">
+                    <span className="text-xs lg:text-sm text-slate-400 whitespace-nowrap">{t.time}</span>
                     {t.unread && (
-                      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-teal-600 text-white text-xs font-bold">
+                      <span className="flex items-center justify-center w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-teal-600 text-white text-xs font-bold">
                         {t.unread}
                       </span>
                     )}
@@ -117,8 +117,8 @@ export default function MessagesPage() {
                     )}
                   </div>
                 </div>
-                <p className="font-semibold text-slate-700 text-base">{t.subject}</p>
-                <p className="text-sm text-slate-400 line-clamp-2 mt-1">{t.preview}</p>
+                <p className="font-semibold text-slate-700 text-sm lg:text-base">{t.subject}</p>
+                <p className="text-xs lg:text-sm text-slate-400 line-clamp-2 mt-0.5 lg:mt-1">{t.preview}</p>
               </div>
             </div>
           ))}

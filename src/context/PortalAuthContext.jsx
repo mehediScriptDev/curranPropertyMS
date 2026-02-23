@@ -29,7 +29,7 @@ const DUMMY_USERS = {
   },
   tenant: {
     id: "tenant_001",
-    name: "Tenant User",
+    name: "Tenant",
     email: "tenant@example.com",
     phone: "+353 87 654 3210",
     address: "Apt 12, Example St, Dublin, Ireland",

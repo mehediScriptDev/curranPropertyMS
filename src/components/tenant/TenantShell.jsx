@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { usePortalAuth } from "@/context/PortalAuthContext";
 import TenantSidebar from "@/components/tenant/TenantSidebar";
 import TenantTopbar from "@/components/tenant/TenantTopbar";
+import LoadingScreen from "@/components/shared/LoadingScreen";
 
 export default function TenantShell({ children }) {
   const { user, loading } = usePortalAuth();
@@ -17,13 +18,7 @@ export default function TenantShell({ children }) {
     }
   }, [user, loading, router]);
 
-  if (loading || !user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#f3f4f8]">
-        <span className="w-8 h-8 border-2 border-teal-600/30 border-t-teal-600 rounded-full animate-spin" />
-      </div>
-    );
-  }
+  if (loading || !user) return <LoadingScreen />;
 
   return (
     <div className="min-h-screen bg-[#f3f4f8]">
