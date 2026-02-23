@@ -96,7 +96,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/login"
+            href="/portal/login"
             onClick={() => setOpen(false)}
             className="mt-2 px-6 py-3 text-center text-[0.9rem] font-semibold text-white bg-primary-600 rounded-full"
           >
