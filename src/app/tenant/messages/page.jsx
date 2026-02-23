@@ -42,7 +42,7 @@ export default function TenantMessagesPage() {
 
   return (
     <TenantShell>
-      <div className="mb-8">
+      <div className="mb-5 xl:mb-8">
         <h1 className="text-3xl font-bold text-slate-800">Messages</h1>
         <p className="text-slate-500 mt-1 text-sm">Your conversation with McCann & Curran letting agency</p>
       </div>
@@ -60,7 +60,7 @@ export default function TenantMessagesPage() {
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5">
+        <div className="flex-1 overflow-y-auto px-6 py-5 space-y-3 xl:space-y-5">
           {thread.map((msg, i) => {
             const isMe = msg.from === "tenant";
             return (

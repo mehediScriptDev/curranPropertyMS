@@ -28,14 +28,14 @@ const timeline = [
 export default function TenantPropertyPage() {
   return (
     <TenantShell>
-      <div className="mb-8">
+      <div className="mb-5 xl:mb-8">
         <h1 className="text-3xl font-bold text-slate-800">My Property</h1>
         <p className="text-slate-500 mt-1 text-sm">Full details about your rented property and tenancy</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Left: Details card */}
-        <div className="lg:col-span-2 space-y-5">
+        <div className="lg:col-span-2 space-y-3 xl:space-y-5">
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             {/* Property banner */}
             <div className="w-full h-44 bg-gradient-to-br from-teal-100 via-slate-100 to-blue-50 flex items-center justify-center relative">

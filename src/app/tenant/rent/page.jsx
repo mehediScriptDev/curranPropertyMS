@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import TenantShell from "@/components/tenant/TenantShell";
+import Link from "next/link";
 import { Download, AlertTriangle, CreditCard } from "lucide-react";
 
 const payments = [
@@ -16,13 +17,13 @@ const payments = [
 export default function TenantRentPage() {
   return (
     <TenantShell>
-      <div className="mb-8">
+      <div className="mb-5 xl:mb-8">
         <h1 className="text-3xl font-bold text-slate-800">Rent Payments</h1>
         <p className="text-slate-500 mt-1 text-sm">Full payment history for your tenancy at Apt 5B Rosewood Close</p>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-7">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-4 mb-4 xl:mb-7">
         {[
           { label: "Monthly Rent",   value: "€1,750", color: "text-teal-600 bg-teal-50",   border: "border-teal-100" },
           { label: "Next Payment",   value: "Mar 1",  color: "text-blue-600 bg-blue-50",    border: "border-blue-100" },
@@ -47,16 +48,16 @@ export default function TenantRentPage() {
           <p className="text-sm font-semibold text-red-700">February 2025 rent is overdue</p>
           <p className="text-xs text-red-400 mt-0.5">Please contact your letting agent if you have any issues.</p>
         </div>
-        <a
+        <Link
           href="/tenant/messages"
           className="px-4 py-2 text-xs font-semibold bg-red-600 hover:bg-red-700 text-white rounded-lg transition"
         >
           Message Agent
-        </a>
+        </Link>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      {/* Table (lg+) */}
+      <div className="hidden lg:block bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -95,6 +96,35 @@ export default function TenantRentPage() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Mobile cards (smaller than lg) */}
+      <div className="lg:hidden space-y-2">
+        {payments.map((p, i) => (
+          <div key={i} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="text-sm font-semibold text-slate-700">{p.month}</div>
+                <div className="text-xs text-slate-400 mt-1">{p.date} · <span className="font-mono">{p.ref}</span></div>
+                <div className="mt-2">
+                  <span className={`text-xs font-semibold px-2 py-1 rounded-full ${p.statusColor}`}>{p.status}</span>
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-base font-bold text-slate-800">{p.amount}</div>
+                <div className="mt-2">
+                  {p.status === "Paid" ? (
+                    <button className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-teal-700 border border-teal-200 hover:bg-teal-50 rounded-lg transition">
+                      <Download size={13} /> Receipt
+                    </button>
+                  ) : (
+                    <span className="text-xs text-slate-300">—</span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </TenantShell>
   );
