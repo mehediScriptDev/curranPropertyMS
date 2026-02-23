@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { usePortalAuth } from "@/context/PortalAuthContext";
 import Sidebar from "@/components/portal/Sidebar";
 import Topbar from "@/components/portal/Topbar";
@@ -10,6 +10,7 @@ import LoadingScreen from "@/components/shared/LoadingScreen";
 export default function PortalShell({ children }) {
   const { user, loading } = usePortalAuth();
   const router = useRouter();
+  const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -17,6 +18,13 @@ export default function PortalShell({ children }) {
       router.replace("/portal/login");
     }
   }, [user, loading, router]);
+
+  // scroll to top when the route/pathname changes (prevents preserved scroll position)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, left: 0 });
+    }
+  }, [pathname]);
 
   if (loading) return <LoadingScreen />;
 
