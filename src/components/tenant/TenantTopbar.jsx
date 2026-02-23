@@ -1,0 +1,83 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { Bell, Mail, ChevronDown, Menu, LogOut, User } from "lucide-react";
+import { usePortalAuth } from "@/context/PortalAuthContext";
+
+export default function TenantTopbar({ onMenuClick }) {
+  const { user, logout } = usePortalAuth();
+  const router = useRouter();
+  const [dropOpen, setDropOpen] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    router.push("/portal/login");
+  };
+
+  return (
+    <header className="fixed top-0 left-0 lg:left-[300px] right-0 z-20 h-[72px] bg-white border-b border-slate-200 flex items-center px-4 lg:px-6 gap-4">
+      {/* Mobile hamburger */}
+      <button
+        className="lg:hidden p-2 text-slate-500 hover:text-slate-800"
+        onClick={onMenuClick}
+      >
+        <Menu size={20} />
+      </button>
+
+      <div className="flex-1" />
+
+      {/* Right icons */}
+      <div className="flex items-center gap-4 ml-auto">
+        <button className="p-2 text-slate-500 hover:text-slate-800 transition relative">
+          <Bell size={20} />
+          <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white" />
+        </button>
+        <button className="p-2 text-slate-500 hover:text-slate-800 transition">
+          <Mail size={20} />
+        </button>
+
+        {/* User dropdown */}
+        <div className="relative">
+          <button
+            onClick={() => setDropOpen(!dropOpen)}
+            className="flex items-center gap-2.5 ml-1 hover:opacity-80 transition"
+          >
+            <Image
+              src={user?.avatar || "https://randomuser.me/api/portraits/women/50.jpg"}
+              alt={user?.name || "Tenant"}
+              width={36}
+              height={36}
+              className="rounded-full object-cover"
+            />
+            <span className="hidden sm:block text-[0.95rem] font-medium text-slate-700">
+              {user?.name}
+            </span>
+            <ChevronDown size={15} className="text-slate-500" />
+          </button>
+
+          {dropOpen && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-50">
+              <Link
+                href="/tenant/profile"
+                className="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50"
+                onClick={() => setDropOpen(false)}
+              >
+                <User size={14} /> My Profile
+              </Link>
+              <hr className="my-1 border-slate-100" />
+              <button
+                onClick={handleLogout}
+                className="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50"
+              >
+                <LogOut size={14} /> Sign out
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+}

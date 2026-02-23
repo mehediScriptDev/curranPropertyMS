@@ -63,7 +63,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/login"
+            href="/portal/login"
             className="ml-4 px-6 py-2.5 text-[0.85rem] font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
           >
             Client Login

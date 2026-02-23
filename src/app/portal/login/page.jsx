@@ -23,7 +23,13 @@ export default function LoginPage() {
     await new Promise((r) => setTimeout(r, 800));
     const ok = login(email, password, role);
     if (ok) {
-      router.push(role === "admin" ? "/admin/dashboard" : "/portal/dashboard");
+      if (role === "admin") {
+        router.push("/admin/dashboard");
+      } else if (role === "tenant") {
+        router.push("/tenant/dashboard");
+      } else {
+        router.push("/portal/dashboard");
+      }
     } else {
       setError("Invalid credentials. Please try again.");
       setLoading(false);
