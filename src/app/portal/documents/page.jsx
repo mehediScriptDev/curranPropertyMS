@@ -28,12 +28,12 @@ export default function DocumentsPage() {
 
   return (
     <PortalShell>
-      <div className="mb-4 lg:mb-8">
+      <div className="mb-3 lg:mb-5">
         <h1 className="text-2xl lg:text-3xl font-bold text-slate-800">Documents</h1>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-2 lg:gap-3 mb-3 lg:mb-5">
+      <div className="flex flex-wrap gap-2 lg:gap-3 mb-2 lg:mb-4">
         {["All Properties", "All Document Types"].map((f) => (
           <button key={f} className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:border-slate-300 transition shadow-sm">
             {f} <ChevronDown size={15} />
@@ -80,7 +80,7 @@ export default function DocumentsPage() {
           <table className="w-full">
             <thead>
               <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
-                <th className="text-left px-6 py-4">Document</th>
+                <th className="text-left px-5 py-3">Document</th>
                 <th className="text-left px-5 py-4">Property</th>
                 <th className="text-left px-5 py-4">Type</th>
                 <th className="text-left px-5 py-4">Date</th>
@@ -91,7 +91,7 @@ export default function DocumentsPage() {
             <tbody className="divide-y divide-slate-100">
               {docs.map((d, i) => (
                 <tr key={i} className="hover:bg-slate-50/60 transition-colors">
-                  <td className="px-6 py-5">
+                  <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
                         <FileText size={18} className="text-slate-500" />

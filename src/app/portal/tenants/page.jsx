@@ -19,12 +19,12 @@ export default function TenantsPage() {
 
   return (
     <PortalShell>
-      <div className="mb-4 lg:mb-8">
+      <div className="mb-3 lg:mb-5">
         <h1 className="text-2xl lg:text-3xl font-bold text-slate-800">Tenants</h1>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-2 lg:gap-3 mb-3 lg:mb-5">
+      <div className="flex flex-wrap gap-2 lg:gap-3 mb-2 lg:mb-4">
         <button className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:border-slate-300 transition shadow-sm">
           All Statuses <ChevronDown size={15} />
         </button>
@@ -74,18 +74,18 @@ export default function TenantsPage() {
           <table className="w-full">
             <thead>
               <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
-                <th className="text-left px-6 py-4">Name</th>
+                <th className="text-left px-5 py-3">Name</th>
                 <th className="text-left px-5 py-4">Property Address</th>
                 <th className="text-left px-5 py-4">Tenancy Start</th>
                 <th className="text-left px-5 py-4">P.P.S. Number</th>
                 <th className="text-left px-5 py-4">Status</th>
-                <th className="text-right px-6 py-4">Action</th>
+                <th className="text-right px-5 py-3">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {tenants.map((t, i) => (
                 <tr key={i} className="hover:bg-slate-50/60 transition-colors">
-                  <td className="px-6 py-5 text-base font-semibold text-slate-700">{t.name}</td>
+                  <td className="px-5 py-4 text-base font-semibold text-slate-700">{t.name}</td>
                   <td className="px-5 py-5 text-base text-slate-600">{t.property}</td>
                   <td className="px-5 py-5 text-base text-slate-600">{t.start}</td>
                   <td className="px-5 py-5 font-mono text-sm text-slate-600">{t.pps}</td>
@@ -95,7 +95,7 @@ export default function TenantsPage() {
                     </span>
                     
                   </td>
-                  <td className="px-6 py-5 text-right">
+                  <td className="px-5 py-4 text-right">
                     <button aria-label="View tenant" className="inline-flex items-center justify-center px-3 py-2 bg-[#f0fdfa] text-gray-800 rounded-lg transition">
                       <Eye size={16} />
                     </button>

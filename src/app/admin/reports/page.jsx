@@ -85,7 +85,7 @@ export default function AdminReportsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-start gap-4">
         <div className="flex-1">
@@ -114,7 +114,7 @@ export default function AdminReportsPage() {
       {/* Stat cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {STAT_CARDS.map((s) => (
-          <div key={s.label} className="bg-white rounded-2xl border border-slate-100 p-5 flex flex-col gap-3 shadow-sm">
+          <div key={s.label} className="bg-white rounded-2xl border border-slate-100 p-4 flex flex-col gap-2 shadow-sm">
             <div className="flex items-start justify-between">
               <p className="text-sm font-semibold text-slate-500 leading-tight">{s.label}</p>
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${s.iconBg}`}>
@@ -133,8 +133,8 @@ export default function AdminReportsPage() {
       </div>
 
       {/* Bar chart - Enhanced */}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
-        <div className="flex items-center justify-between mb-6 sm:mb-8">
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
+        <div className="flex items-center justify-between mb-4 sm:mb-5">
           <div>
             <h2 className="text-lg font-bold text-slate-800">Monthly Rent Collected</h2>
             <p className="text-sm text-slate-400 mt-1">Figures in thousands (€000s) • Teal bars = selected range</p>

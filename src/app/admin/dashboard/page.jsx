@@ -119,7 +119,7 @@ const recentActivity = [
 /* ─── Sub-components ──────────────────────────── */
 function KpiCard({ label, value, Icon, iconBg, iconColor, badge, badgeColor }) {
   return (
-    <div className="bg-white rounded-2xl border border-slate-100 p-5 flex flex-col gap-3 shadow-sm">
+    <div className="bg-white rounded-2xl border border-slate-100 p-4 flex flex-col gap-2 shadow-sm">
       <div className="flex items-start justify-between">
         <p className="text-sm font-semibold text-slate-500 leading-tight">{label}</p>
         <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${iconBg}`}>
@@ -195,7 +195,7 @@ function ActivityRowAvatar({ item }) {
 export default function AdminDashboardPage() {
   const router = useRouter();
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
 
       {/* Page header */}
       <div className="flex items-center justify-between">
@@ -207,7 +207,7 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* KPI cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
         {kpis.map((k) => (
           <KpiCard key={k.label} {...k} />
         ))}
@@ -216,7 +216,7 @@ export default function AdminDashboardPage() {
       {/* Alerts */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         {/* Toolbar */}
-        <div className="flex flex-wrap items-center gap-2 px-6 py-4 border-b border-slate-100">
+          <div className="flex flex-wrap items-center gap-2 px-5 py-3 border-b border-slate-100">
           <h2 className="text-lg font-bold text-slate-800 mr-2">Alerts</h2>
           <div className="flex flex-wrap items-center gap-2 ml-auto">
             {["Status", "County/City", "Landlord"].map((f) => (
@@ -242,7 +242,7 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Alert cards body */}
-        <div className="p-5 space-y-3">
+        <div className="p-4 space-y-3">
           {/* Header alert row */}
           <div className="flex items-center gap-2 mb-1">
             <AlertTriangle size={16} className="text-amber-500" />
@@ -264,16 +264,16 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Activity with icons */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-bold text-slate-800">Recent Activity</h2>
             <button className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1.5">
               <Eye size={14} /> View all
             </button>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-3">
             {recentActivity.map((item) => (
               <ActivityRow key={item.id} item={item} />
             ))}
@@ -281,14 +281,14 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Activity with avatars */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-bold text-slate-800">Recent Activity</h2>
             <button className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1.5">
               <Eye size={14} /> View all
             </button>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-3">
             {recentActivity.map((item) => (
               <ActivityRowAvatar key={item.id} item={item} />
             ))}

@@ -39,14 +39,14 @@ export default function TenantRTBPage() {
 
   return (
     <TenantShell>
-      <div className="mb-5 xl:mb-8">
+      <div className="mb-3 xl:mb-5">
         <h1 className="text-3xl font-bold text-slate-800">Right to Buy</h1>
         <p className="text-slate-500 mt-1 text-sm">Information about your Right to Buy entitlement and application progress</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Main column */}
-        <div className="lg:col-span-2 space-y-3 xl:space-y-5">
+        <div className="lg:col-span-2 space-y-3 xl:space-y-4">
           {/* Eligibility */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
             <div className="flex items-start justify-between gap-4">
@@ -158,8 +158,8 @@ export default function TenantRTBPage() {
         </div>
 
         {/* Right column: Application Steps */}
-        <div className="space-y-3 xl:space-y-5">
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 h-fit">
+        <div className="space-y-3 xl:space-y-4">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 h-fit">
             <h3 className="text-lg font-bold text-slate-800 mb-3">Application Steps</h3>
             <ol className="relative border-l-2 border-slate-100 space-y-6">
               {steps.map((label, i) => {

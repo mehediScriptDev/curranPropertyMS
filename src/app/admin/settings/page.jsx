@@ -47,7 +47,7 @@ export default function AdminSettingsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">Settings</h1>
@@ -63,8 +63,8 @@ export default function AdminSettingsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-2xl border border-slate-200 p-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="bg-white rounded-2xl border border-slate-200 p-4">
           <h2 className="text-lg font-semibold text-slate-800">Company & Contact</h2>
           <div className="mt-4 space-y-3">
             <label className="block text-sm text-slate-600">Company name</label>
@@ -75,7 +75,7 @@ export default function AdminSettingsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-5">
+        <div className="bg-white rounded-2xl border border-slate-200 p-4">
           <h2 className="text-lg font-semibold text-slate-800">Notifications</h2>
           <div className="mt-4 space-y-3">
             <label className="flex items-center gap-3">
@@ -91,8 +91,8 @@ export default function AdminSettingsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-2xl border border-slate-200 p-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="bg-white rounded-2xl border border-slate-200 p-4">
           <h2 className="text-lg font-semibold text-slate-800">Auth & Security</h2>
           <div className="mt-4 space-y-3">
             <label className="block text-sm text-slate-600">Change password</label>
@@ -104,7 +104,7 @@ export default function AdminSettingsPage() {
         {/* Integrations & API keys removed from frontend demo to avoid backend complexity */}
       </div>
 
-      <div className="bg-white rounded-2xl border border-slate-200 p-5">
+      <div className="bg-white rounded-2xl border border-slate-200 p-4">
         <h2 className="text-lg font-semibold text-slate-800">Roles & Permissions</h2>
         <p className="text-sm text-slate-500 mt-1">Quick mock of roles. Manage access in a real app via backend.</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">

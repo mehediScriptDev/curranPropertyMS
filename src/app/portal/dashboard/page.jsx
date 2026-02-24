@@ -35,12 +35,12 @@ export default function DashboardPage() {
   return (
     <PortalShell>
       {/* Title */}
-      <div className="flex items-center justify-between mb-4 lg:mb-8">
+      <div className="flex items-center justify-between mb-3 lg:mb-5">
         <h1 className="text-2xl lg:text-3xl font-bold text-slate-800">Welcome Back, Joe</h1>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-4 mb-4 lg:mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 mb-3 lg:mb-5">
         {kpis.map(({ label, value, Icon, color }) => (
           <div key={label} className={`bg-white rounded-2xl border p-4 lg:p-5 flex flex-col gap-2 lg:gap-3 shadow-sm ${color.split(" ")[2]}`}>
             <div className="flex items-start justify-between">
@@ -54,9 +54,9 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Left: Alerts + Properties */}
-        <div className="lg:col-span-2 space-y-5">
+          <div className="lg:col-span-2 space-y-4">
           {/* Alerts */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
             <div className="flex items-center justify-between px-4 lg:px-6 py-3 lg:py-4 border-b border-slate-100">
@@ -136,20 +136,20 @@ export default function DashboardPage() {
                 <tbody className="divide-y divide-slate-100">
                   {properties.map((p, i) => (
                     <tr key={i} className="hover:bg-slate-50/60 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-5 py-3.5">
                         <span className={`text-sm font-semibold px-3 py-1 rounded-full ${p.statusColor}`}>
                           {p.status}
                         </span>
                       </td>
-                      <td className="px-4 py-4">
+                      <td className="px-4 py-3.5">
                         <p className="text-base font-semibold text-slate-700">{p.address}</p>
                         <p className="text-sm text-slate-400 mt-0.5">{p.sub}</p>
                       </td>
-                      <td className="px-4 py-4">
+                      <td className="px-4 py-3.5">
                         <p className="text-base text-slate-700">{p.tenant}</p>
                         <p className="text-sm text-slate-400 mt-0.5">{p.tenantSub}</p>
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-5 py-3.5 text-right">
                         <p className="text-base font-bold text-slate-800">{p.rent}</p>
                         <p className="text-sm text-slate-400 mt-0.5">{p.rentSub}</p>
                       </td>

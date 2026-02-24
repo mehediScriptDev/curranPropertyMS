@@ -70,7 +70,7 @@ export default function AdminMessagesPage() {
       : "bg-purple-100 text-purple-700";
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-4">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-slate-800">Messages</h1>
@@ -128,7 +128,7 @@ export default function AdminMessagesPage() {
         {/* ── Right: chat area ──────────────────────────────── */}
         <div className={`${showChat ? 'flex' : 'hidden'} md:flex flex-1 flex-col min-w-0`}>
           {/* chat header */}
-          <div className="flex items-center gap-3 px-4 sm:px-6 py-4 border-b border-slate-100 shrink-0">
+          <div className="flex items-center gap-3 px-4 sm:px-5 py-3 border-b border-slate-100 shrink-0">
             <button
               onClick={() => setShowChat(false)}
               className="md:hidden p-1.5 -ml-1 text-slate-500 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition"
@@ -146,7 +146,7 @@ export default function AdminMessagesPage() {
           </div>
 
           {/* messages */}
-          <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
+          <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-3">
             {active.messages.map((m, i) => {
               const isAdmin = m.from === "admin";
               return (
@@ -166,7 +166,7 @@ export default function AdminMessagesPage() {
           </div>
 
           {/* compose */}
-          <div className="px-6 py-4 border-t border-slate-100 shrink-0">
+          <div className="px-5 py-3 border-t border-slate-100 shrink-0">
             <div className="flex items-end gap-3">
               <textarea
                 rows={2}

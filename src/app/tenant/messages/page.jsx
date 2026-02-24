@@ -42,14 +42,14 @@ export default function TenantMessagesPage() {
 
   return (
     <TenantShell>
-      <div className="mb-5 xl:mb-8">
+      <div className="mb-3 xl:mb-5">
         <h1 className="text-3xl font-bold text-slate-800">Messages</h1>
         <p className="text-slate-500 mt-1 text-sm">Your conversation with McCann & Curran letting agency</p>
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col" style={{ height: "calc(100vh - 220px)", minHeight: 480 }}>
         {/* Thread header */}
-        <div className="flex items-center gap-3 px-6 py-4 border-b border-slate-100">
+        <div className="flex items-center gap-3 px-5 py-3 border-b border-slate-100">
           <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-bold text-sm shrink-0">
             MC
           </div>
@@ -60,7 +60,7 @@ export default function TenantMessagesPage() {
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-6 py-5 space-y-3 xl:space-y-5">
+        <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3 xl:space-y-4">
           {thread.map((msg, i) => {
             const isMe = msg.from === "tenant";
             return (
@@ -80,7 +80,7 @@ export default function TenantMessagesPage() {
         </div>
 
         {/* Compose */}
-        <div className="px-6 py-4 border-t border-slate-100">
+        <div className="px-5 py-3 border-t border-slate-100">
           <div className="flex items-end gap-3">
             <textarea
               rows={2}

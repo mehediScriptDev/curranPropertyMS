@@ -92,7 +92,7 @@ export default function TenantDashboardPage() {
   return (
     <TenantShell>
       {/* Header */}
-      <div className="flex items-center justify-between mb-5 xl:mb-8">
+      <div className="flex items-center justify-between mb-3 xl:mb-5">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">Welcome Back, Kevin</h1>
           <p className="text-slate-500 mt-1 text-sm">Apt 5B Rosewood Close · Tenancy since Oct 2022</p>
@@ -106,11 +106,11 @@ export default function TenantDashboardPage() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-2 xl:gap-4 mb-4 xl:mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-2 xl:gap-3 mb-3 xl:mb-5">
         {kpis.map(({ label, value, Icon, color, sub }) => (
           <div
             key={label}
-            className={`bg-white rounded-2xl border p-5 flex flex-col gap-3 shadow-sm ${color.split(" ")[2]}`}
+            className={`bg-white rounded-2xl border p-4 flex flex-col gap-2 shadow-sm ${color.split(" ")[2]}`}
           >
             <div className="flex items-start justify-between">
               <p className="text-sm font-semibold text-slate-500 leading-tight">{label}</p>
@@ -124,13 +124,13 @@ export default function TenantDashboardPage() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Left: Alerts + Rent History */}
-        <div className="lg:col-span-2 space-y-3 xl:space-y-5">
+        <div className="lg:col-span-2 space-y-3 xl:space-y-4">
 
           {/* Alerts */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+            <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100">
               <div className="flex items-center gap-2.5 text-lg font-bold text-slate-800">
                 <AlertCircle size={20} className="text-amber-500" />
                 Alerts
@@ -138,7 +138,7 @@ export default function TenantDashboardPage() {
             </div>
             <div className="divide-y divide-slate-100">
               {alerts.map((a, i) => (
-                <div key={i} className="flex items-center justify-between px-6 py-4">
+                <div key={i} className="flex items-center justify-between px-5 py-3">
                   <div className="flex items-center gap-3.5">
                     {a.type === "warning" ? (
                       <AlertCircle size={18} className="text-red-500 shrink-0" />
@@ -160,7 +160,7 @@ export default function TenantDashboardPage() {
 
           {/* Rent Payment History */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+            <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100">
               <h3 className="text-lg font-bold text-slate-800">Rent Payments</h3>
               <Link
                 href="/tenant/rent"
@@ -183,14 +183,14 @@ export default function TenantDashboardPage() {
                 <tbody className="divide-y divide-slate-100">
                   {payments.map((p, i) => (
                     <tr key={i} className="hover:bg-slate-50/60 transition-colors">
-                      <td className="px-6 py-4 text-base font-semibold text-slate-700">{p.month}</td>
+                      <td className="px-5 py-3 text-base font-semibold text-slate-700">{p.month}</td>
                       <td className="px-4 py-4 text-sm text-slate-500">{p.date}</td>
                       <td className="px-4 py-4">
                         <span className={`text-xs font-semibold px-3 py-1 rounded-full ${p.statusColor}`}>
                           {p.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-right text-base font-bold text-slate-800">{p.amount}</td>
+                      <td className="px-5 py-3 text-right text-base font-bold text-slate-800">{p.amount}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -220,7 +220,7 @@ export default function TenantDashboardPage() {
 
           {/* Maintenance */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+            <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100">
               <h3 className="text-lg font-bold text-slate-800">Maintenance Requests</h3>
               <Link
                 href="/tenant/maintenance"
@@ -231,7 +231,7 @@ export default function TenantDashboardPage() {
             </div>
             <div className="divide-y divide-slate-100">
               {maintenance.map((m, i) => (
-                <div key={i} className="flex items-center justify-between px-6 py-4">
+                <div key={i} className="flex items-center justify-between px-5 py-3">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center shrink-0">
                       <Wrench size={18} className="text-purple-600" />
@@ -253,13 +253,13 @@ export default function TenantDashboardPage() {
         </div>
 
         {/* Right: Property Info + Messages */}
-        <div className="space-y-3 xl:space-y-5">
+        <div className="space-y-3 xl:space-y-4">
           {/* My Property */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-            <div className="px-6 py-4 border-b border-slate-100">
+            <div className="px-5 py-3 border-b border-slate-100">
               <h3 className="text-lg font-bold text-slate-800">My Property</h3>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-4 space-y-4">
               <div className="w-full h-32 rounded-xl bg-gradient-to-br from-teal-50 to-slate-100 flex items-center justify-center">
                 <Home size={48} className="text-teal-300" />
               </div>
@@ -292,13 +292,13 @@ export default function TenantDashboardPage() {
 
           {/* Right to Buy quick card */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+            <div className="px-5 py-3 border-b border-slate-100 flex items-center justify-between">
               <h3 className="text-lg font-bold text-slate-800">Right to Buy</h3>
               <Link href="/tenant/rtb" className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1.5">
                 View <ArrowRight size={14} />
               </Link>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-4 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-lg bg-teal-50 flex items-center justify-center">
                   <Key size={20} className="text-teal-600" />
@@ -328,7 +328,7 @@ export default function TenantDashboardPage() {
 
           {/* Messages */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+            <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100">
               <h3 className="text-lg font-bold text-slate-800">Messages</h3>
               <Link
                 href="/tenant/messages"

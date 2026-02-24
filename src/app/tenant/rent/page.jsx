@@ -17,19 +17,19 @@ const payments = [
 export default function TenantRentPage() {
   return (
     <TenantShell>
-      <div className="mb-5 xl:mb-8">
+      <div className="mb-3 xl:mb-5">
         <h1 className="text-3xl font-bold text-slate-800">Rent Payments</h1>
         <p className="text-slate-500 mt-1 text-sm">Full payment history for your tenancy at Apt 5B Rosewood Close</p>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-4 mb-4 xl:mb-7">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-3 mb-3 xl:mb-5">
         {[
           { label: "Monthly Rent",   value: "€1,750", color: "text-teal-600 bg-teal-50",   border: "border-teal-100" },
           { label: "Next Payment",   value: "Mar 1",  color: "text-blue-600 bg-blue-50",    border: "border-blue-100" },
           { label: "Current Balance",value: "Overdue",color: "text-red-600 bg-red-50",      border: "border-red-100" },
         ].map(({ label, value, color, border }) => (
-          <div key={label} className={`bg-white rounded-2xl border p-5 shadow-sm flex items-center gap-4 ${border}`}>
+          <div key={label} className={`bg-white rounded-2xl border p-4 shadow-sm flex items-center gap-3 ${border}`}>
             <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}>
               <CreditCard size={22} />
             </div>
@@ -42,7 +42,7 @@ export default function TenantRentPage() {
       </div>
 
       {/* Overdue banner */}
-      <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 mb-5">
+      <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-2xl px-4 py-3 mb-4">
         <AlertTriangle size={20} className="text-red-500 shrink-0" />
         <div className="flex-1">
           <p className="text-sm font-semibold text-red-700">February 2025 rent is overdue</p>
@@ -62,27 +62,27 @@ export default function TenantRentPage() {
           <table className="w-full">
             <thead>
               <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
-                <th className="text-left px-6 py-4">Month</th>
-                <th className="text-left px-5 py-4">Date</th>
-                <th className="text-left px-5 py-4">Reference</th>
-                <th className="text-left px-5 py-4">Status</th>
-                <th className="text-right px-5 py-4">Amount</th>
-                <th className="text-right px-6 py-4">Receipt</th>
+                <th className="text-left px-5 py-3">Month</th>
+                <th className="text-left px-5 py-3">Date</th>
+                <th className="text-left px-5 py-3">Reference</th>
+                <th className="text-left px-5 py-3">Status</th>
+                <th className="text-right px-5 py-3">Amount</th>
+                <th className="text-right px-5 py-3">Receipt</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {payments.map((p, i) => (
                 <tr key={i} className="hover:bg-slate-50/60 transition-colors">
-                  <td className="px-6 py-5 text-base font-semibold text-slate-700">{p.month}</td>
-                  <td className="px-5 py-5 text-sm text-slate-500">{p.date}</td>
-                  <td className="px-5 py-5 font-mono text-sm text-slate-400">{p.ref}</td>
-                  <td className="px-5 py-5">
+                  <td className="px-5 py-4 text-base font-semibold text-slate-700">{p.month}</td>
+                  <td className="px-4 py-4 text-sm text-slate-500">{p.date}</td>
+                  <td className="px-4 py-4 font-mono text-sm text-slate-400">{p.ref}</td>
+                  <td className="px-4 py-4">
                     <span className={`text-xs font-semibold px-3 py-1 rounded-full ${p.statusColor}`}>
                       {p.status}
                     </span>
                   </td>
-                  <td className="px-5 py-5 text-right text-base font-bold text-slate-800">{p.amount}</td>
-                  <td className="px-6 py-5 text-right">
+                  <td className="px-4 py-4 text-right text-base font-bold text-slate-800">{p.amount}</td>
+                  <td className="px-5 py-4 text-right">
                     {p.status === "Paid" ? (
                       <button className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-teal-700 border border-teal-200 hover:bg-teal-50 rounded-lg transition">
                         <Download size={13} /> Receipt

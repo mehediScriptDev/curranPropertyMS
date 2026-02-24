@@ -68,12 +68,12 @@ export default function MessagesPage() {
 
   return (
     <PortalShell>
-      <div className="mb-4 lg:mb-8">
+      <div className="mb-3 lg:mb-5">
         <h1 className="text-2xl lg:text-3xl font-bold text-slate-800">Messages</h1>
       </div>
 
       {/* Search */}
-      <div className="relative mb-3 lg:mb-5">
+      <div className="relative mb-2 lg:mb-4">
         <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
         <input
           type="text"
@@ -87,7 +87,7 @@ export default function MessagesPage() {
           {threads.map((t, i) => (
             <div
               key={i}
-              className="flex gap-3 lg:gap-4 px-4 lg:px-6 py-4 lg:py-5 hover:bg-slate-50/60 cursor-pointer transition-colors"
+              className="flex gap-3 lg:gap-4 px-4 lg:px-5 py-3 lg:py-4 hover:bg-slate-50/60 cursor-pointer transition-colors"
             >
               <Image
                 src={t.avatar}

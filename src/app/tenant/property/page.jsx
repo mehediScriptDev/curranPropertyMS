@@ -28,14 +28,14 @@ const timeline = [
 export default function TenantPropertyPage() {
   return (
     <TenantShell>
-      <div className="mb-5 xl:mb-8">
+      <div className="mb-3 xl:mb-5">
         <h1 className="text-3xl font-bold text-slate-800">My Property</h1>
         <p className="text-slate-500 mt-1 text-sm">Full details about your rented property and tenancy</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Left: Details card */}
-        <div className="lg:col-span-2 space-y-3 xl:space-y-5">
+        <div className="lg:col-span-2 space-y-3 xl:space-y-4">
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             {/* Property banner */}
             <div className="w-full h-44 bg-gradient-to-br from-teal-100 via-slate-100 to-blue-50 flex items-center justify-center relative">
@@ -47,7 +47,7 @@ export default function TenantPropertyPage() {
               </div>
             </div>
 
-            <div className="p-6">
+            <div className="p-4">
               <div className="flex items-start gap-3 mb-5">
                 <MapPin size={18} className="text-teal-600 mt-0.5 shrink-0" />
                 <div>
@@ -70,10 +70,10 @@ export default function TenantPropertyPage() {
 
         {/* Right: Timeline */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden h-fit">
-          <div className="px-6 py-4 border-b border-slate-100">
+          <div className="px-5 py-3 border-b border-slate-100">
             <h3 className="text-lg font-bold text-slate-800">Tenancy Timeline</h3>
           </div>
-          <div className="p-6">
+          <div className="p-4">
             <ol className="relative border-l-2 border-slate-100 space-y-6">
               {timeline.map((item, i) => (
                 <li key={i} className="pl-6 relative">

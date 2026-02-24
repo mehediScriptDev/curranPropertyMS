@@ -13,7 +13,7 @@ const properties = [
 export default function PropertiesPage() {
   return (
     <PortalShell>
-      <div className="mb-4 xl:mb-8">
+      <div className="mb-3 xl:mb-5">
         <h1 className="text-2xl xl:text-3xl font-bold text-slate-800">My Properties</h1>
       </div>
 
@@ -56,19 +56,19 @@ export default function PropertiesPage() {
           <table className="w-full">
             <thead>
               <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
-                <th className="text-left px-6 py-4">Status</th>
+                <th className="text-left px-5 py-3">Status</th>
                 <th className="text-left px-5 py-4">Property Address</th>
                 <th className="text-left px-5 py-4">Tenant</th>
                 <th className="text-left px-5 py-4">Rent</th>
                 <th className="text-left px-5 py-4">RTB Status</th>
                 <th className="text-left px-5 py-4">MPRN</th>
-                <th className="text-right px-6 py-4">Action</th>
+                <th className="text-right px-5 py-3">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {properties.map((p, i) => (
                 <tr key={i} className="hover:bg-slate-50/60 transition-colors">
-                  <td className="px-6 py-5">
+                  <td className="px-5 py-4">
                     <span className={`text-xs font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${p.statusColor}`}>
                       {p.status}
                     </span>
@@ -86,7 +86,7 @@ export default function PropertiesPage() {
                     </span>
                   </td>
                   <td className="px-5 py-5 text-slate-500 font-mono text-sm">{p.mprn}</td>
-                  <td className="px-6 py-5 text-right">
+                  <td className="px-5 py-4 text-right">
                     <button aria-label="View property" className="inline-flex items-center justify-center px-3 py-2  bg-[#f0fdfa] text-gray-800 rounded-lg transition">
                       <Eye size={16} />
                     </button>

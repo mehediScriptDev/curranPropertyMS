@@ -48,7 +48,7 @@ export default function TenantMaintenancePage() {
 
   return (
     <TenantShell>
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-5 xl:mb-8 gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 xl:mb-5 gap-3">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">Maintenance</h1>
           <p className="text-slate-500 mt-1 text-sm">Submit and track maintenance requests for your property</p>
@@ -63,8 +63,8 @@ export default function TenantMaintenancePage() {
 
       {/* New Request Form (inline) */}
       {showForm && (
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-5">
-          <div className="flex items-center justify-between mb-5">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 mb-4">
+          <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-slate-800">New Maintenance Request</h3>
             <button onClick={() => setShowForm(false)} className="text-slate-400 hover:text-slate-700">
               <X size={18} />
@@ -113,14 +113,14 @@ export default function TenantMaintenancePage() {
 
       {/* Requests table (lg+) */}
       <div className="hidden lg:block bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-100">
+        <div className="px-5 py-3 border-b border-slate-100">
           <h3 className="text-base font-bold text-slate-800">Request History</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
-                <th className="text-left px-6 py-4">Issue</th>
+                <th className="text-left px-5 py-3">Issue</th>
                 <th className="text-left px-5 py-4">Submitted</th>
                 <th className="text-left px-5 py-4">Priority</th>
                 <th className="text-left px-5 py-4">Status</th>
@@ -129,7 +129,7 @@ export default function TenantMaintenancePage() {
             <tbody className="divide-y divide-slate-100">
               {requests.map((r) => (
                 <tr key={r.id} className="hover:bg-slate-50/60 transition-colors">
-                  <td className="px-6 py-5">
+                  <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center shrink-0">
                         <Wrench size={17} className="text-purple-600" />

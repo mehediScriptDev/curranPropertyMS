@@ -10,15 +10,15 @@ export default function ProfilePage() {
 
   return (
     <PortalShell>
-      <div className="mb-8">
+      <div className="mb-4">
         <h1 className="text-3xl font-bold text-slate-800">Profile</h1>
       </div>
 
-      <div className="max-w-3xl space-y-5">
+      <div className="max-w-3xl space-y-4">
         {/* Profile card */}
         <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
           {/* Header */}
-          <div className="flex items-center gap-5 px-7 py-6 border-b border-slate-100">
+          <div className="flex items-center gap-4 px-6 py-4 border-b border-slate-100">
             <Image
               src={user?.avatar || "https://randomuser.me/api/portraits/men/32.jpg"}
               alt={user?.name}
@@ -32,7 +32,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Admin-only notice */}
-          <div className="mx-7 my-5 px-5 py-4 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-3">
+          <div className="mx-6 my-4 px-4 py-3 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-3">
             <Lock size={18} className="text-amber-600 shrink-0 mt-0.5" />
             <div>
               <p className="text-base font-semibold text-amber-800">Edit Only by Admin</p>
@@ -46,11 +46,11 @@ export default function ProfilePage() {
           {/* Details grid */}
           <div className="border-t border-slate-100">
             <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
-              <div className="px-7 py-5">
+              <div className="px-6 py-4">
                 <p className="text-sm font-medium text-slate-400 uppercase tracking-wider mb-3">Email</p>
                 <p className="text-base text-slate-700">{user?.email}</p>
               </div>
-              <div className="px-7 py-5">
+              <div className="px-6 py-4">
                 <p className="text-sm font-medium text-slate-400 uppercase tracking-wider mb-3">Address</p>
                 <p className="text-base font-semibold text-slate-700">{user?.address?.split(",")[0]}</p>
                 <p className="text-base text-slate-500">{user?.address?.split(",").slice(1).join(",").trim()}</p>
@@ -58,10 +58,10 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 border-t border-slate-100">
-              <div className="px-7 py-5">
+              <div className="px-6 py-4">
                 <p className="text-base text-slate-700">{user?.phone}</p>
               </div>
-              <div className="px-7 py-5">
+              <div className="px-6 py-4">
                 <p className="text-base font-bold text-slate-700">{user?.ppsNumber}</p>
                 <p className="text-sm text-slate-400 mt-1.5">2 hours ago</p>
               </div>
@@ -71,14 +71,14 @@ export default function ProfilePage() {
 
         {/* Contact admin card */}
         <div className="bg-amber-50 rounded-2xl border border-amber-200 overflow-hidden shadow-sm">
-          <div className="px-6 py-5 border-b border-amber-200 flex items-center gap-2.5">
+          <div className="px-5 py-4 border-b border-amber-200 flex items-center gap-2.5">
             <Lock size={18} className="text-amber-600" />
             <p className="text-base font-semibold text-amber-800">
               Only McCann &amp; Curran administrators can{" "}
               <span className="font-bold">edit this information</span>
             </p>
           </div>
-          <div className="px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <p className="text-base text-amber-700">
               Need any changes made to your profile? Please contact McCann &amp; Curran for assistance.
             </p>

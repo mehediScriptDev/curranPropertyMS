@@ -9,14 +9,14 @@ export default function TenantProfilePage() {
 
   return (
     <TenantShell>
-      <div className="mb-5 xl:mb-8">
+      <div className="mb-3 xl:mb-5">
         <h1 className="text-3xl font-bold text-slate-800">Profile</h1>
         <p className="text-slate-500 mt-1 text-sm">Manage your personal details and account settings</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Avatar + quick info */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col items-center text-center gap-4 h-fit">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 flex flex-col items-center text-center gap-3 h-fit">
           <div className="w-24 h-24 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 text-3xl font-bold">
             KM
           </div>
@@ -42,10 +42,10 @@ export default function TenantProfilePage() {
         </div>
 
         {/* Edit form */}
-        <div className="lg:col-span-2 space-y-3 xl:space-y-5">
+        <div className="lg:col-span-2 space-y-3 xl:space-y-4">
           {/* Personal details */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+            <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100">
               <h3 className="text-base font-bold text-slate-800">Personal Details</h3>
               <button
                 onClick={() => setEditing(!editing)}
@@ -54,7 +54,7 @@ export default function TenantProfilePage() {
                 {editing ? "Cancel" : "Edit"}
               </button>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-4 space-y-4">
               {[
                 { label: "Full Name",     value: "Kevin Madden",             Icon: User,  type: "text" },
                 { label: "Email Address", value: "kevin.madden@email.com",   Icon: Mail,  type: "email" },
@@ -84,10 +84,10 @@ export default function TenantProfilePage() {
 
           {/* Change password */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div className="px-6 py-4 border-b border-slate-100">
+            <div className="px-5 py-3 border-b border-slate-100">
               <h3 className="text-base font-bold text-slate-800">Change Password</h3>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-4 space-y-4">
               {["Current Password", "New Password", "Confirm New Password"].map((label) => (
                 <div key={label}>
                   <label className="text-sm font-semibold text-slate-600 mb-1.5 block">{label}</label>

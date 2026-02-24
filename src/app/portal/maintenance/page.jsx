@@ -25,12 +25,12 @@ export default function MaintenancePage() {
 
   return (
     <PortalShell>
-      <div className="mb-4 lg:mb-8">
+      <div className="mb-3 lg:mb-5">
         <h1 className="text-2xl lg:text-3xl font-bold text-slate-800">Maintenance</h1>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-2 lg:gap-3 mb-3 lg:mb-5">
+      <div className="flex flex-wrap gap-2 lg:gap-3 mb-2 lg:mb-4">
         {["All Properties", "All Statuses", "All Priority"].map((f) => (
           <button key={f} className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:border-slate-300 transition shadow-sm">
             {f} <ChevronDown size={15} />
@@ -78,7 +78,7 @@ export default function MaintenancePage() {
           <table className="w-full">
             <thead>
               <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
-                <th className="text-left px-6 py-4">Property</th>
+                <th className="text-left px-5 py-3">Property</th>
                 <th className="text-left px-5 py-4">Issue</th>
                 <th className="text-left px-5 py-4">Priority</th>
                 <th className="text-left px-5 py-4">Status</th>
@@ -88,11 +88,11 @@ export default function MaintenancePage() {
             <tbody className="divide-y divide-slate-100">
               {items.map((item, i) => (
                 <tr key={i} className="hover:bg-slate-50/60 transition-colors">
-                  <td className="px-6 py-5">
+                  <td className="px-5 py-4">
                     <p className="text-base font-semibold text-slate-700">{item.property}</p>
                     <p className="text-sm text-slate-400 mt-0.5">{item.age}</p>
                   </td>
-                  <td className="px-5 py-5 text-base text-slate-600">{item.issue}</td>
+                  <td className="px-4 py-4 text-base text-slate-600">{item.issue}</td>
                   <td className="px-5 py-5">
                     <span className={`text-sm font-semibold px-3 py-1 rounded-full ${priorityColors[item.priority]}`}>
                       {item.priority}

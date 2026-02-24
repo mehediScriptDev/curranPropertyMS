@@ -14,7 +14,7 @@ const docs = [
 export default function TenantDocumentsPage() {
   return (
     <TenantShell>
-      <div className="mb-5 xl:mb-8">
+      <div className="mb-3 xl:mb-5">
         <h1 className="text-3xl font-bold text-slate-800">Documents</h1>
         <p className="text-slate-500 mt-1 text-sm">All documents related to your tenancy at Apt 5B Rosewood Close</p>
       </div>
@@ -25,17 +25,17 @@ export default function TenantDocumentsPage() {
           <table className="w-full">
             <thead>
               <tr className="text-sm text-slate-400 font-semibold bg-slate-50/80">
-                <th className="text-left px-6 py-4">Document</th>
-                <th className="text-left px-5 py-4">Type</th>
-                <th className="text-left px-5 py-4">Date</th>
-                <th className="text-left px-5 py-4">Size</th>
-                <th className="text-right px-6 py-4">Action</th>
+                <th className="text-left px-5 py-3">Document</th>
+                <th className="text-left px-5 py-3">Type</th>
+                <th className="text-left px-5 py-3">Date</th>
+                <th className="text-left px-5 py-3">Size</th>
+                <th className="text-right px-5 py-3">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {docs.map((d, i) => (
                 <tr key={i} className="hover:bg-slate-50/60 transition-colors">
-                  <td className="px-6 py-5">
+                  <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
                         <FileText size={18} className="text-slate-500" />
@@ -43,12 +43,12 @@ export default function TenantDocumentsPage() {
                       <span className="text-base font-semibold text-slate-700">{d.name}</span>
                     </div>
                   </td>
-                  <td className="px-5 py-5">
+                  <td className="px-5 py-4">
                     <span className={`text-xs font-semibold px-3 py-1 rounded-full ${d.typeColor}`}>{d.type}</span>
                   </td>
-                  <td className="px-5 py-5 text-sm text-slate-500">{d.date}</td>
-                  <td className="px-5 py-5 text-sm text-slate-400">{d.size}</td>
-                  <td className="px-6 py-5 text-right">
+                  <td className="px-5 py-4 text-sm text-slate-500">{d.date}</td>
+                  <td className="px-5 py-4 text-sm text-slate-400">{d.size}</td>
+                  <td className="px-5 py-4 text-right">
                     <button className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-teal-700 hover:bg-teal-800 rounded-lg transition">
                       <Download size={14} /> Download
                     </button>
