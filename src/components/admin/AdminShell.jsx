@@ -29,9 +29,11 @@ export default function AdminShell({ children }) {
         mobileOpen={mobileOpen}
         onClose={() => setMobileOpen(false)}
       />
-      <AdminTopbar onMenuClick={() => setMobileOpen((p) => !p)} mobileOpen={mobileOpen} />
+      <AdminTopbar
+        onMenuClick={() => setMobileOpen((p) => !p)}
+        mobileOpen={mobileOpen}
+      />
 
-    
       <main className="lg:pl-[300px] pt-[72px] min-h-screen">
         <div className="p-4 lg:p-6">{children}</div>
       </main>

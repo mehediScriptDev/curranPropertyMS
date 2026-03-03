@@ -68,16 +68,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-white">
-      <div className="container mx-auto px-6 py-10 lg:py-0">
-        <div className="mx-auto max-w-6xl flex justify-center items-center">
-
-         
-
-          {/* Right: Register card */}
-          <div className="relative z-10 w-full max-w-md sm:max-w-lg">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100 w-full">
-              <div className="pt-8 sm:pt-10 sm:px-10 pb-3">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-white px-4 sm:px-6">
+      <div className="w-full max-w-md sm:max-w-lg py-8 sm:py-10">
+            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-slate-100 w-full">
+              <div className="px-5 pt-8 sm:px-10 sm:pt-10 pb-3">
                 <Link
                   href="/"
                   className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-teal-700 mb-6 transition-colors group"
@@ -135,7 +129,7 @@ export default function RegisterPage() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
-                        className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 text-base text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-400 transition"
+                        className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 text-sm lg:text-base text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-400 transition"
                       />
                     </label>
                   </div>
@@ -148,11 +142,11 @@ export default function RegisterPage() {
                       </span>
                       <input
                         type="email"
-                        placeholder="Email address"
+                        placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 text-base text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-400 transition"
+                        className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 text-sm lg:text-base text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-400 transition"
                       />
                     </label>
                   </div>
@@ -179,7 +173,7 @@ export default function RegisterPage() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold text-base hover:from-primary-700 hover:to-primary-800 transition-shadow shadow-sm flex items-center justify-center gap-3 disabled:opacity-60"
+                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold text-sm lg:text-base hover:from-primary-700 hover:to-primary-800 transition-shadow shadow-sm flex items-center justify-center gap-3 disabled:opacity-60"
                     >
                       {loading ? (
                         <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -198,12 +192,10 @@ export default function RegisterPage() {
                 </p>
               </div>
 
-              <div className="bg-slate-50 px-6 py-4 text-center border-t border-slate-100">
+              <div className="bg-slate-50 px-5 sm:px-6 py-4 text-center border-t border-slate-100">
                 <p className="text-xs text-slate-400">© 2024 McCann &amp; Curran. Confidential and Proprietary.</p>
               </div>
             </div>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -38,14 +38,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-white">
-      <div className="container mx-auto px-6 py-10 lg:py-0">
-        <div className="mx-auto max-w-6xl flex justify-center items-center">
-
-          {/* Right: Login card */}
-          <div className="relative z-10 w-full max-w-md sm:max-w-lg">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100 w-full">
-              <div className="pt-8 sm:pt-10 sm:px-10 pb-3">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-white px-4 sm:px-6">
+      <div className="w-full max-w-md sm:max-w-lg py-8 sm:py-10">
+            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-slate-100 w-full">
+              <div className="px-5 pt-8 sm:px-10 sm:pt-10 pb-3">
                 <Link
                   href="/"
                   className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-teal-700 mb-6 transition-colors group"
@@ -82,7 +78,7 @@ export default function LoginPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 text-base text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-400 transition"
+                        className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 text-sm lg:text-base text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-400 transition"
                       />
                     </label>
                   </div>
@@ -96,23 +92,23 @@ export default function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 text-base text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-400 transition"
+                        className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 text-sm lg:text-base text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-400 transition"
                       />
                     </label>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
+                    <label className="flex items-center gap-2 text-xs lg:text-sm  text-slate-600 cursor-pointer">
                       <input
                         type="checkbox"
                         checked={remember}
                         onChange={(e) => setRemember(e.target.checked)}
-                        className="rounded border-slate-300 text-primary-600 focus:ring-primary-500"
+                        className="rounded border-slate-300  text-primary-600 focus:ring-primary-500"
                       />
                       Remember me
                     </label>
 
-                    <button type="button" className="text-sm text-primary-600 hover:text-primary-700 font-medium">
+                    <button type="button" className="text-xs lg:text-sm text-primary-600 hover:text-primary-700 font-medium">
                       Forgot password?
                     </button>
                   </div>
@@ -121,7 +117,7 @@ export default function LoginPage() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold text-base hover:from-primary-700 hover:to-primary-800 transition-shadow shadow-sm flex items-center justify-center gap-3 disabled:opacity-60"
+                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold text-sm lg:text-base hover:from-primary-700 hover:to-primary-800 transition-shadow shadow-sm flex items-center justify-center gap-3 disabled:opacity-60"
                     >
                       {loading ? (
                         <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -142,12 +138,10 @@ export default function LoginPage() {
                 </p>
               </div>
 
-              <div className="bg-slate-50 px-6 py-4 text-center border-t border-slate-100">
+              <div className="bg-slate-50 px-5 sm:px-6 py-4 text-center border-t border-slate-100">
                 <p className="text-xs text-slate-400">© 2024 McCann &amp; Curran. Confidential and Proprietary.</p>
               </div>
             </div>
-          </div>
-        </div>
       </div>
     </div>
   );
