@@ -1,7 +1,6 @@
 "use client";
 
-import Hero from "./components/Hero";
-import Stats from "./components/Stats";
+import Hero from "./components/HeroSimple";
 import Story from "./components/Story";
 import Values from "./components/Values";
 import Team from "./components/Team";
@@ -11,7 +10,6 @@ export default function AboutPage() {
   return (
     <>
       <Hero />
-      <Stats />
       <Story />
       <Values />
       <Team />

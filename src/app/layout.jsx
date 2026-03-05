@@ -1,6 +1,5 @@
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import ConditionalShell from "@/components/ConditionalShell";
 
 export const metadata = {
   title: "McCann & Curran | Professional Property Management",
@@ -24,9 +23,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <ConditionalShell>{children}</ConditionalShell>
       </body>
     </html>
   );

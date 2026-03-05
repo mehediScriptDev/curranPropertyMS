@@ -5,11 +5,14 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const [portalLoggedIn, setPortalLoggedIn] = useState(false);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
@@ -18,6 +21,30 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    const anyToken = () => Boolean(
+      localStorage.getItem("admin_token") ||
+      localStorage.getItem("landlord_token") ||
+      localStorage.getItem("tenant_token")
+    );
+    setPortalLoggedIn(anyToken());
+  }, [pathname]);
+
+  useEffect(() => {
+    const anyToken = () => Boolean(
+      localStorage.getItem("admin_token") ||
+      localStorage.getItem("landlord_token") ||
+      localStorage.getItem("tenant_token")
+    );
+    setPortalLoggedIn(anyToken());
+    const onStorage = (e) => {
+      if (["admin_token", "landlord_token", "tenant_token"].includes(e.key)) {
+        setPortalLoggedIn(anyToken());
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
 
   const links = [
     { href: "/", label: "Home" },
@@ -29,7 +56,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 inset-x-0 z-50 px-6 lg:px-16 transition-all duration-300 ${
-        scrolled ? "h-16 bg-white shadow-sm" : "h-[72px] bg-white/60 backdrop-blur-md border-b border-white/10"
+        scrolled ? "h-[72px] bg-white shadow-sm" : "h-[72px] bg-white/60 backdrop-blur-md border-b border-white/10"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-full">
@@ -48,24 +75,51 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`px-4 py-2 text-[0.9rem] font-medium rounded-md transition-colors ${
-                pathname === l.href ? "text-primary-600" : "text-dark-700 hover:text-primary-600"
-              }`}
+              className="text-[0.9rem] font-medium transition-colors"
             >
-              {l.label}
+              <span className={`border-b-2 pb-1 ${
+                pathname === l.href ? "text-dark-900 border-primary-400" : "text-dark-700 border-transparent hover:text-primary-600"
+              }`}>
+                {l.label}
+              </span>
             </Link>
           ))}
-          <Link
-            href="/contact"
-            className="ml-4 px-6 py-2.5 text-[0.85rem] font-semibold text-white bg-primary-600 rounded-full hover:bg-primary-700 transition-colors"
-          >
-            Client Login
-          </Link>
+          {portalLoggedIn ? (
+            <div className="ml-4 flex items-center gap-3">
+              <Link
+                href={
+                  localStorage.getItem("admin_token") ? "/admin/dashboard"
+                  : localStorage.getItem("tenant_token") ? "/tenant/dashboard"
+                  : "/portal/dashboard"
+                }
+                className="px-4 py-2 text-[0.85rem] font-semibold text-white bg-[#079489] rounded-lg hover:bg-slate-200 transition-colors"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={() => {
+                  ["admin_token", "admin_user", "landlord_token", "landlord_user", "tenant_token", "tenant_user"].forEach(k => localStorage.removeItem(k));
+                  setPortalLoggedIn(false);
+                  router.push("/");
+                }}
+                className="px-4 py-2 text-[0.85rem] font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
+              >
+                Sign out
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="ml-4 px-6 py-2.5 text-[0.85rem] font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
+            >
+              Client Login
+            </Link>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -86,20 +140,47 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className={`px-4 py-3 rounded-lg text-[0.95rem] font-medium ${
-                pathname === l.href ? "text-primary-600 bg-primary-50" : "text-dark-700 hover:bg-gray-50"
+              className={`px-4 py-3 rounded-lg text-[0.95rem] font-medium border-l-3 ${
+                pathname === l.href ? "text-primary-600 bg-primary-50 border-primary-400" : "text-dark-700 hover:bg-gray-50 border-transparent"
               }`}
             >
               {l.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            onClick={() => setOpen(false)}
-            className="mt-2 px-6 py-3 text-center text-[0.9rem] font-semibold text-white bg-primary-600 rounded-full"
-          >
-            Client Login
-          </Link>
+          {portalLoggedIn ? (
+            <div className="mt-2 flex gap-3">
+              <Link
+                href={
+                  localStorage.getItem("admin_token") ? "/admin/dashboard"
+                  : localStorage.getItem("tenant_token") ? "/tenant/dashboard"
+                  : "/portal/dashboard"
+                }
+                onClick={() => setOpen(false)}
+                className="flex-1 px-4 py-3 text-center text-[0.95rem] font-semibold text-dark-800 bg-slate-100 rounded-lg"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={() => {
+                  ["admin_token", "admin_user", "landlord_token", "landlord_user", "tenant_token", "tenant_user"].forEach(k => localStorage.removeItem(k));
+                  setPortalLoggedIn(false);
+                  setOpen(false);
+                  router.push("/");
+                }}
+                className="px-4 py-3 text-center text-[0.95rem] font-semibold text-white bg-red-600 rounded-lg"
+              >
+                Sign out
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              onClick={() => setOpen(false)}
+              className="mt-2 px-6 py-3 text-center text-[0.9rem] font-semibold text-white bg-primary-600 rounded-full"
+            >
+              Client Login
+            </Link>
+          )}
         </div>
       )}
     </nav>

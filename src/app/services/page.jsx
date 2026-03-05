@@ -1,6 +1,6 @@
 "use client";
 
-import Hero from "./components/Hero";
+import Hero from "./components/HeroSimple";
 import ServiceList from "./components/ServiceList";
 import CTA from "./components/CTA";
 
