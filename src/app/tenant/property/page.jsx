@@ -42,7 +42,7 @@ export default function TenantPropertyPage() {
               <Home size={72} className="text-teal-200" />
               <div className="absolute bottom-4 left-6">
                 <span className="text-xs font-semibold px-3 py-1 rounded-full bg-teal-600 text-white">
-                  Occupied
+                  Let
                 </span>
               </div>
             </div>

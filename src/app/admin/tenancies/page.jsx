@@ -153,6 +153,7 @@ function AdminTenanciesInner() {
               <th className="px-3 py-3 text-left font-semibold text-slate-600">Rent</th>
               <th className="px-3 py-3 text-left font-semibold text-slate-600">Rent Status</th>
               <th className="px-3 py-3 text-left font-semibold text-slate-600">RTB #</th>
+              <th className="px-3 py-3 text-left font-semibold text-slate-600">RTB Date</th>
               <th className="px-3 py-3 text-left font-semibold text-slate-600">RTB Status</th>
             </tr>
           </thead>
@@ -214,6 +215,9 @@ function AdminTenanciesInner() {
                       {t.rtbReg}
                     </p>
                   )}
+                </td>
+                <td className="px-3 py-3 text-slate-500 text-sm font-mono">
+                  {t.rtbDate ?? <span className="text-slate-300">—</span>}
                 </td>
                 <td className="px-3 py-3">
                   <button className={`px-3 py-1.5 text-white text-sm font-semibold rounded-md transition ${

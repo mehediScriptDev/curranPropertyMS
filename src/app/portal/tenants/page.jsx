@@ -6,10 +6,10 @@ import Pagination from "@/components/portal/Pagination";
 import { Eye, Search, ChevronDown } from "lucide-react";
 
 const tenants = [
-  { name: "Ellis Davis", property: "Apt 4 Willow Court", start: "Aug 1, 2023", pps: "1234567SA", status: "Occupied", statusColor: "bg-teal-100 text-teal-700" },
-  { name: "Stephen Blake", property: "Apt 306 Fairview Rd", start: "May 19, 2023", pps: "8765432TA", status: "Occupied", statusColor: "bg-teal-100 text-teal-700" },
-  { name: "Kevin Madden", property: "Apt 5B Rosewood Close", start: "Oct 10, 2022", pps: "—", status: "On Notice", statusColor: "bg-amber-100 text-amber-700", late: "Rent 5 Days Late" },
-  { name: "Adam Walsh", property: "Apt 104 Elmwood Grove", start: "Aug 3, 2023", pps: "9876543L", status: "Occupied", statusColor: "bg-teal-100 text-teal-700" },
+  { name: "Ellis Davis", property: "Apt 4 Willow Court", start: "Aug 1, 2023", pps: "1234567SA", status: "Let", statusColor: "bg-teal-100 text-teal-700" },
+  { name: "Stephen Blake", property: "Apt 306 Fairview Rd", start: "May 19, 2023", pps: "8765432TA", status: "Let", statusColor: "bg-teal-100 text-teal-700" },
+  { name: "Kevin Madden", property: "Apt 5B Rosewood Close", start: "Oct 10, 2022", pps: "—", status: "Notice Served", statusColor: "bg-amber-100 text-amber-700", late: "Rent 5 Days Late" },
+  { name: "Adam Walsh", property: "Apt 104 Elmwood Grove", start: "Aug 3, 2023", pps: "9876543L", status: "Let", statusColor: "bg-teal-100 text-teal-700" },
   { name: "Adam Walsh", property: "Apt 104 Elmwood Grove", start: "Jul 15, 2021", pps: "9876543L", status: "Ended", statusColor: "bg-slate-100 text-slate-500" },
 ];
 

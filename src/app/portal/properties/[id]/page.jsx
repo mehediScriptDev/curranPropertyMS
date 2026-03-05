@@ -25,7 +25,7 @@ import Link from "next/link";
 /* ─── Mock data (replace with Supabase query keyed on params.id) ─── */
 const property = {
   id: "1",
-  status: "On Notice",
+  status: "Notice Served",
   statusColor: "bg-red-100 text-red-700",
   address: "Apt 5B Rosewood Close",
   area: "Blackrock, Co. Dublin",

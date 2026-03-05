@@ -5,10 +5,10 @@ import { Eye } from "lucide-react";
 import Link from "next/link";
 
 const properties = [
-  { id: "1", status: "On Notice", statusColor: "bg-red-100 text-red-700", address: "Apt 5B Rosewood Close", tenant: "Kevin Madden", rent: "€1,750", rentBadge: "Rent 5 Days Late", rtb: "Registered", mprn: "10623847501" },
-  { id: "2", status: "Occupied", statusColor: "bg-teal-100 text-teal-700", address: "Apt 306 Fairview Rd", tenant: "Stephen Blake", rent: "€1,850", rentBadge: null, rtb: "Registered", mprn: "10234762819" },
-  { id: "3", status: "Notice Received", statusColor: "bg-amber-100 text-amber-700", address: "Apt 22 Parkside Plaza", tenant: "Reginald Spencer", rent: "€1,500", rentBadge: null, rtb: "Pending", mprn: "10987654321" },
-  { id: "4", status: "Occupied", statusColor: "bg-teal-100 text-teal-700", address: "Apt 104 Elmwood Grove", tenant: "Adam Walsh", rent: "€1,600", rentBadge: null, rtb: "Registered", mprn: "10543218765" },
+  { id: "1", status: "Notice Served", statusColor: "bg-red-100 text-red-700", address: "Apt 5B Rosewood Close", tenant: "Kevin Madden", rent: "€1,750", rentBadge: "Rent 5 Days Late", rtb: "Registered", mprn: "10623847501" },
+  { id: "2", status: "Let", statusColor: "bg-teal-100 text-teal-700", address: "Apt 306 Fairview Rd", tenant: "Stephen Blake", rent: "€1,850", rentBadge: null, rtb: "Registered", mprn: "10234762819" },
+  { id: "3", status: "Notice Served", statusColor: "bg-amber-100 text-amber-700", address: "Apt 22 Parkside Plaza", tenant: "Reginald Spencer", rent: "€1,500", rentBadge: null, rtb: "Pending", mprn: "10987654321" },
+  { id: "4", status: "Let", statusColor: "bg-teal-100 text-teal-700", address: "Apt 104 Elmwood Grove", tenant: "Adam Walsh", rent: "€1,600", rentBadge: null, rtb: "Registered", mprn: "10543218765" },
 ];
 
 export default function PropertiesPage() {

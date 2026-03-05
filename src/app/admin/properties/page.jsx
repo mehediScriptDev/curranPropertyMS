@@ -16,15 +16,15 @@ const PROPERTIES = [
   { id: 5,  img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=80&q=60", name: "Apt 65, Southern Cross", area: "Dublin · 10:11", statusProp: "Let",  statusRTB: "Let",    landlord: "Brendan Walsh",  landlordSub: "Deancer",       tenant: "Adam Walsh",           rent: "€2,400", mprn: "1000989721", rtb: "Registered", rtbStyle: "text-teal-600" },
   { id: 6,  img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&q=60", name: "Apt 306, Fairview Road", area: "Dublin · 10:65", statusProp: "Let",  statusRTB: "Let",    landlord: "Mary Bennett",   landlordSub: "Mary Surran",   tenant: "Peter Hughes",         rent: "€2,100", mprn: "1000992929", rtb: "Registered", rtbStyle: "text-teal-600" },
   { id: 7,  img: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=80&q=60", name: "Apt 7D, Hanover Quay",  area: "Dublin · 10:46", statusProp: "Let",  statusRTB: "Let",    landlord: "Mark Sheehan",   landlordSub: "Mark Sheehan",  tenant: "Emma Curran",          rent: "€2,250", mprn: "1000992654", rtb: "Registered", rtbStyle: "text-teal-600" },
-  { id: 8,  img: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=80&q=60", name: "Apt 104, Elmwood Grove", area: "Dublin · 10:69", statusProp: "Notice", statusRTB: "Let",   landlord: "Edward O'Neill", landlordSub: "Mark Sheehan",  tenant: "Leanne Byrne",         rent: "€1,800", mprn: "1000993381", rtb: "Pending",    rtbStyle: "text-amber-600" },
+  { id: 8,  img: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=80&q=60", name: "Apt 104, Elmwood Grove", area: "Dublin · 10:69", statusProp: "Notice Served", statusRTB: "Let",   landlord: "Edward O'Neill", landlordSub: "Mark Sheehan",  tenant: "Leanne Byrne",         rent: "€1,800", mprn: "1000993381", rtb: "Pending",    rtbStyle: "text-amber-600" },
   { id: 9,  img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=80&q=60", name: "Apt 5, City Square",    area: "Dublin · 10:57", statusProp: "Let",   statusRTB: "Let",    landlord: "Joan Doyle",     landlordSub: "John Doyle",    tenant: "Steven Keane",         rent: "€2,100", mprn: "1000932619", rtb: "Registered", rtbStyle: "text-teal-600" },
   { id: 10, img: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=80&q=60", name: "Apt 399, Pearse Street", area: "Dublin · 10:23", statusProp: "Notice", statusRTB: "Notice", landlord: "Tony Brennan",   landlordSub: "Leo Mohan",     tenant: "Dean Lyons",           rent: "€1,650", mprn: "1000993537", rtb: "Unknown",    rtbStyle: "text-slate-500" },
 ];
 
 const PROP_STATUS = {
-  Let:    "bg-teal-500 text-white",
-  Notice: "bg-orange-100 text-orange-600 border border-orange-300",
-  Vacant: "bg-teal-100 text-teal-700",
+  Let:           "bg-teal-500 text-white",
+  "Notice Served": "bg-orange-100 text-orange-600 border border-orange-300",
+  Vacant:        "bg-slate-100 text-slate-600",
 };
 const RTB_STATUS = {
   Let:    "bg-teal-500 text-white",

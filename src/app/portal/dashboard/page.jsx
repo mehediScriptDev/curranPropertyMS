@@ -17,10 +17,10 @@ const alerts = [
 ];
 
 const properties = [
-  { id: "1", status: "On Notice", address: "Apt 5B Rosewood Close", sub: "Rent review in 11 days", tenant: "Kevin Madden", tenantSub: "5 days ago", rent: "€1,750", rentSub: "# 123C1678", rentLate: "5 Days Late", statusColor: "bg-red-100 text-red-700" },
-  { id: "2", status: "Occupied", address: "Apt 306 Fairview Rd", sub: "Lease renewed", tenant: "Stephen Blake", tenantSub: "15 days ago", rent: "€1,850", rentSub: "4 Jan 2025", rentLate: null, statusColor: "bg-teal-100 text-teal-700" },
-  { id: "3", status: "Notice Received", address: "Apt 22 Parkside Plaza", sub: "Tenant vacating", tenant: "Reginald Spencer", tenantSub: "3 days ago", rent: "€1,500", rentSub: "0 Dec 2024", rentLate: null, statusColor: "bg-amber-100 text-amber-700" },
-  { id: "4", status: "Occupied", address: "Apt 104 Elmwood Grove", sub: "Active since Aug 2025", tenant: "Adam Walsh", tenantSub: "17 days ago", rent: "€1,600", rentSub: "12 Aug 2025", rentLate: null, statusColor: "bg-teal-100 text-teal-700" },
+  { id: "1", status: "Notice Served", address: "Apt 5B Rosewood Close", sub: "Rent review in 11 days", tenant: "Kevin Madden", tenantSub: "5 days ago", rent: "€1,750", rentSub: "# 123C1678", rentLate: "5 Days Late", statusColor: "bg-red-100 text-red-700" },
+  { id: "2", status: "Let", address: "Apt 306 Fairview Rd", sub: "Lease renewed", tenant: "Stephen Blake", tenantSub: "15 days ago", rent: "€1,850", rentSub: "4 Jan 2025", rentLate: null, statusColor: "bg-teal-100 text-teal-700" },
+  { id: "3", status: "Notice Served", address: "Apt 22 Parkside Plaza", sub: "Tenant vacating", tenant: "Reginald Spencer", tenantSub: "3 days ago", rent: "€1,500", rentSub: "0 Dec 2024", rentLate: null, statusColor: "bg-amber-100 text-amber-700" },
+  { id: "4", status: "Let", address: "Apt 104 Elmwood Grove", sub: "Active since Aug 2025", tenant: "Adam Walsh", tenantSub: "17 days ago", rent: "€1,600", rentSub: "12 Aug 2025", rentLate: null, statusColor: "bg-teal-100 text-teal-700" },
 ];
 
 const lateRent = properties.filter((p) => p.rentLate);

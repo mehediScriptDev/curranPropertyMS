@@ -20,7 +20,7 @@ const navItems = [
   { href: "/tenant/rent",         label: "Rent Payments",   Icon: CreditCard },
   { href: "/tenant/maintenance",  label: "Maintenance",     Icon: Wrench },
   { href: "/tenant/documents",    label: "Documents",       Icon: FolderOpen },
-  { href: "/tenant/rtb",          label: "Right to Buy",    Icon: Key },
+  { href: "/tenant/rtb",          label: "RTB Registration", Icon: Key },
   { href: "/tenant/messages",     label: "Messages",        Icon: MessageSquare, badge: 2 },
   { href: "/tenant/profile",      label: "Profile",         Icon: User },
 ];

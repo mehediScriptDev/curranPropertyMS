@@ -290,10 +290,10 @@ export default function TenantDashboardPage() {
             </div>
           </div>
 
-          {/* Right to Buy quick card */}
+          {/* RTB Registration quick card */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
             <div className="px-5 py-3 border-b border-slate-100 flex items-center justify-between">
-              <h3 className="text-lg font-bold text-slate-800">Right to Buy</h3>
+              <h3 className="text-lg font-bold text-slate-800">RTB Registration</h3>
               <Link href="/tenant/rtb" className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1.5">
                 View <ArrowRight size={14} />
               </Link>
@@ -304,19 +304,19 @@ export default function TenantDashboardPage() {
                   <Key size={20} className="text-teal-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-800">Eligible for Right to Buy</p>
-                  <p className="text-xs text-slate-500 mt-1">You have an estimated discount based on tenancy years.</p>
+                  <p className="text-sm font-semibold text-slate-800">Tenancy Registered with RTB</p>
+                  <p className="text-xs text-slate-500 mt-1">Your tenancy is registered with the Residential Tenancies Board.</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div className="bg-slate-50 p-3 rounded-md">
-                  <div className="text-xs text-slate-500">Years tenancy</div>
-                  <div className="font-semibold text-slate-800">7 years</div>
+                  <div className="text-xs text-slate-500">RTB Number</div>
+                  <div className="font-mono font-semibold text-slate-800 truncate">RTB-2022-10-456782</div>
                 </div>
                 <div className="bg-slate-50 p-3 rounded-md">
-                  <div className="text-xs text-slate-500">Estimated discount</div>
-                  <div className="font-semibold text-slate-800">7%</div>
+                  <div className="text-xs text-slate-500">Status</div>
+                  <div className="font-semibold text-teal-700">Registered</div>
                 </div>
               </div>
 
