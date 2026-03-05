@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import {
   Plus, ChevronDown, Search, MoreHorizontal,
   ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,
@@ -107,9 +108,9 @@ export default function AdminLandlordsPage() {
             </div>
             <p className="text-xs text-slate-400 truncate">{landlord.email}</p>
             <div className="flex items-center gap-2 pt-1 border-t border-slate-100">
-              <button aria-label="View" className="flex-1 h-9 inline-flex items-center justify-center bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-md transition text-xs gap-1 font-medium">
+              <Link href={`/admin/landlords/${landlord.id}`} aria-label="View" className="flex-1 h-9 inline-flex items-center justify-center bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-md transition text-xs gap-1 font-medium">
                 <Eye size={14} /> View
-              </button>
+              </Link>
               <button aria-label="Edit" className="flex-1 h-9 inline-flex items-center justify-center bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-md transition text-xs gap-1 font-medium">
                 <Edit size={14} /> Edit
               </button>
@@ -203,9 +204,9 @@ export default function AdminLandlordsPage() {
                 <td className="px-4 py-3 text-slate-400 text-sm">{landlord.email}</td>
                 <td className="px-4 py-3 text-right">
                   <div className="flex items-center justify-end gap-2">
-                    <button aria-label="View" className="w-9 h-9 inline-flex items-center justify-center bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-md transition">
+                    <Link href={`/admin/landlords/${landlord.id}`} aria-label="View" className="w-9 h-9 inline-flex items-center justify-center bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-md transition">
                       <Eye size={16} />
-                    </button>
+                    </Link>
                     <button aria-label="Edit" className="w-9 h-9 inline-flex items-center justify-center bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-md transition">
                       <Edit size={16} />
                     </button>

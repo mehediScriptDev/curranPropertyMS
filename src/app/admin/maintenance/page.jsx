@@ -9,21 +9,27 @@ import Pagination from "@/components/portal/Pagination";
 
 const REQUESTS = [
   // Open
-  { id: 1, col: "Open",       title: "Leaking tap",            badge: { label: "1 Late",  style: "bg-slate-700 text-white" },    assignee: { initials: "34",  color: "bg-teal-500" },    name: "Holly Quigley",     property: "Apt 28 Parkside Plaza",  meta: "Holly Quigley",    metaNote: "Low priority",            age: "4 days ago" },
-  { id: 2, col: "Open",       title: "Leaking tap",            badge: null,                                                       assignee: { initials: "AW",  color: "bg-orange-500" },  name: "Adam Walsh",        property: "Apt i 63 Southern Cross", meta: "Adam Walsh",        metaNote: "Medium priority",         age: "5 days ago" },
-  { id: 3, col: "Open",       title: "Smoke Alarm replacement",badge: { label: "None",    style: "bg-orange-500 text-white" },    assignee: { initials: "KJS", color: "bg-rose-500" },    name: "Kevin Doples",      property: "",                        meta: "Kevin Doples",     metaNote: "None",                    age: "1 week ago" },
-  { id: 4, col: "Open",       title: "Leaking tap",            badge: null,                                                       assignee: { initials: "SK",  color: "bg-emerald-600" }, name: "Steven Keane",      property: "Apt 5.1 City Square",    meta: "Steven Keane",     metaNote: "High priority",           age: "1 week ago" },
+  { id: 1,  col: "Open",        title: "Leaking tap",             priority: "Low",    assignee: { initials: "HQ", color: "bg-teal-500" },    name: "Holly Quigley",    property: "Apt 28 Parkside Plaza",   age: "4 days ago" },
+  { id: 2,  col: "Open",        title: "Smoke detector faulty",   priority: "Medium", assignee: { initials: "AW", color: "bg-orange-500" },  name: "Adam Walsh",       property: "Apt 65 Southern Cross",   age: "5 days ago" },
+  { id: 3,  col: "Open",        title: "Smoke alarm replacement", priority: "High",   assignee: { initials: "KD", color: "bg-rose-500" },    name: "Kevin Doples",     property: "Apt 22 Parkside Plaza",   age: "1 week ago" },
+  { id: 4,  col: "Open",        title: "Leaking tap",             priority: "High",   assignee: { initials: "SK", color: "bg-emerald-600" }, name: "Steven Keane",     property: "Apt 5 City Square",       age: "1 week ago" },
   // In Progress
-  { id: 5, col: "In Progress",title: "Broken window",          badge: { label: "1 Late",  style: "bg-slate-700 text-white" },    assignee: { initials: "KM",  color: "bg-indigo-500" },  name: "Kevin Madden",      property: "Apt 5B Rosewood Close",  meta: "Kevin Madden",     metaNote: "Medium priority",         age: "4 days ago" },
-  { id: 6, col: "In Progress",title: "Broken window",          badge: null,                                                       assignee: { initials: "RS",  color: "bg-sky-600" },     name: "Reginald Spencer",  property: "Apt 21C Harbour View",   meta: "Reginald Spencer", metaNote: "Medium priority",         age: "1 week ago" },
-  { id: 7, col: "In Progress",title: "Broken window",          badge: null,                                                       assignee: { initials: "RS",  color: "bg-sky-600" },     name: "Reginald Spencer",  property: "Apt 21C Harbour View",   meta: "Reginald Spencer", metaNote: "Shower not priority",     age: "1 week ago" },
-  { id: 8, col: "In Progress",title: "Broken window",          badge: null,                                                       assignee: { initials: "SK",  color: "bg-teal-500" },    name: "Sarah Kelly",       property: "Apt 12 Grand Canal Dock",meta: "Sarah Kelly",       metaNote: "Low priority",            age: "2 weeks ago" },
+  { id: 5,  col: "In Progress",  title: "Broken window",           priority: "Medium", assignee: { initials: "KM", color: "bg-indigo-500" },  name: "Kevin Madden",     property: "Apt 5B Rosewood Close",   age: "4 days ago" },
+  { id: 6,  col: "In Progress",  title: "Heating not working",     priority: "High",   assignee: { initials: "RS", color: "bg-sky-600" },     name: "Reginald Spencer", property: "Apt 21C Harbour View",    age: "1 week ago" },
+  { id: 7,  col: "In Progress",  title: "Shower not draining",     priority: "Medium", assignee: { initials: "RS", color: "bg-sky-600" },     name: "Reginald Spencer", property: "Apt 21C Harbour View",    age: "1 week ago" },
+  { id: 8,  col: "In Progress",  title: "Loose door handle",       priority: "Low",    assignee: { initials: "SK", color: "bg-teal-500" },    name: "Sarah Kelly",      property: "Apt 12 Grand Canal Dock", age: "2 weeks ago" },
   // Closed
-  { id: 9,  col: "Closed",    title: "Bed replacement",        badge: { label: "None",    style: "bg-orange-500 text-white" },    assignee: { initials: "EC",  color: "bg-pink-500" },    name: "Emma Curran",       property: "Apt 7D Hanover Quay",    meta: "Medium Madien",    metaNote: "Medium",                  age: "4 days ago" },
-  { id: 10, col: "Closed",    title: "Bed replacement",        badge: null,                                                       assignee: { initials: "PH",  color: "bg-amber-600" },  name: "Petter Hughes",     property: "306 5E Fairview Road",   meta: "Peter Hughes",     metaNote: "",                        age: "1.1 weeks ago" },
-  { id: 11, col: "Closed",    title: "Bed replacement",        badge: { label: "None",    style: "bg-orange-500 text-white" },    assignee: { initials: "DB",  color: "bg-violet-500" },  name: "Drose Byrne",       property: "Apt 104: Elmwood Grove", meta: "Drose Byrne",      metaNote: "Shower priority",         age: "1.1 weeks ago" },
-  { id: 12, col: "Closed",    title: "Bed replacement",        badge: { label: "None",    style: "bg-orange-500 text-white" },    assignee: { initials: "LB",  color: "bg-cyan-600" },   name: "Leanne Byrne",      property: "Apt 104 Elmwood Grove",  meta: "Ledium Byrne",     metaNote: "",                        age: "1.1 weeks ago" },
+  { id: 9,  col: "Closed",       title: "Bed replacement",         priority: "Medium", assignee: { initials: "EC", color: "bg-pink-500" },    name: "Emma Curran",      property: "Apt 7D Hanover Quay",     age: "4 days ago" },
+  { id: 10, col: "Closed",       title: "Broken skirting board",   priority: "Low",    assignee: { initials: "PH", color: "bg-amber-600" },   name: "Peter Hughes",     property: "Apt 306 Fairview Road",   age: "2 weeks ago" },
+  { id: 11, col: "Closed",       title: "Faulty light fitting",    priority: "Low",    assignee: { initials: "DB", color: "bg-violet-500" },  name: "Donal Byrne",      property: "Apt 104 Elmwood Grove",   age: "2 weeks ago" },
+  { id: 12, col: "Closed",       title: "Damp patch on ceiling",   priority: "High",   assignee: { initials: "LB", color: "bg-cyan-600" },    name: "Leanne Byrne",     property: "Apt 104 Elmwood Grove",   age: "3 weeks ago" },
 ];
+
+const PRIORITY_STYLE = {
+  High:   "bg-red-100 text-red-700",
+  Medium: "bg-amber-100 text-amber-700",
+  Low:    "bg-green-100 text-green-700",
+};
 
 const COLUMNS = ["Open", "In Progress", "Closed"];
 
@@ -110,11 +116,9 @@ export default function AdminMaintenancePage() {
                 >
                   <div className="flex items-start justify-between gap-2">
                     <p className="font-semibold text-slate-800 text-base">{card.title}</p>
-                    {card.badge && (
-                      <span className={`text-sm px-2 py-0.5 rounded-md font-medium whitespace-nowrap ${card.badge.style}`}>
-                        {card.badge.label}
-                      </span>
-                    )}
+                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${PRIORITY_STYLE[card.priority]}`}>
+                      {card.priority}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className={`w-8 h-8 rounded-full ${card.assignee.color} flex items-center justify-center text-white text-sm font-bold flex-shrink-0`}>
@@ -128,7 +132,7 @@ export default function AdminMaintenancePage() {
                   <div className="flex items-center justify-between text-sm text-slate-400 pt-1 border-t border-slate-100">
                     <span className="flex items-center gap-1">
                       <CheckSquare size={12} className="text-slate-400" />
-                      {card.meta}{card.metaNote ? ` · ${card.metaNote}` : ""}
+                      {card.name}
                     </span>
                     <span>{card.age}</span>
                   </div>

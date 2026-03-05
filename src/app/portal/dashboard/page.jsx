@@ -1,7 +1,7 @@
 "use client";
 
 import PortalShell from "@/components/portal/PortalShell";
-import { AlertTriangle, Home, Users, Wrench, FileText, FolderOpen, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
+import { AlertTriangle, Home, Users, Wrench, FileText, ArrowRight, CheckCircle2, AlertCircle, Clock } from "lucide-react";
 import Image from "next/image";
 
 const kpis = [
@@ -9,7 +9,6 @@ const kpis = [
   { label: "Active Tenancies", value: "3", Icon: Users, color: "bg-blue-50 text-blue-600 border-blue-100" },
   { label: "Open Maintenance", value: "2", Icon: Wrench, color: "bg-purple-50 text-purple-600 border-purple-100" },
   { label: "New Documents", value: "2", Icon: FileText, color: "bg-rose-50 text-rose-600 border-rose-100" },
-  { label: "My Documents", value: "1", Icon: FolderOpen, color: "bg-teal-50 text-teal-600 border-teal-100" },
 ];
 
 const alerts = [
@@ -18,11 +17,13 @@ const alerts = [
 ];
 
 const properties = [
-  { status: "On Notice", address: "Apt 5B Rosewood Close", sub: "Rent review in 11 days", tenant: "Kevin Madden", tenantSub: "5 days ago", rent: "€1,750", rentSub: "# 123C1678", statusColor: "bg-red-100 text-red-700" },
-  { status: "Occupied", address: "Apt 306 Fairview Rd", sub: "Lease renewed", tenant: "Stephen Blake", tenantSub: "15 days ago", rent: "€1,850", rentSub: "4 Jan 2025", statusColor: "bg-teal-100 text-teal-700" },
-  { status: "Notice Received", address: "Apt 22 Parkside Plaza", sub: "Tenant vacating", tenant: "Reginald Spencer", tenantSub: "3 days ago", rent: "€1,500", rentSub: "0 Dec 2024", statusColor: "bg-amber-100 text-amber-700" },
-  { status: "Occupied", address: "Apt 104 Elmwood Grove", sub: "Active since Aug 2025", tenant: "Adam Walsh", tenantSub: "17 days ago", rent: "€1,600", rentSub: "12 Aug 2025", statusColor: "bg-teal-100 text-teal-700" },
+  { id: "1", status: "On Notice", address: "Apt 5B Rosewood Close", sub: "Rent review in 11 days", tenant: "Kevin Madden", tenantSub: "5 days ago", rent: "€1,750", rentSub: "# 123C1678", rentLate: "5 Days Late", statusColor: "bg-red-100 text-red-700" },
+  { id: "2", status: "Occupied", address: "Apt 306 Fairview Rd", sub: "Lease renewed", tenant: "Stephen Blake", tenantSub: "15 days ago", rent: "€1,850", rentSub: "4 Jan 2025", rentLate: null, statusColor: "bg-teal-100 text-teal-700" },
+  { id: "3", status: "Notice Received", address: "Apt 22 Parkside Plaza", sub: "Tenant vacating", tenant: "Reginald Spencer", tenantSub: "3 days ago", rent: "€1,500", rentSub: "0 Dec 2024", rentLate: null, statusColor: "bg-amber-100 text-amber-700" },
+  { id: "4", status: "Occupied", address: "Apt 104 Elmwood Grove", sub: "Active since Aug 2025", tenant: "Adam Walsh", tenantSub: "17 days ago", rent: "€1,600", rentSub: "12 Aug 2025", rentLate: null, statusColor: "bg-teal-100 text-teal-700" },
 ];
+
+const lateRent = properties.filter((p) => p.rentLate);
 
 const activity = [
   { name: "Edward Martin", action: "reported an issue in", property: "Apt 104 Elmwood Grove", time: "2 hours ago", avatar: "https://randomuser.me/api/portraits/men/41.jpg" },
@@ -40,7 +41,7 @@ export default function DashboardPage() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 mb-3 lg:mb-5">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-3 lg:mb-5">
         {kpis.map(({ label, value, Icon, color }) => (
           <div key={label} className={`bg-white rounded-2xl border p-4 lg:p-5 flex flex-col gap-2 lg:gap-3 shadow-sm ${color.split(" ")[2]}`}>
             <div className="flex items-start justify-between">
@@ -53,6 +54,35 @@ export default function DashboardPage() {
           </div>
         ))}
       </div>
+
+      {/* Rent Status Indicator */}
+      {lateRent.length > 0 && (
+        <div className="bg-white rounded-2xl border border-red-200 overflow-hidden shadow-sm mb-3 lg:mb-5">
+          <div className="flex items-center gap-2 px-4 lg:px-6 py-3 lg:py-4 border-b border-red-100">
+            <Clock size={16} className="text-red-500" />
+            <h3 className="text-base lg:text-lg font-bold text-slate-800">Rent Status</h3>
+            <span className="ml-auto text-xs font-semibold px-2.5 py-0.5 rounded-full bg-red-100 text-red-700">
+              {lateRent.length} Overdue
+            </span>
+          </div>
+          <div className="divide-y divide-red-50">
+            {lateRent.map((p) => (
+              <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 lg:px-6 py-3 lg:py-4">
+                <div>
+                  <p className="text-sm lg:text-base font-semibold text-slate-700">{p.address}</p>
+                  <p className="text-xs lg:text-sm text-slate-400 mt-0.5">Tenant: {p.tenant}</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <p className="text-sm font-bold text-slate-700">{p.rent}</p>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-red-100 text-red-700">
+                    <AlertCircle size={11} /> {p.rentLate}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Left: Alerts + Properties */}

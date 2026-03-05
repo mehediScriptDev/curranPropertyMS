@@ -49,7 +49,6 @@ export default function RegisterPage() {
 
       setSuccess("Account created! Taking you to your dashboard…");
 
-      // Auto-login after registration using the real API
       const result = await login(email, password);
       if (result.ok) {
         if (result.role === "tenant") {
@@ -58,7 +57,6 @@ export default function RegisterPage() {
           router.push("/portal/dashboard");
         }
       } else {
-        // login failed but registration succeeded — send to login page
         setTimeout(() => router.push("/login"), 1000);
       }
     } catch (err) {

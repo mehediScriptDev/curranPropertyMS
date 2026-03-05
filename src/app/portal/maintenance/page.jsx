@@ -3,14 +3,14 @@
 import { useState } from "react";
 import PortalShell from "@/components/portal/PortalShell";
 import Pagination from "@/components/portal/Pagination";
-import { Download, Search, ChevronDown } from "lucide-react";
+import { Eye, Search, ChevronDown } from "lucide-react";
 
 const items = [
-  { property: "Apt 22 Parkside Plaza", issue: "Shower broken", age: "1 day ago", priority: "Medium", status: "In Progress" },
-  { property: "Apt 104 Elmwood Grove", issue: "Heating issue", age: "2 hours ago", priority: "High", status: "New" },
-  { property: "Apt 65 Southern Cross", issue: "Missing three light bulbs", age: "6 days ago", priority: "Low", status: "Awaiting Materials" },
-  { property: "Apt 32 Aberdeen Street", issue: "Leaky kitchen sink pipe", age: "8 days ago", priority: "Medium", status: "Scheduled (30 Apr 2024)" },
-  { property: "Adam Walsh", issue: "Toilet constantly running", age: "3 days ago", priority: "High", status: "Needs Contractor" },
+  { property: "Apt 22 Parkside Plaza", issue: "Shower broken", age: "1 day ago", priority: "Medium", status: "In Progress", updated: "1 day ago" },
+  { property: "Apt 104 Elmwood Grove", issue: "Heating issue", age: "2 hours ago", priority: "High", status: "New", updated: "2 hours ago" },
+  { property: "Apt 65 Southern Cross", issue: "Missing three light bulbs", age: "6 days ago", priority: "Low", status: "Awaiting Materials", updated: "3 days ago" },
+  { property: "Apt 32 Aberdeen Street", issue: "Leaky kitchen sink pipe", age: "8 days ago", priority: "Medium", status: "Scheduled (30 Apr 2024)", updated: "8 days ago" },
+  { property: "Apt 104 Elmwood Grove", issue: "Toilet constantly running", age: "3 days ago", priority: "High", status: "Needs Contractor", updated: "3 days ago" },
 ];
 
 const priorityColors = {
@@ -67,7 +67,7 @@ export default function MaintenancePage() {
                 )}
               </div>
               <button className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-teal-700 hover:bg-teal-800 rounded-lg transition">
-                <Download size={13} /> Download
+                <Eye size={13} /> View Details
               </button>
             </div>
           ))}
@@ -82,6 +82,7 @@ export default function MaintenancePage() {
                 <th className="text-left px-5 py-4">Issue</th>
                 <th className="text-left px-5 py-4">Priority</th>
                 <th className="text-left px-5 py-4">Status</th>
+                <th className="text-left px-5 py-4">Last Updated</th>
                 <th className="text-right px-6 py-4">Action</th>
               </tr>
             </thead>
@@ -107,9 +108,10 @@ export default function MaintenancePage() {
                       <span className="text-base text-slate-600">{item.status}</span>
                     )}
                   </td>
+                  <td className="px-5 py-5 text-sm text-slate-400">{item.updated}</td>
                   <td className="px-6 py-5 text-right">
-                    <button aria-label="Download maintenance" className="inline-flex items-center justify-center px-3 py-2 bg-[#f0fdfa] text-gray-800 rounded-lg transition">
-                      <Download size={16} />
+                    <button aria-label="View maintenance details" className="inline-flex items-center justify-center px-3 py-2 bg-[#f0fdfa] text-gray-800 rounded-lg transition hover:bg-teal-100">
+                      <Eye size={16} />
                     </button>
                   </td>
                 </tr>

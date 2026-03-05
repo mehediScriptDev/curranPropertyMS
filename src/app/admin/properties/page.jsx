@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import {
   Plus, ChevronDown, Eye, X,
   ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,
@@ -88,13 +89,12 @@ export default function AdminPropertiesPage() {
               </div>
             </div>
             <div className="pt-1 border-t border-slate-100">
-              <button
-                aria-label="View"
-                onClick={() => { setActiveProp(p); setModalOpen(true); }}
+              <Link
+                href={`/admin/properties/${p.id}`}
                 className="w-full h-9 inline-flex items-center justify-center gap-2 bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-md transition text-xs font-medium"
               >
                 <Eye size={14} /> View Details
-              </button>
+              </Link>
             </div>
           </div>
         ))}
@@ -174,13 +174,13 @@ export default function AdminPropertiesPage() {
                 </td>
                 <td className="w-48 px-3 py-3 text-right">
                   <div>
-                    <button
+                    <Link
+                      href={`/admin/properties/${p.id}`}
                       aria-label="View"
-                      onClick={() => { setActiveProp(p); setModalOpen(true); }}
                       className="w-9 h-9 inline-flex items-center justify-center bg-teal-100 hover:bg-teal-700 text-teal-700 hover:text-white rounded-md transition"
                     >
                       <Eye size={16} />
-                    </button>
+                    </Link>
                   </div>
                 </td>
               </tr>

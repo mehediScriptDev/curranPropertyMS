@@ -86,7 +86,7 @@ const alerts = [
     id: 3,
     key: null,
     count: null,
-    title: "Vacant properties",
+    title: "Expiring tenancies",
     icon: <AlertTriangle size={18} className="text-amber-500" />,
     iconBg: "bg-amber-100",
   },
@@ -200,10 +200,20 @@ export default function AdminDashboardPage() {
       {/* Page header */}
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-slate-800">Dashboard</h1>
-        <button className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition">
-          <Plus size={16} />
-          <span className="hidden sm:inline">Add Property</span>
-        </button>
+        <div className="flex items-center gap-2">
+          <button className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-semibold rounded-lg shadow-sm transition">
+            <Upload size={15} className="text-slate-500" />
+            <span className="hidden sm:inline">Upload Document</span>
+          </button>
+          <button className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-semibold rounded-lg shadow-sm transition">
+            <FileText size={15} className="text-slate-500" />
+            <span className="hidden sm:inline">Add Tenancy</span>
+          </button>
+          <button className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition">
+            <Plus size={16} />
+            <span className="hidden sm:inline">Add Property</span>
+          </button>
+        </div>
       </div>
 
       {/* KPI cards */}
@@ -264,35 +274,17 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Activity with icons */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-bold text-slate-800">Recent Activity</h2>
-            <button className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1.5">
-              <Eye size={14} /> View all
-            </button>
-          </div>
-          <div className="space-y-3">
-            {recentActivity.map((item) => (
-              <ActivityRow key={item.id} item={item} />
-            ))}
-          </div>
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-lg font-bold text-slate-800">Recent Activity</h2>
+          <button className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1.5">
+            <Eye size={14} /> View all
+          </button>
         </div>
-
-        {/* Activity with avatars */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-bold text-slate-800">Recent Activity</h2>
-            <button className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1.5">
-              <Eye size={14} /> View all
-            </button>
-          </div>
-          <div className="space-y-3">
-            {recentActivity.map((item) => (
-              <ActivityRowAvatar key={item.id} item={item} />
-            ))}
-          </div>
+        <div className="space-y-3">
+          {recentActivity.map((item) => (
+            <ActivityRowAvatar key={item.id} item={item} />
+          ))}
         </div>
       </div>
 

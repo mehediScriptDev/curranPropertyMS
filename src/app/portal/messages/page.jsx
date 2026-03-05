@@ -9,6 +9,7 @@ import Image from "next/image";
 const threads = [
   {
     name: "Stephen Blake",
+    role: "Tenant",
     property: "Apt 306 Fairview Rd",
     age: "Apt 6 days ago",
     subject: "No Heating",
@@ -19,6 +20,7 @@ const threads = [
   },
   {
     name: "Edward Martin",
+    role: "Tenant",
     property: "Apt 104 Elmwood Grove",
     age: "15 days ago",
     subject: "Leaky Sink",
@@ -29,6 +31,7 @@ const threads = [
   },
   {
     name: "Adam Walsh",
+    role: "Tenant",
     property: "Apt 104 Elmwood Grove",
     age: "6 days ago",
     subject: "RTB Registration",
@@ -40,6 +43,7 @@ const threads = [
   },
   {
     name: "Kevin Madden",
+    role: "Tenant",
     property: "Apt 5B Rosewood Close",
     age: "6 days ago",
     subject: "Rent Payment",
@@ -51,6 +55,7 @@ const threads = [
   },
   {
     name: "Sarah Quinn",
+    role: "Staff",
     property: "Apt 306 Fairview Rd",
     age: "6 days ago",
     subject: "Vacating Property",
@@ -98,11 +103,16 @@ export default function MessagesPage() {
               />
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2 mb-1">
-                  <div>
+                  <div className="flex items-center gap-2 mb-0.5">
                     <p className="font-semibold text-slate-800 text-sm lg:text-base">{t.name}</p>
+                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
+                      t.role === "Staff"
+                        ? "bg-teal-50 text-teal-700"
+                        : "bg-blue-50 text-blue-700"
+                    }`}>{t.role}</span>
+                  </div>
                     <p className="text-xs lg:text-sm text-slate-400">{t.property}</p>
                     <p className="text-xs lg:text-sm text-slate-400">{t.age}</p>
-                  </div>
                   <div className="flex flex-col items-end gap-1 lg:gap-1.5 shrink-0">
                     <span className="text-xs lg:text-sm text-slate-400 whitespace-nowrap">{t.time}</span>
                     {t.unread && (

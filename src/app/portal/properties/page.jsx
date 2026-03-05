@@ -2,12 +2,13 @@
 
 import PortalShell from "@/components/portal/PortalShell";
 import { Eye } from "lucide-react";
+import Link from "next/link";
 
 const properties = [
-  { status: "On Notice", statusColor: "bg-red-100 text-red-700", address: "Apt 5B Rosewood Close", tenant: "Kevin Madden", rent: "€1,750", rentBadge: "Rent 5 Days Late", rtb: "Registered", mprn: "10623847501" },
-  { status: "Occupied", statusColor: "bg-teal-100 text-teal-700", address: "Apt 306 Fairview Rd", tenant: "Stephen Blake", rent: "€1,850", rentBadge: null, rtb: "Registered", mprn: "10234762819" },
-  { status: "Notice Received", statusColor: "bg-amber-100 text-amber-700", address: "Apt 22 Parkside Plaza", tenant: "Reginald Spencer", rent: "€1,500", rentBadge: null, rtb: "Pending", mprn: "10987654321" },
-  { status: "Occupied", statusColor: "bg-teal-100 text-teal-700", address: "Apt 104 Elmwood Grove", tenant: "Adam Walsh", rent: "€1,600", rentBadge: null, rtb: "Registered", mprn: "10543218765" },
+  { id: "1", status: "On Notice", statusColor: "bg-red-100 text-red-700", address: "Apt 5B Rosewood Close", tenant: "Kevin Madden", rent: "€1,750", rentBadge: "Rent 5 Days Late", rtb: "Registered", mprn: "10623847501" },
+  { id: "2", status: "Occupied", statusColor: "bg-teal-100 text-teal-700", address: "Apt 306 Fairview Rd", tenant: "Stephen Blake", rent: "€1,850", rentBadge: null, rtb: "Registered", mprn: "10234762819" },
+  { id: "3", status: "Notice Received", statusColor: "bg-amber-100 text-amber-700", address: "Apt 22 Parkside Plaza", tenant: "Reginald Spencer", rent: "€1,500", rentBadge: null, rtb: "Pending", mprn: "10987654321" },
+  { id: "4", status: "Occupied", statusColor: "bg-teal-100 text-teal-700", address: "Apt 104 Elmwood Grove", tenant: "Adam Walsh", rent: "€1,600", rentBadge: null, rtb: "Registered", mprn: "10543218765" },
 ];
 
 export default function PropertiesPage() {
@@ -45,7 +46,7 @@ export default function PropertiesPage() {
                 </div>
               </div>
               <button aria-label="View property" className="w-full flex items-center justify-center px-3 py-2 text-white bg-teal-700 hover:bg-teal-800 rounded-lg transition">
-                View property
+                <Link href={`/portal/properties/${p.id}`} className="w-full text-center">View property</Link>
               </button>
             </div>
           ))}
@@ -87,9 +88,9 @@ export default function PropertiesPage() {
                   </td>
                   <td className="px-5 py-5 text-slate-500 font-mono text-sm">{p.mprn}</td>
                   <td className="px-5 py-4 text-right">
-                    <button aria-label="View property" className="inline-flex items-center justify-center px-3 py-2  bg-[#f0fdfa] text-gray-800 rounded-lg transition">
+                    <Link href={`/portal/properties/${p.id}`} aria-label="View property" className="inline-flex items-center justify-center px-3 py-2 bg-[#f0fdfa] text-gray-800 rounded-lg transition hover:bg-teal-100">
                       <Eye size={16} />
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               ))}
