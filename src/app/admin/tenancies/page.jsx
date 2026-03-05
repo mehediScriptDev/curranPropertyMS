@@ -4,10 +4,16 @@ import { useSearchParams } from "next/navigation";
 import {
   Plus,
   ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,
-  ArrowUpDown
+  ArrowUpDown, CheckCircle2, Clock, CreditCard
 } from "lucide-react";
 import Pagination from "@/components/portal/Pagination";
 import TENANCIES from "@/data/tenancies";
+
+const RENT_STYLE = {
+  Paid:    { badge: "bg-teal-100 text-teal-700",   label: "Paid" },
+  Overdue: { badge: "bg-red-100 text-red-700",     label: "Overdue" },
+  Pending: { badge: "bg-amber-100 text-amber-700", label: "Pending" },
+};
 
 const STATUS_LET = {
   Let:    "bg-teal-500 text-white",
@@ -24,6 +30,12 @@ const RTB_STATUS = {
 
 function AdminTenanciesInner() {
   const [selected, setSelected] = useState([]);
+  // Local override map: { [tenancy.id]: "Paid" | "Overdue" | "Pending" }
+  // In production this would write to Supabase
+  const [rentOverrides, setRentOverrides] = useState({});
+  const getRentStatus = (t) => rentOverrides[t.id] ?? t.rentStatus;
+  const markPaid = (id) => setRentOverrides((prev) => ({ ...prev, [id]: "Paid" }));
+
   const searchParams = useSearchParams();
   const filterParam  = searchParams?.get("filter");
 
@@ -89,6 +101,23 @@ function AdminTenanciesInner() {
                 <p className="font-medium text-slate-700">{t.rtb}</p>
               </div>
             </div>
+            {/* Rent status row */}
+            <div className="flex items-center justify-between gap-2 pt-1 border-t border-slate-100">
+              <span className={`text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 ${
+                RENT_STYLE[getRentStatus(t)]?.badge ?? "bg-slate-100 text-slate-500"
+              }`}>
+                {getRentStatus(t) === "Paid" ? <CheckCircle2 size={11} /> : <Clock size={11} />}
+                {getRentStatus(t)}
+              </span>
+              {getRentStatus(t) !== "Paid" && (
+                <button
+                  onClick={() => markPaid(t.id)}
+                  className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold bg-teal-600 hover:bg-teal-700 text-white rounded-lg transition"
+                >
+                  <CreditCard size={11} /> Mark Paid
+                </button>
+              )}
+            </div>
             <div className="pt-1 border-t border-slate-100">
               <button className={`w-full py-1.5 text-white text-xs font-semibold rounded-md transition ${
                 t.rtbStatus === "Notice" ? "bg-orange-400 hover:bg-orange-500" : "bg-teal-600 hover:bg-teal-700"
@@ -122,8 +151,9 @@ function AdminTenanciesInner() {
                 <span className="flex items-center gap-1">Landlord <ArrowUpDown size={12} className="text-slate-400" /></span>
               </th>
               <th className="px-3 py-3 text-left font-semibold text-slate-600">Rent</th>
+              <th className="px-3 py-3 text-left font-semibold text-slate-600">Rent Status</th>
               <th className="px-3 py-3 text-left font-semibold text-slate-600">RTB #</th>
-              <th className="px-3 py-3 text-left font-semibold text-slate-600">Status</th>
+              <th className="px-3 py-3 text-left font-semibold text-slate-600">RTB Status</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -158,6 +188,24 @@ function AdminTenanciesInner() {
                   <p className="text-sm text-slate-400">{t.landlordSub}</p>
                 </td>
                 <td className="px-3 py-3 font-semibold text-slate-800 text-sm">{t.rent}</td>
+                <td className="px-3 py-3">
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 ${
+                      RENT_STYLE[getRentStatus(t)]?.badge ?? "bg-slate-100 text-slate-500"
+                    }`}>
+                      {getRentStatus(t) === "Paid" ? <CheckCircle2 size={11} /> : <Clock size={11} />}
+                      {getRentStatus(t)}
+                    </span>
+                    {getRentStatus(t) !== "Paid" && (
+                      <button
+                        onClick={() => markPaid(t.id)}
+                        className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold bg-teal-600 hover:bg-teal-700 text-white rounded-lg transition"
+                      >
+                        <CreditCard size={11} /> Mark Paid
+                      </button>
+                    )}
+                  </div>
+                </td>
                 <td className="px-3 py-3">
                   <p className="text-slate-600 text-sm">{t.rtb}</p>
                   {t.rtbReg && (

@@ -41,32 +41,32 @@ export default function AdminAuditPage() {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">Audit Log</h1>
           <p className="text-base text-slate-500 mt-0.5">Track all system actions and changes</p>
         </div>
         <button
           onClick={handleExport}
-          className="flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition"
+          className="flex items-center justify-center gap-2 w-full sm:w-auto px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition"
         >
           <Download size={15} /> Export CSV
         </button>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2">
         <select
           value={actionFilter}
           onChange={(e) => setActionFilter(e.target.value)}
-          className="px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-400"
+          className="w-full sm:w-auto px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-400"
         >
           {ACTION_TYPES.map((a) => <option key={a}>{a}</option>)}
         </select>
         <select
           value={userFilter}
           onChange={(e) => setUserFilter(e.target.value)}
-          className="px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-400"
+          className="w-full sm:w-auto px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-400"
         >
           {USERS.map((u) => <option key={u}>{u}</option>)}
         </select>
@@ -74,9 +74,9 @@ export default function AdminAuditPage() {
           type="date"
           value={dateFrom}
           onChange={(e) => setDateFrom(e.target.value)}
-          className="px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-400"
+          className="w-full sm:w-auto col-span-2 px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-400"
         />
-        <div className="relative flex-1 min-w-[200px]">
+        <div className="relative col-span-2 sm:flex-1 sm:min-w-[200px]">
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             value={search}
@@ -92,13 +92,13 @@ export default function AdminAuditPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-slate-100 bg-slate-50/60">
-              <th className="px-4 py-3 text-left font-semibold text-slate-600">Timestamp</th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-600">Admin ID</th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-600">User</th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-600">Action Type</th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-600">Action</th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-600">Target</th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-600">IP Address</th>
+              <th className="px-4 py-3 text-base text-left font-semibold text-slate-600">Timestamp</th>
+              <th className="px-4 py-3 text-base text-left font-semibold text-slate-600">Admin ID</th>
+              <th className="px-4 py-3 text-base text-left font-semibold text-slate-600">User</th>
+              <th className="px-4 py-3 text-base text-left font-semibold text-slate-600">Action Type</th>
+              <th className="px-4 py-3 text-base text-left font-semibold text-slate-600">Action</th>
+              <th className="px-4 py-3 text-base text-left font-semibold text-slate-600">Target</th>
+              <th className="px-4 py-3 text-base text-left font-semibold text-slate-600">IP Address</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -106,7 +106,7 @@ export default function AdminAuditPage() {
               <tr key={l.id} className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 font-mono text-slate-600">{l.ts}</td>
                 <td className="px-4 py-3 font-mono text-slate-500">{l.adminId}</td>
-                <td className="px-4 py-3 font-medium text-slate-700">{l.user}</td>
+                <td className="px-4 py-3 font-medium  text-slate-700">{l.user}</td>
                 <td className="px-4 py-3">
                   <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
                     l.actionType === "Delete" ? "bg-red-100 text-red-700" :
@@ -129,16 +129,17 @@ export default function AdminAuditPage() {
         {filtered.map((l) => (
           <div key={l.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-1">
             <div className="flex items-start justify-between">
-              <p className="text-sm font-medium text-slate-800">{l.action}</p>
+              <p className="text-base font-medium text-slate-800">{l.action}</p>
               <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
                 l.actionType === "Delete" ? "bg-red-100 text-red-700" :
                 l.actionType === "Create" ? "bg-teal-100 text-teal-700" :
+                l.actionType === "Login"  ? "bg-blue-100 text-blue-700" :
                 "bg-amber-100 text-amber-700"
               }`}>{l.actionType}</span>
             </div>
-            <p className="text-xs text-slate-500">{l.target}</p>
-            <p className="text-xs font-semibold text-slate-700">{l.user} <span className="font-mono text-slate-400">·{l.adminId}</span></p>
-            <div className="flex items-center justify-between text-xs text-slate-400">
+            <p className="text-sm text-slate-500">{l.target}</p>
+            <p className="text-sm font-semibold text-slate-700">{l.user} <span className="font-mono text-slate-400">·{l.adminId}</span></p>
+            <div className="flex items-center justify-between text-sm text-slate-400">
               <span className="font-mono">{l.ts}</span>
               <span className="font-mono">{l.ip}</span>
             </div>
