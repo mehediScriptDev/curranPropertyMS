@@ -103,7 +103,7 @@ export default function RegisterPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   {/* Role */}
-                  <div>
+                  {/* <div>
                     <label className="block text-sm font-medium text-slate-600 mb-2">Role</label>
                     <select
                       value={role}
@@ -113,7 +113,7 @@ export default function RegisterPage() {
                       <option value="LANDLORD">Landlord</option>
                       <option value="TENANT">Tenant</option>
                     </select>
-                  </div>
+                  </div> */}
 
                   {/* Full Name */}
                   <div>
