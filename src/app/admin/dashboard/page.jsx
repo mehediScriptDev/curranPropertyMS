@@ -201,15 +201,15 @@ export default function AdminDashboardPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-slate-800">Dashboard</h1>
         <div className="flex items-center gap-2">
-          <button className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-semibold rounded-lg shadow-sm transition">
+          <button onClick={() => router.push('/admin/documents')} className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-semibold rounded-lg shadow-sm transition">
             <Upload size={15} className="text-slate-500" />
             <span className="hidden sm:inline">Upload Document</span>
           </button>
-          <button className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-semibold rounded-lg shadow-sm transition">
+          <button onClick={() => router.push('/admin/tenancies')} className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-semibold rounded-lg shadow-sm transition">
             <FileText size={15} className="text-slate-500" />
             <span className="hidden sm:inline">Add Tenancy</span>
           </button>
-          <button className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition">
+          <button onClick={() => router.push('/admin/properties')} className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg shadow-sm transition">
             <Plus size={16} />
             <span className="hidden sm:inline">Add Property</span>
           </button>
@@ -230,7 +230,7 @@ export default function AdminDashboardPage() {
           <h2 className="text-lg font-bold text-slate-800 mr-2">Alerts</h2>
           <div className="flex flex-wrap items-center gap-2 ml-auto">
             {["Status", "County/City", "Landlord"].map((f) => (
-              <button key={f} className="flex items-center gap-1.5 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg px-3 py-1.5 hover:bg-slate-50 transition bg-white">
+              <button key={f} onClick={() => router.push(`/admin/tenancies?filter=${encodeURIComponent(f)}`)} className="flex items-center gap-1.5 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg px-3 py-1.5 hover:bg-slate-50 transition bg-white">
                 {f} <ChevronDown size={13} className="text-slate-400" />
               </button>
             ))}
