@@ -87,9 +87,17 @@ export default function AdminLandlordProfilePage() {
               <p className="text-sm text-slate-400 mt-0.5 flex items-center gap-1.5"><MapPin size={13} />{landlord.address}</p>
             </div>
           </div>
-          <button className="inline-flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg transition">
-            <Edit size={14} /> Edit Landlord
-          </button>
+          <div className="flex items-center gap-3">
+            <a
+              href={`/admin/messages?compose=1&to=landlord:${landlord.id}&name=${encodeURIComponent(landlord.name)}&email=${encodeURIComponent(landlord.email)}`}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-700 text-sm font-semibold rounded-lg hover:bg-slate-50 transition"
+            >
+              <Mail size={14} className="text-teal-600" /> Contact
+            </a>
+            <button className="inline-flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg transition">
+              <Edit size={14} /> Edit Landlord
+            </button>
+          </div>
         </div>
       </div>
 
