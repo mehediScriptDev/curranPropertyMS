@@ -1,0 +1,20 @@
+[00:00:00.795] Server  LOG     ✓ Ready in 537ms
+[00:00:20.201] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:20.201] Browser WARN    Image with src "/logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:20.645] Browser WARN    Image with src "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&q=70" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:20.645] Browser WARN    Image with src "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&q=70" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:21.227] Browser WARN    Image with src "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=64&q=70" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.432] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:10:36.156] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:10:36.157] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:50.823] Server  LOG     ✓ Compiled in 386ms
+[00:16:50.824] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:16:50.824] Browser ERROR   uncaughtError: ReferenceError: itemsPerPage is not defined
+[00:16:51.326] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:57.347] Browser WARN    Image with src "/logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.

@@ -1,11 +1,14 @@
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import ConditionalShell from "@/components/ConditionalShell";
+import { PortalAuthProvider } from "@/context/PortalAuthContext";
 
 export const metadata = {
-  title: "McCann & Curran | Professional Property Management",
+  title: "McCann & Curran Reality | Professional Property Management",
   description:
     "Comprehensive property management with secure digital reporting, RTB compliance, and transparent financial services in Ireland.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -24,9 +27,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <PortalAuthProvider>
+          <ConditionalShell>{children}</ConditionalShell>
+        </PortalAuthProvider>
       </body>
     </html>
   );

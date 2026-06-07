@@ -1,0 +1,11 @@
+{
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(dashboards)/admin/dashboard/page": "app/(dashboards)/admin/dashboard/page.js",
+  "/(dashboards)/admin/landlords/page": "app/(dashboards)/admin/landlords/page.js",
+  "/(dashboards)/admin/properties/page": "app/(dashboards)/admin/properties/page.js",
+  "/(dashboards)/admin/reports/page": "app/(dashboards)/admin/reports/page.js",
+  "/(dashboards)/admin/tenancies/[tenancyId]/rent-payments/page": "app/(dashboards)/admin/tenancies/[tenancyId]/rent-payments/page.js",
+  "/(dashboards)/admin/tenancies/page": "app/(dashboards)/admin/tenancies/page.js",
+  "/(dashboards)/admin/tenants/page": "app/(dashboards)/admin/tenants/page.js",
+  "/(main)/page": "app/(main)/page.js"
+}
